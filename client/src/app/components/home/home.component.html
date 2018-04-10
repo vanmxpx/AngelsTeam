@@ -1,0 +1,234 @@
+<!-- <div class="mat-sidenav-inner">
+      <mat-nav-list>
+          <mat-nav-list>
+            
+            <mat-list-item matTooltipPosition="after" [matTooltip]="!isExpanded ? 'Home' : ''">
+              <mat-icon mat-list-icon>home</mat-icon>
+              <p matLine *ngIf="isExpanded">Home</p>
+            </mat-list-item>
+            <mat-list-item matTooltipPosition="after" [matTooltip]="!isExpanded ? 'News' : ''">
+              <mat-icon mat-list-icon>speaker_notes</mat-icon>
+              <p matLine *ngIf="isExpanded">News</p>
+            </mat-list-item>
+            <mat-list-item matTooltipPosition="after" [matTooltip]="!isExpanded ? 'Library' : ''">
+              <mat-icon mat-list-icon>account_balance</mat-icon>
+              <p matLine *ngIf="isExpanded">Library</p>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item matTooltipPosition="after" [matTooltip]="!isExpanded ? 'Signals' : ''">
+              <mat-icon mat-list-icon>alarm_add</mat-icon>
+              <p matLine *ngIf="isExpanded">Signals</p>
+            </mat-list-item>
+            <mat-list-item matTooltipPosition="after" [matTooltip]="!isExpanded ? 'Charts' : ''">
+              <mat-icon mat-list-icon>timeline</mat-icon>
+              <p matLine *ngIf="isExpanded">Charts</p>
+            </mat-list-item>
+          </mat-nav-list>
+      </mat-nav-list>
+    </div> -->
+  
+    <div class="container">
+      <div style="text-align:center">
+        <div class="banner" parallax [config]="parallaxConfig">
+      </div>
+    
+      <div class="section-propose">
+        <section class="mat-typography">
+            <h1 class="title">
+                PROPOSE
+            </h1>
+        </section>
+        <div class="content">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>Trading Smart</mat-card-title>
+              <mat-card-subtitle>and cold</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="./assets/images/candles.png">
+            <mat-card-content>
+              <p>
+                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                bred for hunting.
+              </p>
+            </mat-card-content>
+          </mat-card>
+          <mat-card>
+              <mat-card-header>
+                <mat-card-title>Trading Smart</mat-card-title>
+                <mat-card-subtitle>and cold</mat-card-subtitle>
+              </mat-card-header>
+              <img mat-card-image src="./assets/images/candles.png">
+              <mat-card-content>
+                <p>
+                  The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                  A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                  bred for hunting.
+                </p>
+              </mat-card-content>
+            </mat-card>
+            <mat-card>
+                <mat-card-header>
+                  <mat-card-title>Trading Smart</mat-card-title>
+                  <mat-card-subtitle>and cold</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image src="./assets/images/candles.png">
+                <mat-card-content>
+                  <p>
+                    The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                    A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                    bred for hunting.
+                  </p>
+                </mat-card-content>
+              </mat-card>
+        </div>
+      </div>
+      
+      <div class="section-trading">
+          <section class="mat-typography">
+              <h1 class="title">
+                  TRADING
+              </h1>
+          </section>
+          <div class="content">
+            <mat-card>
+              <mat-card-content>
+                <section class="item">
+                <p>
+                    The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                  A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                  bred for hunting.
+                  </p>
+                  <p>
+                    The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                  A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                  bred for hunting.
+                </p>
+                <p>
+                    The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                  A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                  bred for hunting.
+                </p>
+              </section>
+                <img class="item" src="./assets/images/crypto.png">
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+    
+        <div class="section-contact">
+          <div class="item info">
+              <section class="mat-typography">
+                  <h1 class="title">
+                      CONTACT INFO
+                  </h1>
+                  <mat-divider></mat-divider>
+                  <p>Feel free to contact us, if you have any questions, we'll be glad to help.</p>
+                  <mat-divider></mat-divider>
+    
+                  <ul>
+                    <li><mat-icon>location_on</mat-icon>Moscow</li>
+                    <li><mat-icon>email</mat-icon>some-email@gmail.com</li>
+                    <li><mat-icon>contact_phone</mat-icon>+38000000000</li>
+                  </ul>
+              </section>
+          </div>
+          <div class="item email">
+              <section class="mat-typography">
+                  <h1 class="title">
+                      CONTACT US
+                  </h1>
+              </section>
+              <mat-form-field>
+                  <input matInput placeholder="Email" [formControl]="emailFormControl"
+                         [errorStateMatcher]="matcher">
+                  <mat-hint>To forward answer</mat-hint>
+                  <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                    Please enter a valid email address
+                  </mat-error>
+                  <mat-error *ngIf="emailFormControl.hasError('required')">
+                    Email is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field >
+                  <input matInput placeholder="Password" [formControl]="passwordFormControl"
+                         [errorStateMatcher]="matcherPassword">
+                  <mat-hint>Confirm accaunt</mat-hint>
+                  <mat-error *ngIf="passwordFormControl.hasError('email') && !passwordFormControl.hasError('required')">
+                    Password is invalid. Please try again.
+                  </mat-error>
+                  <mat-error *ngIf="passwordFormControl.hasError('required')">
+                    Password is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <textarea matInput matTextareaAutosize matAutosizeMaxRows="8" matAutosizeMinRows="5" placeholder="Leave message"></textarea>
+                  </mat-form-field>
+    
+          </div>
+        </div>
+    
+      </div>
+      
+    
+      <footer>
+          <section class="mat-typography copyright">
+            <h1>
+                Copyright ©2017. All Rights Reserved | Privacy Policy
+            </h1>
+          </section>
+    
+          <section class="mat-typography social">
+              <ul id="services">
+                <li>
+                  <div class="facebook" matTooltip="Facebook profile" matTooltipPosition="above">
+                    <a href="https://facebook.com/colorlib/">
+                      <i class="fa fa-facebook" aria-hidden="true"></i>
+                    </a>
+                  </div>
+    
+                </li>
+                <li>
+                  <div class="twitter" matTooltip="Twitter profile" matTooltipPosition="above">
+                    <a href="https://twitter.com/colorlib/">
+                      <i class="fa fa-twitter" aria-hidden="true"></i>
+                    </a>
+                  </div>
+    
+                </li>
+                <li>
+                  <div class="youtube" matTooltip="YouTube profile" matTooltipPosition="above">
+                    <a href="https://www.youtube.com/c/Colorlib">
+                      <i class="fa fa-youtube" aria-hidden="true"></i>
+                    </a>
+                  </div>
+    
+                </li>
+                <li>
+                  <div class="linkedin" matTooltip="LinkedIn profile" matTooltipPosition="above">
+                    <a href="https://www.linkedin.com/company/colorlib">
+                      <i class="fa fa-linkedin" aria-hidden="true"></i>
+                    </a>
+                  </div>
+    
+                </li>
+                <li>
+                  <div class="instagram" matTooltip="Instagram profile" matTooltipPosition="above">
+                    <a href="https://www.linkedin.com/company/colorlib">
+                      <i class="fa fa-instagram" aria-hidden="true"></i>
+                    </a>
+                  </div>
+    
+                </li>
+                <li>
+                  <div class="github" matTooltip="GitHub profile" matTooltipPosition="above">
+                    <a href="https://github.com/">
+                      <i class="fa fa-github" aria-hidden="true"></i>
+                    </a>
+                  </div>
+    
+                </li>
+              </ul>
+            </section>
+        </footer>
+      </div>   

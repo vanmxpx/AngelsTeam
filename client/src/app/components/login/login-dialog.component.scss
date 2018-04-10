@@ -1,0 +1,25 @@
+.container { 
+    text-align: center;
+    width: 300px;
+}
+
+h1 {
+    color: rgb(217, 16, 24);
+    font-size: 20px;
+}
+mat-dialog-content mat-form-field {
+    width: 90%;
+}
+
+mat-dialog-actions {
+    display: flex; 
+    justify-content: center;
+}
+
+::ng-deep .mat-form-field-suffix .mat-icon{
+    cursor: pointer;
+}
+
+::ng-deep .mat-form-field-prefix, ::ng-deep .mat-form-field-suffix {
+    align-self: flex-end;
+}

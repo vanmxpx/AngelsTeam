@@ -1,0 +1,135 @@
+@import '~@angular/material/theming';
+@import '~sass/mixins';
+
+.container {
+    background: white;
+    margin: 20px 5px 20px 20px;
+    @include mat-elevation(2);
+}
+
+.title {
+    @include text-color();
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    margin-left: 40px;
+    h2 {
+        margin: 0;
+    }
+    .sort {
+        width: 150px;
+    }
+}
+
+.signals-list {
+    padding-left: 40px;
+}
+
+.pagination {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 10px;
+}
+%item-shared {
+    display: flex;
+    padding: 5px 16px;
+    align-items: center;
+    margin-bottom: 10px;
+    border-left: 3px solid;
+    min-height: 60px;
+    .item {
+        width: 100%;
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+    .item-content { width: calc(100% - 33px); }
+        .content-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            button { font-weight: 600;}
+            p { font-size: 12px; color: gray;}
+        }
+        .content-body {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            img {
+                width: 60%;
+                margin-right: 10px;
+                height: 150px;
+            }
+            .targets {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+        
+    }
+    mat-icon {
+        cursor: pointer;
+    }
+  }
+
+.list-item {
+    @extend %item-shared;
+
+    img {
+        width: 80%;
+        height: 200px;
+    }
+}
+
+.info {
+    @extend %item-shared;
+    background: rgb(244, 248, 250);
+    border-color: rgb(0, 188, 212) ;
+    mat-icon {
+        color:lightseagreen;
+    }
+}
+
+.safe {
+    @extend %item-shared;
+    background: rgb(243, 250, 243);
+    border-color: rgb(139, 195, 74);
+    mat-icon {
+        color:green;
+    }
+}
+
+.warning {
+    @extend %item-shared;
+    background: #fdf1e1;
+    border-color: #fc9e23;
+    mat-icon {
+        color: orange;
+    }
+}
+
+.danger {
+    @extend %item-shared;
+    background: #f7e9e9;
+    border-color: #e91717 ;
+    mat-icon {
+        color: red;
+    }
+}
+
+/* Filter styles */
+::ng-deep .title .mat-form-field-label {
+    @include text-color();
+}
+::ng-deep .title .mat-focused .mat-form-field-label {
+    @include text-color();
+    }
+    ::ng-deep .title .mat-form-field-ripple {
+        @include back-color();
+    }
+    ::ng-deep .title .mat-input-underline {
+        @include back-color();   
+ }

@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '~material-design-icons/iconfont/material-icons.css';
+@import '~@angular/material/theming';
+@import './mixins';
+
+html, body {
+    margin: 0;
+    background: rgb(239, 239, 239);
+    width: 100%;
+    font-family: Roboto,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+}
+
+.scrollable-container {
+    position: relative;
+}

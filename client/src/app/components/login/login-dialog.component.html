@@ -1,0 +1,34 @@
+<div class="container">
+        <h1 mat-dialog-title>Wellcome</h1>
+        <mat-dialog-content>
+          <!-- <p>Do you want to delete this group?</p> -->
+          <mat-form-field>
+                <input matInput placeholder="Login" 
+                (keydown)="authPress($event.key)" [errorStateMatcher]="matchLogin"  [formControl]="loginFormControl"
+                [(ngModel)]="_currLogin">
+                <mat-icon matPrefix>account_box</mat-icon>
+                <mat-error *ngIf="loginFormControl.hasError('required')">
+                    Login is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Password" [type]="show ? 'text' : 'password'"  [formControl]="passwordFormControl"
+            (keydown)="authPress($event.key)" [errorStateMatcher]="matchPassword" [(ngModel)]="_currPass">
+            
+            <mat-icon matPrefix>fingerprint</mat-icon>
+            <mat-icon matSuffix (click)="show = !show">{{show ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-error *ngIf="passwordFormControl.hasError('required')">
+                    Password is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="passwordFormControl.hasError('valid') && !passwordFormControl.hasError('required')">
+                Password is invalid. Please try again.
+            </mat-error>
+        </mat-form-field>
+
+
+            </mat-dialog-content>
+        <mat-dialog-actions>
+          <button mat-button color="warn" (click)="onLogIn()">Log In</button>
+          <button mat-button (click)="onNoClick()" cdkFocusInitial>Back</button>
+        </mat-dialog-actions>
+      </div>

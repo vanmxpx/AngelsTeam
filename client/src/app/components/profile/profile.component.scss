@@ -1,0 +1,23 @@
+
+
+.container {
+    height: 100%;
+    margin-top: 64px;
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+signals, subscriptions { 
+    height: 100%;
+    box-sizing: border-box;
+}
+
+signals {
+    flex: 1 1 65%;
+}
+
+subscriptions {
+    flex: 1 1 35%;
+}

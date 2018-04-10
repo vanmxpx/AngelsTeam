@@ -1,0 +1,41 @@
+@import '~@angular/material/theming';
+@import '~sass/mixins';
+.title {
+    font-weight: 500;
+    font-size: 26px;
+    padding-top: 10px;
+  }
+
+mat-toolbar.in-body {
+    @include mat-elevation(4);
+    background: white;
+    top: 0;
+    z-index: 4;
+    position: fixed;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.title {
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    img {
+        margin: 0;
+        width: 35px;
+        height: 35px;
+    }
+    .title-text{
+
+        p {
+            @include text-color();
+            font-weight: 600;
+            font-size: 14px;
+            margin-top: -5px;
+            margin-bottom: 0;
+        }
+    }
+}
