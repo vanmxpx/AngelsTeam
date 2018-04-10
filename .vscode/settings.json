@@ -1,0 +1,16 @@
+{
+    "deploy": {
+        "targets": [
+            {
+                "type": "ftp",
+                "name": "testSite",
+                "description": "testSite",
+
+                "dir": "/test_site",
+                "host": "angelsta.qoty.ru/", "port": 21,
+                "secure": false,
+                "user": "user451_angel", "password": "N7x3I4r3"
+            }
+        ]
+    }
+}

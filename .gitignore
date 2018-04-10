@@ -1,0 +1,7 @@
+# Output directories
+bin/
+obj/
+wwwroot/
+
+# Bootstrap modules
+node_modules/
