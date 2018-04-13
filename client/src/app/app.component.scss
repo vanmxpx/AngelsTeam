@@ -1,5 +1,7 @@
 @import '~@angular/material/theming';
 @import '~sass/mixins';
+@import '~sass/variables';
+
 .title {
     font-weight: 500;
     font-size: 26px;
@@ -7,8 +9,7 @@
   }
 
 mat-toolbar.in-body {
-    @include mat-elevation(4);
-    background: white;
+    background: $color-primary;
     top: 0;
     z-index: 4;
     position: fixed;
@@ -23,15 +24,28 @@ mat-toolbar.in-body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    img {
-        margin: 0;
-        width: 35px;
-        height: 35px;
+    .logo {
+        margin-right: 5px;
+        border: 2px solid white;
+        border-radius: 39px;
+        background: white;
+        width: 40px;
+        height: 38px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        img {
+            margin-top: -3px;
+            width: 35px;
+            height: 35px;
+        }
     }
     .title-text{
-
+        h1 {
+            color: $color-text-primary;
+        }
         p {
-            @include text-color();
+            color: $color-text-secondary;
             font-weight: 600;
             font-size: 14px;
             margin-top: -5px;
