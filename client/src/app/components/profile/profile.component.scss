@@ -16,44 +16,70 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    .banner-container {
+
+    .banner-container { 
         width: 900px;
+        
+    }
+
+    .face-container {
+
         display: flex;
         align-items: center;
+        padding: 10px 34px;
+        padding-bottom: 0;
+        @media only screen and (max-width: $break-small) {
+            display: flex;
+            flex-direction: column;
+          }
         .face {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: space-around;
             padding-right: 60px;
+            @media only screen and (max-width: $break-small) {
+                padding-right: 0;
+              }
+
             img {
                 border-radius: 50%;
-                border: 3px solid $color-primary;
-                height: 100px;
-                width: 100px;
+                border: 2px solid $color-primary;
+                height: 65px;
+                width: 65px;
             }
             h1 {
+                font-size: 18px;
+                margin-bottom: 0px;
                 color: $color-text-heading;
             }
         }
         .sub {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            flex-direction: row;
             h1 {
                 font-size: 30px;
                 color: $color-text-heading;
             }
             .subtitle {
-                margin-top: -24px;
-                margin-left: 8px;
+                margin: -24px 0 0 8px;
             }
+        }
+
+        .sub-ends {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 250px;
         }
     }
 }
 
 mat-tab-group {
     margin-bottom: -1px;
+    min-width: 100%;
+    width: 100%;
 }
 signals, subscriptions {
     height: 100%;
