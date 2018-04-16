@@ -15,8 +15,19 @@ mat-toolbar.in-body {
     position: fixed;
     text-align: left;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 
+    .toolbar-content {
+        width: 900px;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.profile-buttons {
+    color: $color-text-primary;
+    display: flex;
+    align-items: center;
 }
 
 .title {

@@ -11,7 +11,7 @@
 
 .banner-profile {
     width: 100%;
-    height: 220px;
+    border-bottom: 1px solid #dcdcdd;
     background: rgb(250, 251, 252);
     display: flex;
     align-items: center;
@@ -20,12 +20,12 @@
         width: 900px;
         display: flex;
         align-items: center;
-        justify-content: space-around;
         .face {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: space-around;
+            padding-right: 60px;
             img {
                 border-radius: 50%;
                 border: 3px solid $color-primary;
@@ -51,15 +51,11 @@
         }
     }
 }
+
+mat-tab-group {
+    margin-bottom: -1px;
+}
 signals, subscriptions {
     height: 100%;
-    box-sizing: border-box;
-}
-
-signals {
-    flex: 1 1 65%;
-}
-
-subscriptions {
-    flex: 1 1 35%;
+    width: 100%;
 }

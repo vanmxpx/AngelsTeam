@@ -3,8 +3,12 @@
 
 .container {
     background: white;
-    margin: 20px 5px 20px 20px;
-    @include mat-elevation(2);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    .signals-content {
+        width: 900px;
+    }
 }
 
 .title {

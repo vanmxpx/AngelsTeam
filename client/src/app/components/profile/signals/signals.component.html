@@ -1,146 +1,148 @@
 <div class="container">
-    <div class="title">
-        <h2 class="mat-h2">Новости</h2>
-        <mat-menu #menu="matMenu" xPosition="before">
-            <a mat-menu-item disabled class="mat-titile">Отображать:</a>
-            <a mat-menu-item><mat-checkbox checked=true >Новости</mat-checkbox></a>
-            <a mat-menu-item><mat-checkbox checked=true >Сигналы</mat-checkbox></a>
-        </mat-menu>
-        <div class="settings">
-                <mat-form-field class="sort">
-                    <mat-select  placeholder="Сортировать по:" >
-                        <mat-option value="date"> Дате </mat-option>
-                        <mat-option value="lvl"> Уровню </mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <button mat-icon-button (click)="filter=''; applyFilter('');isFilterExpanded=!isFilterExpanded;" matTooltip="Filter"><mat-icon>search</mat-icon></button>
-                <mat-form-field *ngIf="isFilterExpanded" [@filterExpand] (@filterExpand.done)="focusFilter()">
-                    <input matInput type="text" [focus]="focusTrigger" [(ngModel)]="filter" (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-                    <button mat-button *ngIf="filter" matSuffix mat-icon-button aria-label="Clear" (click)="filter=''; applyFilter('');">
-                        <mat-icon>close</mat-icon>
-                    </button>
-                </mat-form-field>
-            <button mat-icon-button [matMenuTriggerFor]="menu">
-                <mat-icon>more_vert</mat-icon>
-            </button>
+    <div class="signals-content">
+        <div class="title">
+            <h2 class="mat-h2">Новости</h2>
+            <mat-menu #menu="matMenu" xPosition="before">
+                <a mat-menu-item disabled class="mat-titile">Отображать:</a>
+                <a mat-menu-item><mat-checkbox checked=true >Новости</mat-checkbox></a>
+                <a mat-menu-item><mat-checkbox checked=true >Сигналы</mat-checkbox></a>
+            </mat-menu>
+            <div class="settings">
+                    <mat-form-field class="sort">
+                        <mat-select  placeholder="Сортировать по:" >
+                            <mat-option value="date"> Дате </mat-option>
+                            <mat-option value="lvl"> Уровню </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <button mat-icon-button (click)="filter=''; applyFilter('');isFilterExpanded=!isFilterExpanded;" matTooltip="Filter"><mat-icon>search</mat-icon></button>
+                    <mat-form-field *ngIf="isFilterExpanded" [@filterExpand] (@filterExpand.done)="focusFilter()">
+                        <input matInput type="text" [focus]="focusTrigger" [(ngModel)]="filter" (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                        <button mat-button *ngIf="filter" matSuffix mat-icon-button aria-label="Clear" (click)="filter=''; applyFilter('');">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </mat-form-field>
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+            </div>
+
         </div>
 
-    </div>
-
-    <div class="signals-control">
-        <div class="signals-list">
-                <div class="list-item info"> 
-                        <div class="item">
-                                <div class="item-content">
-                                        <div class="content-header">                         
-                                            <a>Заголовок</a>
-                                            <p>12/01/2018 15:00</p>
+        <div class="signals-control">
+            <div class="signals-list">
+                    <div class="list-item info"> 
+                            <div class="item">
+                                    <div class="item-content">
+                                            <div class="content-header">                         
+                                                <a>Заголовок</a>
+                                                <p>12/01/2018 15:00</p>
+                                            </div>
+                                            <div class="content-body">  
+                                                <img src="./assets/images/test.jpeg">
+                                            </div>
+                                            <div class="content-footer">
+                                                    <p class="mat-typography">Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс "Начинающий трейдер". У нас хорошие новости. Освободилось ровно три места. По всем вопросам: <a href="*">@AngelsTAP</a></p>
+                                            </div>
                                         </div>
-                                        <div class="content-body">  
-                                            <img src="./assets/images/test.jpeg">
-                                        </div>
-                                        <div class="content-footer">
-                                                <p class="mat-typography">Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс "Начинающий трейдер". У нас хорошие новости. Освободилось ровно три места. По всем вопросам: <a href="*">@AngelsTAP</a></p>
-                                        </div>
+                                <div class="sign" matTooltip="Для Вашей информации">
+                                    <mat-icon>info</mat-icon>
+                                </div>
+                            </div>
+                            </div>
+                <div class="list-item safe"> 
+                    <div class="item">
+                            <div class="item-content">
+                                    <div class="content-header">                         
+                                        <button mat-button>#BTG</button>
+                                        <p>12/01/2018 15:00</p>
                                     </div>
-                            <div class="sign" matTooltip="Для Вашей информации">
-                                <mat-icon>info</mat-icon>
-                            </div>
+                                    <div class="content-body">  
+                                        <img src="./assets/images/test.jpeg">
+                                        <section class="mat-typography targets">
+                                                <a><strong>Buy around:</strong> 0.00050-53</a>
+                                                <mat-divider></mat-divider>
+                                                <a><strong>TP 1:</strong> 0.00057</a>
+                                                <a><strong>TP 2:</strong> 0.00059</a>
+                                                <a><strong>TP 3:</strong> 0.00062</a>
+                                                <a><strong>TP 4:</strong> 0.00065</a>
+                                                <mat-divider></mat-divider>
+                                                <a><strong>Stop-loss:</strong> 0.00045</a>
+                                        </section>
+                                    </div>
+                                    <div class="content-footer">
+                                            <p class="mat-typography">Хороший потенциал у данной монеты. rsi в зоне перепроданности. Возможное окончание волны коррекционной волны C. Также, по macd видна бычья дивергенция.</p>
+                                    </div>
+                                </div>
+                        <div class="sign" matTooltip="Риск: Низкий">
+                            <mat-icon>beenhere</mat-icon>
                         </div>
-                        </div>
-            <div class="list-item safe"> 
-                <div class="item">
+                    </div>
+                </div>
+                <div class="list-item warning">
+                    <div class="item">
                         <div class="item-content">
-                                <div class="content-header">                         
-                                    <button mat-button>#BTG</button>
-                                    <p>12/01/2018 15:00</p>
-                                </div>
-                                <div class="content-body">  
-                                    <img src="./assets/images/test.jpeg">
-                                    <section class="mat-typography targets">
-                                            <a><strong>Buy around:</strong> 0.00050-53</a>
-                                            <mat-divider></mat-divider>
-                                            <a><strong>TP 1:</strong> 0.00057</a>
-                                            <a><strong>TP 2:</strong> 0.00059</a>
-                                            <a><strong>TP 3:</strong> 0.00062</a>
-                                            <a><strong>TP 4:</strong> 0.00065</a>
-                                            <mat-divider></mat-divider>
-                                            <a><strong>Stop-loss:</strong> 0.00045</a>
-                                    </section>
-                                </div>
-                                <div class="content-footer">
-                                        <p class="mat-typography">Хороший потенциал у данной монеты. rsi в зоне перепроданности. Возможное окончание волны коррекционной волны C. Также, по macd видна бычья дивергенция.</p>
-                                </div>
+                            <div class="content-header">                         
+                                <button mat-button>#BTG</button>
+                                <p>12/01/2018 15:00</p>
                             </div>
-                    <div class="sign" matTooltip="Риск: Низкий">
-                        <mat-icon>beenhere</mat-icon>
-                    </div>
-                </div>
-            </div>
-            <div class="list-item warning">
-                <div class="item">
-                    <div class="item-content">
-                        <div class="content-header">                         
-                            <button mat-button>#BTG</button>
-                            <p>12/01/2018 15:00</p>
-                        </div>
-                        <div class="content-body">  
-                            <img src="./assets/images/test.jpeg">
-                            <section class="mat-typography targets">
-                                    <a><strong>Buy around:</strong> 0.00050-53</a>
-                                    <mat-divider></mat-divider>
-                                    <a><strong>TP 1:</strong> 0.00057</a>
-                                    <a><strong>TP 2:</strong> 0.00059</a>
-                                    <a><strong>TP 3:</strong> 0.00062</a>
-                                    <a><strong>TP 4:</strong> 0.00065</a>
-                                    <mat-divider></mat-divider>
-                                    <a><strong>Stop-loss:</strong> 0.00045</a>
-                            </section>
-                        </div>
-                        <div class="content-footer">
-                                <p class="mat-typography">Хороший потенциал у данной монеты. rsi в зоне перепроданности. Возможное окончание волны коррекционной волны C. Также, по macd видна бычья дивергенция.</p>
-                        </div>
-                    </div>
-                    <div class="sign" matTooltip="Риск: Средний"> 
-                        <mat-icon>warning</mat-icon>
-                    </div>
-                </div>
-            </div>
-            <div class="list-item danger">
-                <div class="item">
-                        <div class="item-content">
-                                <div class="content-header">                         
-                                    <button mat-button>#BTG</button>
-                                    <p>12/01/2018 15:00</p>
-                                </div>
-                                <div class="content-body">  
-                                    <img src="./assets/images/test.jpeg">
-                                    <section class="mat-typography targets">
-                                            <a><strong>Buy around:</strong> 0.00050-53</a>
-                                            <mat-divider></mat-divider>
-                                            <a><strong>TP 1:</strong> 0.00057</a>
-                                            <a><strong>TP 2:</strong> 0.00059</a>
-                                            <a><strong>TP 3:</strong> 0.00062</a>
-                                            <a><strong>TP 4:</strong> 0.00065</a>
-                                            <mat-divider></mat-divider>
-                                            <a><strong>Stop-loss:</strong> 0.00045</a>
-                                    </section>
-                                </div>
-                                <div class="content-footer">
-                                        <p class="mat-typography">Хороший потенциал у данной монеты. rsi в зоне перепроданности. Возможное окончание волны коррекционной волны C. Также, по macd видна бычья дивергенция.</p>
-                                </div>
+                            <div class="content-body">  
+                                <img src="./assets/images/test.jpeg">
+                                <section class="mat-typography targets">
+                                        <a><strong>Buy around:</strong> 0.00050-53</a>
+                                        <mat-divider></mat-divider>
+                                        <a><strong>TP 1:</strong> 0.00057</a>
+                                        <a><strong>TP 2:</strong> 0.00059</a>
+                                        <a><strong>TP 3:</strong> 0.00062</a>
+                                        <a><strong>TP 4:</strong> 0.00065</a>
+                                        <mat-divider></mat-divider>
+                                        <a><strong>Stop-loss:</strong> 0.00045</a>
+                                </section>
                             </div>
-                    <div class="sign" matTooltip="Риск: Высокий. Торговля опасна">
-                        <mat-icon>priority_high</mat-icon>
-                        <mat-icon style="margin-left: -20px;">priority_high</mat-icon>
-                    </div>               
+                            <div class="content-footer">
+                                    <p class="mat-typography">Хороший потенциал у данной монеты. rsi в зоне перепроданности. Возможное окончание волны коррекционной волны C. Также, по macd видна бычья дивергенция.</p>
+                            </div>
+                        </div>
+                        <div class="sign" matTooltip="Риск: Средний"> 
+                            <mat-icon>warning</mat-icon>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>           
-    </div>
+                <div class="list-item danger">
+                    <div class="item">
+                            <div class="item-content">
+                                    <div class="content-header">                         
+                                        <button mat-button>#BTG</button>
+                                        <p>12/01/2018 15:00</p>
+                                    </div>
+                                    <div class="content-body">  
+                                        <img src="./assets/images/test.jpeg">
+                                        <section class="mat-typography targets">
+                                                <a><strong>Buy around:</strong> 0.00050-53</a>
+                                                <mat-divider></mat-divider>
+                                                <a><strong>TP 1:</strong> 0.00057</a>
+                                                <a><strong>TP 2:</strong> 0.00059</a>
+                                                <a><strong>TP 3:</strong> 0.00062</a>
+                                                <a><strong>TP 4:</strong> 0.00065</a>
+                                                <mat-divider></mat-divider>
+                                                <a><strong>Stop-loss:</strong> 0.00045</a>
+                                        </section>
+                                    </div>
+                                    <div class="content-footer">
+                                            <p class="mat-typography">Хороший потенциал у данной монеты. rsi в зоне перепроданности. Возможное окончание волны коррекционной волны C. Также, по macd видна бычья дивергенция.</p>
+                                    </div>
+                                </div>
+                        <div class="sign" matTooltip="Риск: Высокий. Торговля опасна">
+                            <mat-icon>priority_high</mat-icon>
+                            <mat-icon style="margin-left: -20px;">priority_high</mat-icon>
+                        </div>               
+                    </div>
+                </div>
+            </div>           
+        </div>
 
-    <div class="pagination"> 
-        <button mat-button><mat-icon>chevron_left</mat-icon> Предыдущие</button>
-        <button mat-button> Следующие <mat-icon>chevron_right</mat-icon></button>
+        <div class="pagination"> 
+            <button mat-button><mat-icon>chevron_left</mat-icon> Предыдущие</button>
+            <button mat-button> Следующие <mat-icon>chevron_right</mat-icon></button>
+        </div>
     </div>
 </div>
