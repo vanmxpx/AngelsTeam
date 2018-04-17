@@ -1,14 +1,21 @@
 @import '~@angular/material/theming';
+@import '~sass/variables';
 @import '~sass/mixins';
 
 .container {
-    background: white;
     width: 100%;
     display: flex;
     justify-content: center;
+    background: $color-background-light;
     .signals-content {
         width: 900px;
     }
+}
+
+.signals-content {
+    background: $color-control;
+    border-right: 1px solid $color-border;
+    border-left: 1px solid $color-border;
 }
 
 .title {

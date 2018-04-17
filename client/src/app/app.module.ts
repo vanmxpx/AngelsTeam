@@ -7,14 +7,15 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ProfileComponent } from './components/profile/profile.component';
-
+import { AdminComponent } from './components/admin/admin.component';
 import { SignalsComponent } from './components/profile/signals/signals.component';
 import { SubscriptionsComponent } from './components/profile/subscriptions/subscriptions.component';
+import { SubsComponent } from './components/admin/subs/subs.component';
+
 import { AppRoutingModule } from './app-routing.module';
-
-
 import { CurrentUserService } from './services/current-user.service';
 import { LoginDialog } from './components/login/login-dialog.component';
+import { FocusDirective } from './directives/focus.directive';
 
 import { Parallax, ParallaxConfig, ParallaxModule } from 'ngx-parallax';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
@@ -43,7 +44,7 @@ import {
   MatDatepickerModule,
   MatNativeDateModule,
   MatRippleModule } from '@angular/material';
-import { FocusDirective } from './directives/focus.directive';
+
 
 
 @NgModule({
@@ -78,6 +79,8 @@ export class MaterialModule {}
     AppComponent,
     HomeComponent,
     ProfileComponent,
+    AdminComponent,
+    SubsComponent,
     PageNotFoundComponent,
     SignalsComponent,
     SubscriptionsComponent,

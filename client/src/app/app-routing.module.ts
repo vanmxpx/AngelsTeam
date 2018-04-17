@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { HomeComponent } from './components/home/home.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 
 // import { CanDeactivateGuard } from './can-deactivate-guard.service';
@@ -10,13 +11,17 @@ import { HomeComponent } from './components/home/home.component';
 // import { SelectivePreloadingStrategy } from './selective-preloading-strategy';
 
 const appRoutes: Routes = [
-    {
-        path: 'home',
-        component: HomeComponent
-      },
+  {
+    path: 'home',
+    component: HomeComponent
+  },
   {
     path: 'profile',
     component: ProfileComponent
+  },
+  {
+    path: 'admin',
+    component: AdminComponent
   },
 //   {
 //     path: 'admin',

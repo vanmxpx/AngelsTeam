@@ -2,7 +2,6 @@
 
 .container {
     height: 100%;
-    margin-top: 64px;
     box-sizing: border-box;
     display: flex;
     flex-flow: row wrap;
@@ -11,8 +10,8 @@
 
 .banner-profile {
     width: 100%;
-    border-bottom: 1px solid #dcdcdd;
-    background: rgb(250, 251, 252);
+    border-bottom: 1px solid $color-border;
+    background: $color-sidepanel;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -58,6 +57,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            color: $color-text-subheading;
             h1 {
                 font-size: 30px;
                 color: $color-text-heading;
@@ -81,7 +81,7 @@ mat-tab-group {
     min-width: 100%;
     width: 100%;
 }
-signals, subscriptions {
+signals, subscriptions{
     height: 100%;
     width: 100%;
 }

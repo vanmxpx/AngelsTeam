@@ -1,0 +1,48 @@
+@import '~sass/variables';
+
+
+mat-drawer-container, mat-drawer, mat-drawer-content {
+    height: 100%;
+}
+
+.container {
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-around;
+}
+
+mat-drawer-container {
+    position: fixed;
+    height: 100%;
+    width: 900px;
+    border-right: 1px solid $color-border;
+    border-left: 1px solid $color-border;
+}
+
+mat-drawer{
+    
+    overflow: hidden;
+    background: $color-control;
+}
+ mat-drawer-content {
+    background: $color-control;
+}
+
+mat-nav-list {
+    width: 200px;
+    height: 100%;
+    padding-top: 100px;
+    border-right: 1px solid $color-border;
+    background: $color-sidepanel;
+    a {
+        color: $color-text-subheading;
+    }
+    .mat-list-item-content{
+        display: flex;
+        justify-content: flex-end;
+    }
+    mat-icon {
+        margin-right: 15px;
+    }
+}
