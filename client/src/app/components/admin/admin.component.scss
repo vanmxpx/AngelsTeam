@@ -1,7 +1,7 @@
 @import '~sass/variables';
 
 
-mat-drawer-container, mat-drawer, mat-drawer-content {
+mat-drawer-container, mat-drawer, mat-drawer-content, .page {
     height: 100%;
 }
 
@@ -45,4 +45,8 @@ mat-nav-list {
     mat-icon {
         margin-right: 15px;
     }
+}
+
+.hovered {
+    background: rgba(0, 0, 0, 0.12);
 }

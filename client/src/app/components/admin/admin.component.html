@@ -2,14 +2,17 @@
     <mat-drawer-container class="example-container">
         <mat-drawer mode="side" opened="true">
             <mat-nav-list>
-                <a mat-list-item (click)="state = sub"><mat-icon>book</mat-icon>Подписки</a>
-                <a mat-list-item (click)="state = sign"><mat-icon>assignment</mat-icon>Сигналы</a>
-                <a mat-list-item><mat-icon>build</mat-icon> Настройки</a>
+                <a mat-list-item [class.hovered]="state === 'sub'" (click)="state = 'sub'"><mat-icon>book</mat-icon>Подписки</a>
+                <a mat-list-item [class.hovered]="state === 'sign'" (click)="state = 'sign'"><mat-icon>assignment</mat-icon>Сигналы</a>
+                <a mat-list-item [class.hovered]="state === 'sets'" (click)="state = 'sets'"><mat-icon>build</mat-icon> Настройки</a>
             </mat-nav-list>
         </mat-drawer>
         <mat-drawer-content>
-                <div *ngIf="state == sign">Not Hello</div>
-            <subs *ngIf="state == sub"></subs>
+            <div class="page" [ngSwitch]="state">
+                <subs *ngSwitchCase="'sub'"></subs>
+                <signs *ngSwitchCase="'sign'"></signs>
+            </div>
+
 
         </mat-drawer-content>
     </mat-drawer-container>

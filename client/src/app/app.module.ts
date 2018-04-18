@@ -9,7 +9,6 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { ProfileComponent } from './components/profile/profile.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { SignalsComponent } from './components/profile/signals/signals.component';
-import { SubscriptionsComponent } from './components/profile/subscriptions/subscriptions.component';
 import { SubsComponent } from './components/admin/subs/subs.component';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -33,6 +32,7 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatCardModule,
+  MatStepperModule,
   MatSnackBarModule,
   MatDialogModule,
   MatTableModule,
@@ -44,6 +44,8 @@ import {
   MatDatepickerModule,
   MatNativeDateModule,
   MatRippleModule } from '@angular/material';
+import { SubscribeComponent } from './components/subscribe/subscribe.component';
+import { SignsComponent } from './components/admin/signs/signs.component';
 
 
 
@@ -60,6 +62,7 @@ import {
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
+    MatStepperModule,
     MatSnackBarModule,
     MatDialogModule,
     MatTableModule,
@@ -81,9 +84,10 @@ export class MaterialModule {}
     ProfileComponent,
     AdminComponent,
     SubsComponent,
+    SignsComponent,
+    SubscribeComponent,
     PageNotFoundComponent,
     SignalsComponent,
-    SubscriptionsComponent,
     LoginDialog,
     FocusDirective
   ],

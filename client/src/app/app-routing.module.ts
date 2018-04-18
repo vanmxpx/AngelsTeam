@@ -4,6 +4,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { ProfileComponent } from './components/profile/profile.component';
 import { HomeComponent } from './components/home/home.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { SubscribeComponent } from './components/subscribe/subscribe.component';
 
 
 // import { CanDeactivateGuard } from './can-deactivate-guard.service';
@@ -22,6 +23,10 @@ const appRoutes: Routes = [
   {
     path: 'admin',
     component: AdminComponent
+  },
+  {
+    path: 'subscribe',
+    component: SubscribeComponent
   },
 //   {
 //     path: 'admin',
