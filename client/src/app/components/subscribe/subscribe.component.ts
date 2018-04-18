@@ -15,7 +15,7 @@ export class SubscribeComponent implements OnInit {
     firstFormGroup: FormGroup;
     secondFormGroup: FormGroup;
     thirdFormGroup: FormGroup;
-    fourtFormGroup: FormGroup;
+    fourthFormGroup: FormGroup;
     constructor(private _formBuilder: FormBuilder) { }
 
     ngOnInit(): void {
@@ -25,7 +25,7 @@ export class SubscribeComponent implements OnInit {
         this.firstFormGroup = this._formBuilder.group({
             thirdFormGroup: ['', Validators.required]
         });
-        this.fourtFormGroup = this._formBuilder.group({
+        this.fourthFormGroup = this._formBuilder.group({
             fourthControl: ['', Validators.required]
         });
      }

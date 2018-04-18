@@ -8,6 +8,10 @@ export class CurrentUserService {
     private _nameChange: BehaviorSubject<string>;
     private _autoricationChange: BehaviorSubject<boolean>;
 
+    constructor() {
+        this._nameChange = new BehaviorSubject<string>(this._name);
+        this._autoricationChange = new BehaviorSubject<boolean>(this._autorized);
+    }
     getName(): BehaviorSubject<string> {
         return this._nameChange;
     }
@@ -20,6 +24,7 @@ export class CurrentUserService {
         if ((login === 'admin' && pass === 'admin') ||
             (login === 'user' && pass === 'user')) {
             this._name = login;
+            this._nameChange.next(this._name);
             return true;
         }
         return false;

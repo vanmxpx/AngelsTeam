@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { LoginDialog } from './components/login/login-dialog.component';
+import { CurrentUserService } from './services/current-user.service';
 
 
 @Component({
@@ -9,9 +10,16 @@ import { LoginDialog } from './components/login/login-dialog.component';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  adminMode: boolean = false;
+  constructor(public dialog: MatDialog, public userService: CurrentUserService) {}
 
-  constructor(public dialog: MatDialog) {}
-
+  ngAfterViewInit() {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    this.userService.getName().subscribe((value) => {
+      this.adminMode = value === 'admin';
+    });
+  }
   openDialog(): void {
     const dialogRef = this.dialog.open(LoginDialog, {
       // width: '250px',
