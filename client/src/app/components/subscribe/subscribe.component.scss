@@ -2,16 +2,18 @@
 
 .container {
     height: 100%;
-    width: 100%;
     box-sizing: border-box;
     display: flex;
-    justify-content: space-around;
+    flex-flow: row wrap;
+    justify-content: center;
 }
 
 .content {
     position: fixed;
     height: 100%;
-    width: 900px;
+    width: 100%;
+    max-width: 900px;
+    overflow-y: scroll;
     background: $color-control;
     border-right: 1px solid $color-border;
     border-left: 1px solid $color-border;
@@ -21,12 +23,16 @@
     width: 100%;
     
     display: flex;
+    flex-flow: row wrap;
     justify-content: space-around;
+
     button {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
+        min-width: 250px;
+        margin-bottom: 10px;
         width: 30%;
         &.first {
             background: rgba(0, 0, 0, 0.078);

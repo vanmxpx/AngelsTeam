@@ -1,67 +1,83 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
 
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatSort, MatTableDataSource, MatDialog, MatSnackBar} from '@angular/material';
+import { trigger, style, transition, state, animate } from '@angular/animations';
+import { User } from '../../../models/user';
 @Component({
     selector: 'subs',
     templateUrl: './subs.component.html',
-    styleUrls: ['./subs.component.scss']
+    styleUrls: ['./subs.component.scss'],
+    animations: [
+      trigger('detailExpand', [
+        state('void', style({ height: '0px', minHeight: '0', visibility: 'hidden' })),
+        state('*', style({ height: '*', visibility: 'visible' })),
+        transition('void <=> *', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+      ])
+    ],
 })
-export class SubsComponent implements AfterViewInit {
-    displayedColumns = ['id', 'name', 'progress', 'color'];
-    dataSource: MatTableDataSource<UserData>;
+export class SubsComponent implements OnInit, AfterViewInit {
 
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-    @ViewChild(MatSort) sort: MatSort;
+    users: User[] = [];
+    newUsers: number = 10;
+    // Details
+    expandedElement: any;
 
-    constructor() {
-      // Create 100 users
-      const users: UserData[] = [];
-      for (let i = 1; i <= 100; i++) { users.push(createNewUser(i)); }
+    // Table
+    displayedColumns = ['Id', 'Name', 'Contact', 'Sub', 'SubLeft', 'NewUser', 'Edit', 'Remove'];
+    dataSourceSubs: MatTableDataSource<User>;
+    @ViewChild('paginatorSubs') paginatorSubs: MatPaginator;
+    @ViewChild('sortSubs') sortSubs: MatSort;
 
-      // Assign the data to the data source for the table to render
-      this.dataSource = new MatTableDataSource(users);
+    constructor(public snackBar: MatSnackBar, public dialog: MatDialog) { }
+
+    ngOnInit(): void {
+      this.loadUsers();
     }
 
-    /**
-     * Set the paginator and sort after the view init since this component will
-     * be able to query its view for the initialized paginator and sort.
-     */
     ngAfterViewInit() {
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+      this.dataSourceSubs.paginator = this.paginatorSubs;
+      this.dataSourceSubs.sort = this.sortSubs;
+    }
+    apply(row: User): void {
+      row.NewUser = false;
     }
 
     applyFilter(filterValue: string) {
       filterValue = filterValue.trim(); // Remove whitespace
       filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
-      this.dataSource.filter = filterValue;
+      this.dataSourceSubs.filter = filterValue;
+    }
+
+    loadUsers(): void {
+      // Create 100 users
+
+      for (let i = 1; i <= 54; i++) { this.users.push(createNewUser1(i)); }
+
+      // Assign the data to the data source for the table to render
+      this.dataSourceSubs = new MatTableDataSource(this.users);
     }
   }
 
   /** Builds and returns a new User. */
-  function createNewUser(id: number): UserData {
+  function createNewUser1(id: number): User {
     const name =
-        NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-        NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
+        NAMES1[Math.round(Math.random() * (NAMES1.length - 1))] + ' ' +
+        NAMES1[Math.round(Math.random() * (NAMES1.length - 1))].charAt(0) + '.';
+    const sub = COLORS1[Math.round(Math.random() * (COLORS1.length - 1))];
+    const newUser = sub === 'FREE' ? false : Math.round(Math.random() * 2) === 2;
+    const subLeft = newUser || sub === 'FREE' || sub === 'UNLIMIT' ? 0 : Math.round(Math.random() * 30);
     return {
-      id: id.toString(),
-      name: name,
-      progress: Math.round(Math.random() * 100).toString(),
-      color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
+      Id: id.toString(),
+      Name: name,
+      Contact: Math.round(Math.random() * 100).toString(),
+      Sub: sub,
+      SubLeft: subLeft,
+      NewUser: newUser
     };
   }
 
   /** Constants used to fill up our data base. */
-  const COLORS = ['maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple',
-    'fuchsia', 'lime', 'teal', 'aqua', 'blue', 'navy', 'black', 'gray'];
-  const NAMES = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
+  const COLORS1 = ['FREE', 'MOUNTH', 'UNLIMIT'];
+  const NAMES1 = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
     'Charlotte', 'Theodore', 'Isla', 'Oliver', 'Isabella', 'Jasper',
     'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'];
-
-  export interface UserData {
-    id: string;
-    name: string;
-    progress: string;
-    color: string;
-  }

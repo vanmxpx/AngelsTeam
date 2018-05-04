@@ -1,19 +1,18 @@
 <div class="container">
-    <mat-drawer-container class="example-container">
+    <mat-drawer-container class="panel-contant">
         <mat-drawer mode="side" opened="true">
             <mat-nav-list>
-                <a mat-list-item [class.hovered]="state === 'sub'" (click)="state = 'sub'"><mat-icon>book</mat-icon>Подписки</a>
-                <a mat-list-item [class.hovered]="state === 'sign'" (click)="state = 'sign'"><mat-icon>assignment</mat-icon>Сигналы</a>
+                <a mat-list-item [class.hovered]="state === 'subs'" (click)="state = 'subs'"><mat-icon>book</mat-icon>Подписки</a>
+                <a mat-list-item [class.hovered]="state === 'signs'" (click)="state = 'signs'"><mat-icon>assignment</mat-icon>Сигналы</a>
                 <a mat-list-item [class.hovered]="state === 'sets'" (click)="state = 'sets'"><mat-icon>build</mat-icon> Настройки</a>
             </mat-nav-list>
         </mat-drawer>
         <mat-drawer-content>
             <div class="page" [ngSwitch]="state">
-                <subs *ngSwitchCase="'sub'"></subs>
-                <signs *ngSwitchCase="'sign'"></signs>
+                <subs *ngSwitchCase="'subs'"></subs>
+                <signs *ngSwitchCase="'signs'"></signs>
+                <sets *ngSwitchCase="'sets'"></sets>
             </div>
-
-
         </mat-drawer-content>
     </mat-drawer-container>
 </div>

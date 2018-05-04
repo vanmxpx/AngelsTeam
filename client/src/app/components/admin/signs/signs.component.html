@@ -1,48 +1,76 @@
 <div class="container">
-        <div class="header">
-            <div class="manadge-panel">
-                <div class="message mat-typography">
-                    <h3>15/03/2018 06:00 PM</h3> <button mat-raised-button><mat-icon>show_chart</mat-icon> Добавить сигнал</button>
-                </div>
+    <div class="header">
+        <div class="manadge-panel">
+            <div class="message mat-typography">
+                <h3>{{date | date:'yyyy-MM-dd hh:mm:ss a'}}</h3> <button mat-raised-button (click)='addNew()'><mat-icon>show_chart</mat-icon> Добавить сигнал</button>
             </div>
-                <mat-form-field class="actions">
-                  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-                </mat-form-field>
-              </div>
-              
-              <div class="table mat-elevation-z8">
-              
-                <mat-table [dataSource]="dataSource" matSort>
-              
-                  <!-- ID Column -->
-                  <ng-container matColumnDef="id">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
-                    <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
-                  </ng-container>
-              
-                  <!-- Progress Column -->
-                  <ng-container matColumnDef="progress">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> Progress </mat-header-cell>
-                    <mat-cell *matCellDef="let row"> {{row.progress}}% </mat-cell>
-                  </ng-container>
-              
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="name">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-                    <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
-                  </ng-container>
-              
-                  <!-- Color Column -->
-                  <ng-container matColumnDef="color">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> Color </mat-header-cell>
-                    <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.color}} </mat-cell>
-                  </ng-container>
-              
-                  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                  <mat-row *matRowDef="let row; columns: displayedColumns;">
-                  </mat-row>
-                </mat-table>
-              
-                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-              </div>
+        </div>
+        <div class="actions">
+            <mat-form-field class="title">
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Поиск..">
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="table">
+        <mat-table #tableSigns [dataSource]="dataSourceSigns" matSort>
+      
+          <!-- ID Column -->
+          <ng-container matColumnDef="idSigns">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> # </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.Id}} </mat-cell>
+          </ng-container>
+      
+          <!-- Progress Column -->
+          <ng-container matColumnDef="coinSigns">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Монета </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.Coin}} </mat-cell>
+          </ng-container>
+      
+          <!-- Name Column -->
+          <ng-container matColumnDef="dateSigns">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Дата </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.Date}} </mat-cell>
+          </ng-container>
+      
+          <!-- Status Column -->
+          <ng-container matColumnDef="statusSigns">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Статус </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.Status}} </mat-cell>
+          </ng-container>
+      
+          <!-- Edit Column -->
+          <ng-container matColumnDef="editSigns">
+              <mat-header-cell *matHeaderCellDef></mat-header-cell>
+              <mat-cell *matCellDef="let row">                    
+                  <button matTooltip="Править" mat-icon-button (click)="addNew(row)">
+                      <mat-icon style="color: rgb(35, 35, 161)">edit</mat-icon>
+                  </button>
+              </mat-cell>
+          </ng-container>
+
+          <!-- Remove Column -->
+          <ng-container matColumnDef="removeSigns">
+              <mat-header-cell *matHeaderCellDef></mat-header-cell>
+              <mat-cell *matCellDef="let row">                    
+                  <button matTooltip="Удалить" mat-icon-button (click)="expandedElement = row">
+                    <mat-icon style="color: red">close</mat-icon>
+                  </button>
+              </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row mat-ripple class="element-row" *matRowDef="let row; columns: displayedColumns;"
+              [cdkDetailRow]="row" [cdkDetailRowTpl]="tpl" [cdkExpandedRow]="expandedElement"></mat-row>
+        </mat-table>
+      
+        <mat-paginator #paginatorSigns [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="10"></mat-paginator>
+    </div>
 </div>
+
+<ng-template #tpl let-element>
+    <div class="mat-row detail-row" [@detailExpand]>
+          Вы хотите удалить этот сигнал?
+          <button mat-mini-fab class="apply-remove" (click)="removeSign()"><mat-icon>done</mat-icon></button>
+          <button mat-mini-fab class="dis-remove" (click)="dismissRemove()"><mat-icon>close</mat-icon></button>
+    </div>
+</ng-template>

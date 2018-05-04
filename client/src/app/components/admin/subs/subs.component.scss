@@ -5,7 +5,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 .header {
@@ -14,6 +14,7 @@
     flex-direction: column;
     align-items: center;
     .notification {
+        padding-top: 20px;
         width: 90%;
     }
     .message {
@@ -33,16 +34,56 @@
         }
     }
     .actions {
-
         width: 80%;
     }
 }
 
 
 
+// Table ---------
 .table {
-    width: 90%;
-    mat-table {
-        min-height: 500px;
+    
+    width: 100%;
+    table {
+        width: 100%;
     }
 }
+
+.element-row {
+    position: relative;
+    justify-content: space-between;
+}
+
+.element-row:hover {
+    background: azure;
+}
+
+.mat-column-Remove, .mat-column-Edit, .mat-column-Id, .mat-column-NewUser {
+    flex: 0 0 40px;
+}
+
+/* Detail Row*/
+.detail-row {
+    background: #fff4ef;
+    justify-content: flex-end;
+    overflow: hidden;
+}
+
+.detail-row button {
+    margin: 0 3px;
+    color: white;
+    min-width: 1px;
+    width: 30px;
+    height: 30px;
+}
+
+.detail-row button span{
+    padding-top: 0px;
+}
+.detail-row button mat-icon {
+    margin-top: -10px;
+    font-size: 22px;
+}
+.detail-row button.dis-remove{ background: red; } 
+.detail-row button.apply-remove{ background: green; margin-left: 20px; } 
+

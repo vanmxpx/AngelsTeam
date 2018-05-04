@@ -6,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-    state: string = "sub";
-    
+    state: string = "subs";
+
     constructor() { }
 
     ngOnInit(): void { }

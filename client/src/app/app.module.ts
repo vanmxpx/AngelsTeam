@@ -46,6 +46,9 @@ import {
   MatRippleModule } from '@angular/material';
 import { SubscribeComponent } from './components/subscribe/subscribe.component';
 import { SignsComponent } from './components/admin/signs/signs.component';
+import { SetsComponent } from './components/admin/sets/sets.component';
+import { CdkDetailRowDirective } from './directives/cdk-detail-row.directive';
+import { NewSignalDialog } from './components/admin/signs/new-signal/new-signal.component';
 
 
 
@@ -85,10 +88,15 @@ export class MaterialModule {}
     AdminComponent,
     SubsComponent,
     SignsComponent,
+    SetsComponent,
     SubscribeComponent,
     PageNotFoundComponent,
     SignalsComponent,
+    // dialogs
     LoginDialog,
+    NewSignalDialog,
+    // directives
+    CdkDetailRowDirective,
     FocusDirective
   ],
   imports: [
@@ -100,8 +108,8 @@ export class MaterialModule {}
     BrowserAnimationsModule,
     AppRoutingModule
   ],
-  entryComponents: [LoginDialog],
-  providers: [CurrentUserService],
-  bootstrap: [AppComponent]
+  entryComponents: [ LoginDialog, NewSignalDialog],
+  providers: [ CurrentUserService ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

@@ -7,12 +7,11 @@
     display: flex;
     justify-content: center;
     background: $color-background-light;
-    .signals-content {
-        width: 900px;
-    }
+
 }
 
 .signals-content {
+    width: 900px;
     background: $color-control;
     border-right: 1px solid $color-border;
     border-left: 1px solid $color-border;

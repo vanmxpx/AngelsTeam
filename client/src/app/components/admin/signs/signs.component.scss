@@ -23,8 +23,8 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
-        height: 148px;
-        h3 { margin: 0 10px; }
+        height: 80px;
+        h3 { margin: 0 10px; font-weight: 600; }
         button { 
             margin: 0 10px; 
             background: $color-text-secondary;
@@ -32,16 +32,62 @@
         }
     }
     .actions {
-
-        width: 80%;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        .title {
+            padding-left: 24px;
+        }
+        .buttons {
+            padding-right: 24px;
+        }
     }
 }
 
 
-
+// Table ---------
 .table {
-    width: 90%;
+    width: 100%;
     mat-table {
         min-height: 500px;
     }
 }
+
+
+.element-row {
+    position: relative;
+    justify-content: space-between;
+}
+
+.element-row:hover {
+    background: azure;
+}
+
+.mat-column-remove, .mat-column-edit, .mat-column-id {
+    flex: 0 0 40px;
+}
+
+/* Detail Row*/
+.detail-row {
+    background: #fff4ef;
+    justify-content: flex-end;
+    overflow: hidden;
+}
+
+.detail-row button {
+    margin: 0 3px;
+    color: white;
+    min-width: 1px;
+    width: 30px;
+    height: 30px;
+}
+
+.detail-row button span{
+    padding-top: 0px;
+}
+.detail-row button mat-icon {
+    margin-top: -10px;
+    font-size: 22px;
+}
+.detail-row button.dis-remove{ background: red; } 
+.detail-row button.apply-remove{ background: green; margin-left: 20px; } 
