@@ -14,19 +14,23 @@
                                 <h1>13 дней</h1>
                                 <h3 class="subtitle">до окончания</h3>
                             </div>
-                            <button mat-raised-button color="warn">Продлить</button>
+                            <button mat-raised-button color="warn" routerLink="/subscribe" routerLinkActive="active">Продлить</button>
                         </div>
 
                 </div>
                 
             </div>
 
-            <mat-tab-group>
+            <mat-tab-group (selectedTabChange)="onLinkClick($event)">
                 <mat-tab label="Новости"></mat-tab>
+                <mat-tab label="Сигналы"></mat-tab>
                 <mat-tab disabled label="Настройки"></mat-tab>
             </mat-tab-group>
         </div>
     </div>
-    
-    <signals></signals>
+    <div class="profile-body" [ngSwitch]="state">
+        <news-profile *ngSwitchCase="'news'"></news-profile>
+        <signals *ngSwitchCase="'signs'"></signals>
+    </div>
+
 </div>

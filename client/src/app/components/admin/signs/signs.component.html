@@ -15,31 +15,44 @@
         <mat-table #tableSigns [dataSource]="dataSourceSigns" matSort>
       
           <!-- ID Column -->
-          <ng-container matColumnDef="idSigns">
+          <ng-container matColumnDef="Id">
             <mat-header-cell *matHeaderCellDef mat-sort-header> # </mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row.Id}} </mat-cell>
           </ng-container>
       
           <!-- Progress Column -->
-          <ng-container matColumnDef="coinSigns">
+          <ng-container matColumnDef="Coin">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Монета </mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row.Coin}} </mat-cell>
           </ng-container>
       
           <!-- Name Column -->
-          <ng-container matColumnDef="dateSigns">
+          <ng-container matColumnDef="Date">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Дата </mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row.Date}} </mat-cell>
           </ng-container>
       
           <!-- Status Column -->
-          <ng-container matColumnDef="statusSigns">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Статус </mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{row.Status}} </mat-cell>
+          <ng-container matColumnDef="Status">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Риск </mat-header-cell>
+            <mat-cell *matCellDef="let row"> 
+                <div [ngSwitch]="row.Status">
+                    <div class="sign safe" matTooltip="Риск: Низкий" *ngSwitchCase="SignalStatus.Low">
+                        <mat-icon >beenhere</mat-icon>
+                    </div>
+                    <div class="sign warning" matTooltip="Риск: Средний" *ngSwitchCase="SignalStatus.Middle">
+                        <mat-icon >warning</mat-icon>
+                    </div>
+                    <div class="sign danger" matTooltip="Риск: Высокий. Торговля опасна" *ngSwitchCase="SignalStatus.Hight">
+                        <mat-icon style="margin-left: -5px;">priority_high</mat-icon>
+                        <mat-icon style="margin-left: -15px;">priority_high</mat-icon>
+                    </div>
+                </div>
+            </mat-cell>
           </ng-container>
       
           <!-- Edit Column -->
-          <ng-container matColumnDef="editSigns">
+          <ng-container matColumnDef="Edit">
               <mat-header-cell *matHeaderCellDef></mat-header-cell>
               <mat-cell *matCellDef="let row">                    
                   <button matTooltip="Править" mat-icon-button (click)="addNew(row)">
@@ -49,7 +62,7 @@
           </ng-container>
 
           <!-- Remove Column -->
-          <ng-container matColumnDef="removeSigns">
+          <ng-container matColumnDef="Remove">
               <mat-header-cell *matHeaderCellDef></mat-header-cell>
               <mat-cell *matCellDef="let row">                    
                   <button matTooltip="Удалить" mat-icon-button (click)="expandedElement = row">
@@ -59,7 +72,7 @@
           </ng-container>
 
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row mat-ripple class="element-row" *matRowDef="let row; columns: displayedColumns;"
+          <mat-row class="element-row" *matRowDef="let row; columns: displayedColumns;"
               [cdkDetailRow]="row" [cdkDetailRowTpl]="tpl" [cdkExpandedRow]="expandedElement"></mat-row>
         </mat-table>
       

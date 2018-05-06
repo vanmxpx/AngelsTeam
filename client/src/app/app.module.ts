@@ -32,6 +32,7 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatCardModule,
+  MatExpansionModule,
   MatStepperModule,
   MatSnackBarModule,
   MatDialogModule,
@@ -49,6 +50,9 @@ import { SignsComponent } from './components/admin/signs/signs.component';
 import { SetsComponent } from './components/admin/sets/sets.component';
 import { CdkDetailRowDirective } from './directives/cdk-detail-row.directive';
 import { NewSignalDialog } from './components/admin/signs/new-signal/new-signal.component';
+import { NewAnnounceDialog } from './components/admin/news/new-announce/new-announce.component';
+import { NewsComponent } from './components/admin/news/news.component';
+import { NewsProfileComponent } from './components/profile/news/news.component';
 
 
 
@@ -65,6 +69,7 @@ import { NewSignalDialog } from './components/admin/signs/new-signal/new-signal.
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
+    MatExpansionModule,
     MatStepperModule,
     MatSnackBarModule,
     MatDialogModule,
@@ -89,12 +94,15 @@ export class MaterialModule {}
     SubsComponent,
     SignsComponent,
     SetsComponent,
+    NewsComponent,
     SubscribeComponent,
     PageNotFoundComponent,
     SignalsComponent,
+    NewsProfileComponent,
     // dialogs
     LoginDialog,
     NewSignalDialog,
+    NewAnnounceDialog,
     // directives
     CdkDetailRowDirective,
     FocusDirective

@@ -1,0 +1,128 @@
+<div class="container">
+    <div class="signals-content">
+        <div class="title">
+            <h2 class="mat-h2">Новости</h2>
+            <mat-menu #menu="matMenu" xPosition="before">
+                <a mat-menu-item disabled class="mat-titile">Отображать:</a>
+                <a mat-menu-item><mat-checkbox checked=true >Новости</mat-checkbox></a>
+                <a mat-menu-item><mat-checkbox checked=true >Сигналы</mat-checkbox></a>
+            </mat-menu>
+            <div class="settings">
+                    <mat-form-field class="sort">
+                        <mat-select  placeholder="УПОРЯДОЧИТЬ:" >
+                            <mat-option value="date"> Дате </mat-option>
+                            <mat-option value="lvl"> Уровню </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <button mat-icon-button (click)="filter=''; applyFilter('');isFilterExpanded=!isFilterExpanded;" matTooltip="Filter"><mat-icon>search</mat-icon></button>
+                    <mat-form-field *ngIf="isFilterExpanded" [@filterExpand] (@filterExpand.done)="focusFilter()">
+                        <input matInput type="text" [focus]="focusTrigger" [(ngModel)]="filter" (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                        <button mat-button *ngIf="filter" matSuffix mat-icon-button aria-label="Clear" (click)="filter=''; applyFilter('');">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </mat-form-field>
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+            </div>
+
+        </div>
+
+        <div class="news-control">
+            <div class="news-list">
+                <div class="news-item"> 
+                    <div class="item">
+                        <div class="item-content">
+                            <div class="content-header">                         
+                                <a>Заголовок</a>
+                                <p>12/01/2018 15:00</p>
+                            </div>
+                            <div class="content-body">  
+                                <img src="./assets/images/test.jpeg">
+                            </div>
+                            <div class="content-body">
+                                <p class="mat-typography">Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс "Начинающий трейдер". У нас хорошие новости. Освободилось ровно три места. По всем вопросам:
+                                        Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс "Начинающий трейдер". У нас хорошие новости. Освободилось ровно три места. По всем вопросам: 
+                                        Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс "Начинающий трейдер". У нас хорошие новости. Освободилось ровно три места. По всем вопросам: 
+                                        Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс "Начинающий трейдер". У нас хорошие новости. Освободилось ровно три места. По всем вопросам: 
+                                        Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс "Начинающий трейдер". У нас хорошие новости. Освободилось ровно три места. По всем вопросам:  <a href="*">@AngelsTAP</a></p>
+                            </div>
+                            <div class="content-footer">
+                                <div class="button-like">
+                                    <button mat-icon-button matTooltip="Нравится"><mat-icon>favorite</mat-icon>25</button>
+                                    <button mat-icon-button matTooltip="Не нравится :("><mat-icon>mood_bad</mat-icon>5</button>
+                                </div>
+                                <div class="button-expand">
+                                    <button mat-button>Подробнее</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-item"> 
+                        <div class="item">
+                            <div class="item-content">
+                                <div class="content-header">                         
+                                    <a>Заголовок</a>
+                                    <p>12/01/2018 15:00</p>
+                                </div>
+                                <div class="content-body">  
+                                    <img src="./assets/images/test.jpeg">
+                                </div>
+                                <div class="content-body">
+                                    <p class="mat-typography">Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс "Начинающий трейдер". У нас хорошие новости. Освободилось ровно три места. По всем вопросам:
+                                            Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс "Начинающий трейдер". У нас хорошие новости. Освободилось ровно три места. По всем вопросам: 
+                                            Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс "Начинающий трейдер". У нас хорошие новости. Освободилось ровно три места. По всем вопросам: 
+                                            Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс "Начинающий трейдер". У нас хорошие новости. Освободилось ровно три места. По всем вопросам: 
+                                            Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс "Начинающий трейдер". У нас хорошие новости. Освободилось ровно три места. По всем вопросам:  <a href="*">@AngelsTAP</a></p>
+                                </div>
+                                <div class="content-footer">
+                                        <div class="button-like">
+                                                <button mat-icon-button matTooltip="Нравится"><mat-icon>favorite</mat-icon>25</button>
+                                                <button mat-icon-button matTooltip="Не нравится :("><mat-icon>mood_bad</mat-icon>5</button>
+                                            </div>
+                                            <div class="button-expand">
+                                                <button mat-button>Подробнее</button>
+                                            </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-item"> 
+                            <div class="item">
+                                <div class="item-content">
+                                    <div class="content-header">                         
+                                        <a>Заголовок</a>
+                                        <p>12/01/2018 15:00</p>
+                                    </div>
+                                    <div class="content-body">  
+                                        <img src="./assets/images/test.jpeg">
+                                    </div>
+                                    <div class="content-body">
+                                        <p class="mat-typography">Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс "Начинающий трейдер". У нас хорошие новости. Освободилось ровно три места. По всем вопросам:
+                                                Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс "Начинающий трейдер". У нас хорошие новости. Освободилось ровно три места. По всем вопросам: 
+                                                Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс "Начинающий трейдер". У нас хорошие новости. Освободилось ровно три места. По всем вопросам: 
+                                                Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс "Начинающий трейдер". У нас хорошие новости. Освободилось ровно три места. По всем вопросам: 
+                                                Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс "Начинающий трейдер". У нас хорошие новости. Освободилось ровно три места. По всем вопросам:  <a href="*">@AngelsTAP</a></p>
+                                    </div>
+                                    <div class="content-footer">
+                                        <div class="button-like">
+                                            <button mat-icon-button matTooltip="Нравится"><mat-icon>favorite</mat-icon>25</button>
+                                            <button mat-icon-button matTooltip="Не нравится :("><mat-icon>mood_bad</mat-icon>5</button>
+                                        </div>
+                                        <div class="button-expand">
+                                            <button mat-button>Подробнее</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            </div>           
+        </div>
+
+        <div class="pagination"> 
+            <button mat-button><mat-icon>chevron_left</mat-icon> Предыдущие</button>
+            <button mat-button> Следующие <mat-icon>chevron_right</mat-icon></button>
+        </div>
+    </div>
+</div>

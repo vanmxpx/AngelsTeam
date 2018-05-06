@@ -81,7 +81,11 @@ mat-tab-group {
     min-width: 100%;
     width: 100%;
 }
-signals, subscriptions{
+.profile-body, news-profile, signals{
     height: 100%;
     width: 100%;
+}
+.profile-body {
+    display: flex;
+    justify-content: center;
 }

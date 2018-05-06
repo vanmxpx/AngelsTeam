@@ -4,6 +4,7 @@
             <mat-nav-list>
                 <a mat-list-item [class.hovered]="state === 'subs'" (click)="state = 'subs'"><mat-icon>book</mat-icon>Подписки</a>
                 <a mat-list-item [class.hovered]="state === 'signs'" (click)="state = 'signs'"><mat-icon>assignment</mat-icon>Сигналы</a>
+                <a mat-list-item [class.hovered]="state === 'news'" (click)="state = 'news'"><mat-icon>announcement</mat-icon>Новости</a>
                 <a mat-list-item [class.hovered]="state === 'sets'" (click)="state = 'sets'"><mat-icon>build</mat-icon> Настройки</a>
             </mat-nav-list>
         </mat-drawer>
@@ -11,6 +12,7 @@
             <div class="page" [ngSwitch]="state">
                 <subs *ngSwitchCase="'subs'"></subs>
                 <signs *ngSwitchCase="'signs'"></signs>
+                <news *ngSwitchCase="'news'"></news>
                 <sets *ngSwitchCase="'sets'"></sets>
             </div>
         </mat-drawer-content>

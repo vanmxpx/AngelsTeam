@@ -21,7 +21,15 @@ import { Router } from '@angular/router';
       onSave(): void {
 
       }
+      addPhoto(){
 
+      }
+      removePhoto(){
+        
+      }
+      addTP() {
+        
+      }
       onNoClick(): void {
         this.dialogRef.close();
       }

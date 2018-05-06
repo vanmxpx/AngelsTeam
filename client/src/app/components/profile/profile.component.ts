@@ -7,7 +7,27 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+
+    state: string = 'news';
+
     constructor( ) { }
 
     ngOnInit(): void { }
+
+    onLinkClick(event) {
+        switch(event.tab.textLabel) {
+            case 'Новости': { 
+                this.state = 'news'; 
+                break; 
+             } 
+             case 'Сигналы': { 
+                this.state = 'signs'; 
+                break; 
+             } 
+             default: { 
+                this.state = 'sets'; 
+                break; 
+             } 
+        }
+    }
 }

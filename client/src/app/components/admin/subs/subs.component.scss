@@ -42,7 +42,6 @@
 
 // Table ---------
 .table {
-    
     width: 100%;
     table {
         width: 100%;
@@ -50,8 +49,7 @@
 }
 
 .element-row {
-    position: relative;
-    justify-content: space-between;
+
 }
 
 .element-row:hover {
@@ -65,7 +63,10 @@
 /* Detail Row*/
 .detail-row {
     background: #fff4ef;
+    padding: 9px 24px;
+    display: flex;
     justify-content: flex-end;
+    align-items: center;
     overflow: hidden;
 }
 

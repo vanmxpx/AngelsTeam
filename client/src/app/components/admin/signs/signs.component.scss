@@ -63,14 +63,39 @@
     background: azure;
 }
 
-.mat-column-remove, .mat-column-edit, .mat-column-id {
+.mat-column-Remove, .mat-column-Edit, .mat-column-Id {
     flex: 0 0 40px;
 }
 
+// Status col
+
+.safe {
+    mat-icon {
+        font-size: 22px;
+        color:green;
+    }
+}
+
+.warning {
+    mat-icon {
+        font-size: 22px;
+        color: orange;
+    }
+}
+
+.danger {
+    mat-icon {
+        font-size: 22px;
+        color: red;
+    }
+}
 /* Detail Row*/
 .detail-row {
     background: #fff4ef;
+    padding: 9px 24px;
+    display: flex;
     justify-content: flex-end;
+    align-items: center;
     overflow: hidden;
 }
 

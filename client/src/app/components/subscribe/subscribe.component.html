@@ -36,16 +36,55 @@
                     </div>
                 </div>
             </mat-step>
-            <mat-step [stepControl]="secondFormGroup" label="Регистрация">
-                    <form [formGroup]="secondFormGroup">
-                            <mat-form-field>
-                              <input matInput placeholder="Address" formControlName="secondControl" required>
-                            </mat-form-field>
-                            <div>
-                                <button mat-button matStepperPrevious>Назад</button>
-                                <button mat-button matStepperNext>Далее</button>
+            <mat-step [stepControl]="registrationFormGroup" label="Регистрация">
+                    <form class="registration" [formGroup]="registrationFormGroup">
+                            <div class="names">
+                                <mat-icon >face</mat-icon>
+                                <mat-form-field>
+                                    <input matInput placeholder="Имя" formControlName="firstNameControl">
+                                </mat-form-field>
+                                <mat-icon>pets</mat-icon>
+                                <mat-form-field>
+                                    <input matInput placeholder="Фамилия" formControlName="lastNameControl">
+                                </mat-form-field>
                             </div>
-</form>
+                            <div class="registration-item">                      
+                                <mat-icon>account_circle</mat-icon>
+                                <mat-form-field>
+                                    <input matInput placeholder="Логин" formControlName="loginControl" required>
+                                    <mat-error *ngIf="this.registrationFormGroup.controls['loginControl'].invalid">{{getLoginErrorMessage()}}</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="registration-item">
+                                <mat-icon>mail</mat-icon>
+                                <mat-form-field>
+                                    <input matInput placeholder="Email" formControlName="emailControl" required>
+                                    <mat-error *ngIf="this.registrationFormGroup.controls['emailControl'].invalid">{{getEmailErrorMessage()}}</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="registration-item">
+                                <mat-icon >fingerprint</mat-icon>
+                                <mat-form-field>
+                                    <input type="password" matInput placeholder="Пароль" formControlName="passwordControl" required>
+                                    <mat-error *ngIf="this.registrationFormGroup.controls['passwordControl'].invalid">{{getPasswordErrorMessage()}}</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="registration-item">
+                                <mat-icon >fingerprint</mat-icon>
+                                <mat-form-field>
+                                    <input type="password" matInput placeholder="Подтвердите пароль" formControlName="confirmPasswordControl" required>
+                                    <mat-error *ngIf="this.registrationFormGroup.controls['confirmPasswordControl'].invalid">{{getConfirmPassErrorMessage()}}</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                        <div>
+                            <button mat-button matStepperPrevious>Назад</button>
+                            <button mat-button matStepperNext>Далее</button>
+                        </div>
+                </form>
             </mat-step>
             <mat-step *ngIf="selectedSub!='free'" [stepControl]="thirdControl" label="Оплата">
                 <button mat-button matStepperPrevious>Назад</button>

@@ -29,9 +29,10 @@ export class SignsComponent implements AfterViewInit {
     expandedElement: any;
 
     users: ISignal[] = [];
+    SignalStatus = SignalStatus;
 
     date: Date = new Date();
-    displayedColumns = ['idSigns', 'coinSigns', 'dateSigns', 'statusSigns', 'editSigns', 'removeSigns'];
+    displayedColumns = ['Id', 'Coin', 'Date', 'Status', 'Edit', 'Remove'];
     dataSourceSigns: MatTableDataSource<ISignal>;
 
     @ViewChild('paginatorSigns') paginatorSigns: MatPaginator;
@@ -113,7 +114,7 @@ export class SignsComponent implements AfterViewInit {
         Stop: 'asff',
         Description: 'faf', },
       Description: 'dasfdaf',
-      Status: SignalStatus[SignalStatus[ Math.round(Math.random() * 3)]]
+      Status: SignalStatus[SignalStatus[Math.round(Math.random() * 2)]]
     };
   }
 
