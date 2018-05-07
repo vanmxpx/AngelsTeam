@@ -1,0 +1,88 @@
+@import '~sass/variables';
+
+.container { 
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .notification {
+        padding-top: 20px;
+        width: 90%;
+    }
+    .message {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 70px;
+        background: rgb(243, 250, 243);
+        border-left: 3px solid;
+        border-color: rgb(139, 195, 74);
+        h3 { margin: 0 10px; }
+        button { 
+            margin: 0 10px; 
+            background: $color-text-secondary;
+            color: $color-text-primary;
+        }
+    }
+    .actions {
+        width: 80%;
+    }
+}
+
+
+
+// Table ---------
+.table {
+    
+    width: 100%;
+    table {
+        width: 100%;
+    }
+}
+
+.element-row {
+    position: relative;
+}
+
+.element-row:hover {
+    background: azure;
+}
+
+.mat-column-Remove, .mat-column-Edit, .mat-column-Id, .mat-column-NewUser {
+    flex: 0 0 40px;
+}
+
+/* Detail Row*/
+.detail-row {
+    background: #fff4ef;
+    justify-content: flex-end;
+    overflow: hidden;
+}
+
+.detail-row button {
+    margin: 0 3px;
+    color: white;
+    min-width: 1px;
+    width: 30px;
+    height: 30px;
+}
+
+.detail-row button span{
+    padding-top: 0px;
+}
+.detail-row button mat-icon {
+    margin-top: -10px;
+    font-size: 22px;
+}
+.detail-row button.dis-remove{ background: red; } 
+.detail-row button.apply-remove{ background: green; margin-left: 20px; } 
+

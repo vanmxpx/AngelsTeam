@@ -1,0 +1,100 @@
+<div class="container">
+    <div class="header">
+        <div class="notification">
+            <div class="message mat-typography">
+                <h3>Новых запросов: <strong>{{newUsers}}</strong></h3> <button mat-raised-button>Просмотреть</button>
+            </div>
+        </div>
+        <mat-form-field class="actions">
+            <div class="title">
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Поиск..">
+            </div>
+        </mat-form-field>
+    </div>
+    <div class="table">
+        <mat-table [dataSource]="dataSourceSubs" matSort #sortSubs="matSort">
+
+            <!-- ID Column -->
+            <ng-container matColumnDef="Id">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> # </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.Id}} </mat-cell>
+            </ng-container>
+        
+            <!-- Name Column -->
+            <ng-container matColumnDef="Name">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Имя </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.Name}} </mat-cell>
+            </ng-container>
+        
+            <!-- Contact Column -->
+            <ng-container matColumnDef="Contact">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Телеграм </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.Contact}} </mat-cell>
+            </ng-container>
+        
+            <!-- Subscription Column -->
+            <ng-container matColumnDef="Sub">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Подписка </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.Sub}} </mat-cell>
+            </ng-container>
+
+            <!-- Sub left Column -->
+            <ng-container matColumnDef="SubLeft">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Осталось </mat-header-cell>
+              <mat-cell *matCellDef="let row">
+                <ng-container *ngIf="!row.NewUser && row.Sub === 'MOUNTH'">
+                    {{row.SubLeft}} суток
+                  </ng-container>
+              </mat-cell>
+            </ng-container>
+
+            <!-- Apply new Column -->
+            <ng-container matColumnDef="NewUser">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Новый </mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <ng-container *ngIf="row.NewUser && row.Sub !== 'FREE'">
+                        <button matTooltip="Подтвердить подписку" (click)="apply(row)" mat-icon-button>
+                            <mat-icon style="color: green">done</mat-icon>
+                        </button>
+                    </ng-container>
+                </mat-cell>
+            </ng-container>
+
+            <!-- Edit Column -->
+            <ng-container matColumnDef="Edit">
+                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <button matTooltip="Править" mat-icon-button (click)="addNew(row)">
+                        <mat-icon style="color: rgb(35, 35, 161)">edit</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
+
+            <!-- Remove Column -->
+            <ng-container matColumnDef="Remove">
+                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <ng-container *ngIf="row.Sub !== 'FREE'">                 
+                        <button matTooltip="Удалить подписку" mat-icon-button (click)="expandedElement = row">
+                            <mat-icon style="color: red">close</mat-icon>
+                        </button>
+                    </ng-container>
+                </mat-cell>
+            </ng-container>
+        
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row class="element-row" *matRowDef="let row; columns: displayedColumns;"
+            [cdkDetailRow]="row" [cdkDetailRowTpl]="tpl" [cdkExpandedRow]="expandedElement"></mat-row>
+          </mat-table>
+        
+          <mat-paginator #paginatorSubs [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="10"></mat-paginator>
+    </div>
+</div>
+
+<ng-template #tpl let-element>  
+    <div class="mat-row detail-row" [@detailExpand]> 
+        Вы хотите убрать подписку?
+        <button mat-mini-fab class="apply-remove" (click)="removeSign()"><mat-icon>done</mat-icon></button>
+        <button mat-mini-fab class="dis-remove" (click)="dismissRemove()"><mat-icon>close</mat-icon></button>
+    </div> 
+</ng-template>

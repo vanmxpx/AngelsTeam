@@ -1,0 +1,50 @@
+.container { 
+    text-align: center;
+}
+
+.main {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    .chart {
+        img { 
+            width: 100px;
+            height: 100px;
+        }
+    }
+    .targets {
+        section {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    .info {
+        width: 200px;
+    }
+}
+.description {
+    mat-form-field {
+        width: 100%;
+    }
+}
+
+::ng-deep mat-form-field.mini { 
+    width: 75px;
+    height: 40px;
+
+    .mat-form-field-infix {
+        border: 0;
+    }
+}
+
+.dialog-module {
+    margin: 0 15px;
+}
+
+mat-dialog-actions {
+    justify-content: flex-end;
+    .save-button {
+        background: forestgreen;
+        color: white;
+    }
+}

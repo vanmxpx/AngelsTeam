@@ -1,0 +1,79 @@
+<div class="container">
+        <mat-dialog-content>
+            <div class="main">
+                <div class="chart dialog-module">
+                    <img src="./assets/images/test.jpeg">
+                    <div class="actions">
+                        <button matTooltip="Добавить" mat-icon-button (click)="addPhoto()">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                        <button matTooltip="Удалить" mat-icon-button (click)="removePhoto()">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </div>
+                </div>
+                <div class="targets dialog-module">
+                    <section class="mat-typography">
+                        <a>
+                            <strong>Buy around:</strong>
+                            <mat-form-field class="mini" floatLabel="never">
+                                <input matInput placeholder="уровень" value="0.00050-53">
+                            </mat-form-field>
+                        </a>
+                        <a>
+                            <strong>Stop-loss:</strong>
+                            <mat-form-field class="mini" floatLabel="never">
+                                <input matInput placeholder="уровень" value="0.00050-53">
+                            </mat-form-field>
+                        </a>
+                        <mat-divider></mat-divider>
+                        <a><strong>TP 1:</strong> 0.00057</a>
+                        <a><strong>TP 2:</strong> 0.00059</a>
+                        <a><strong>TP 3:</strong> 0.00062</a>
+                        <a><strong>TP 4:</strong> 0.00065</a>
+                        <mat-divider></mat-divider>
+                        <a>
+                            <mat-form-field class="mini" floatLabel="never">
+                                <input matInput placeholder="Введите уровень" value="0.00090">
+                            </mat-form-field>
+                            <button matTooltip="Добавить TP" mat-icon-button>
+                                <mat-icon>add</mat-icon>
+                            </button>
+                        </a>
+                        <mat-divider></mat-divider>
+                    </section>
+                </div>
+                <div class="info dialog-module">
+                    <a>
+                        <mat-form-field>
+                            <input matInput placeholder="Монета" value="BTC">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-select placeholder="Уровень">
+                            <mat-option value="low">Низкий</mat-option>
+                            <mat-option value="middle">Средний</mat-option>
+                            <mat-option value="hight">Высокий</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-select placeholder="Продолжительность">
+                            <mat-option value="long">Long</mat-option>
+                            <mat-option value="middle">Middle</mat-option>
+                            <mat-option value="short">Short</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </a>
+                </div>
+            </div>
+            <div class="description dialog-module">
+                <mat-form-field>
+                    <textarea matInput placeholder="Описание" matTextareaAutosize matAutosizeMinRows="3"
+                                matAutosizeMaxRows="5"></textarea>
+                </mat-form-field>
+            </div>
+        </mat-dialog-content>
+        <mat-dialog-actions>
+          <button mat-button class="save-button" (click)="onSave()">Сохранить</button>
+          <button mat-button (click)="onNoClick()" cdkFocusInitial>Отмена</button>
+        </mat-dialog-actions>
+</div>
