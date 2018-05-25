@@ -53,6 +53,9 @@ import { NewSignalDialog } from './components/admin/signs/new-signal/new-signal.
 import { NewAnnounceDialog } from './components/admin/news/new-announce/new-announce.component';
 import { NewsComponent } from './components/admin/news/news.component';
 import { NewsProfileComponent } from './components/profile/news/news.component';
+import { ApplicationService } from './services/application.service';
+import { TeachingComponent } from './components/teaching/teaching.component';
+import { DepositComponent } from './components/deposit/deposit.component';
 
 
 
@@ -97,6 +100,8 @@ export class MaterialModule {}
     NewsComponent,
     SubscribeComponent,
     PageNotFoundComponent,
+    TeachingComponent,
+    DepositComponent,
     SignalsComponent,
     NewsProfileComponent,
     // dialogs
@@ -117,7 +122,7 @@ export class MaterialModule {}
     AppRoutingModule
   ],
   entryComponents: [ LoginDialog, NewSignalDialog],
-  providers: [ CurrentUserService ],
+  providers: [ ApplicationService, CurrentUserService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

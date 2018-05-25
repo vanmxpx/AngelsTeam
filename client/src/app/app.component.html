@@ -1,18 +1,28 @@
 <mat-toolbar class="in-body">
     <div class="toolbar-content">
+        <div class="hidden-menu" *ngIf="mobileQuery.matches">
+            <mat-icon>menu</mat-icon>
+        </div>  
         <div class="title">
             <div class="logo" routerLink="/home" routerLinkActive="active">
                 <img src="./assets/images/logo.png">
             </div>  
+            <div class="navigation-toolbar" *ngIf="!mobileQuery.matches">
             <section class="mat-typography title-text">
                 <h1>ANGELS</h1>
                 <p>TECHNICAL ANALYTICS</p>
             </section>
-            <button *ngIf="adminMode" mat-button routerLink="/admin" routerLinkActive="active" >Admin</button>
+
+                <button mat-button routerLink="/subscribe" routerLinkActive="active" >Cигналы</button>
+                <button mat-button routerLink="/teaching" routerLinkActive="active" >Обучение</button>
+                <button mat-button routerLink="/deposit" routerLinkActive="active" >Доверительное управление</button>
+                <button *ngIf="adminMode" mat-button routerLink="/admin" routerLinkActive="active">Admin</button>
+            </div>
+
         </div>
 
         <div class="profile-buttons">
-            <button mat-button (click)="openDialog()"> <mat-icon>account_circle</mat-icon>Log In</button>
+            <button mat-icon-button (click)="openDialog()" matTooltipPosition="above" matTooltip="Войти"> <mat-icon>account_circle</mat-icon></button>
         </div>  
     </div>
 </mat-toolbar>

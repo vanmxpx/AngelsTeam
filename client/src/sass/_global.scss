@@ -1,0 +1,7 @@
+// Input underline & text
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: $color-text-secondary;
+}
+::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple {
+    background-color: $color-text-secondary;
+}

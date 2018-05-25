@@ -1,0 +1,74 @@
+@import '~sass/variables';
+
+.container {
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.content {
+
+    position: fixed;
+    height: calc(100% - 56px);
+    width: 100%;
+    max-width: 900px;
+    overflow-y: auto;
+    background: $color-control;
+    border-right: 1px solid $color-border;
+    border-left: 1px solid $color-border;
+    .wrapper {
+        padding: 24px;
+        .heading {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding-top: 10px;
+            img {
+                padding-right: 10px;
+                width: 80px;
+                height: 80px;
+            }
+        }
+        .title {
+            color: $color-text-secondary;
+            font-family: 'Fira Sans',sans-serif;
+            font-size: 32px;
+            margin-bottom: 0px;
+        }
+        .subtitle {
+            margin-bottom: 0px;
+            color: $color-text-subheading;
+        }
+    }
+}
+
+.mat-list-item {
+    height: auto !important;
+    align-items: flex-start;
+    mat-icon {
+        margin-top: -12px;
+        margin-right: 12px;
+        color: brown;
+    }
+}
+
+.body {
+    font-family: "-apple-system",BlinkMacSystemFont,Arial,sans-serif;
+}
+.footer {
+    padding-top: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    a {
+        background: cadetblue;
+        color: white;
+        img {
+            width: 25px;
+            height: 25px;
+        }
+    }
+}

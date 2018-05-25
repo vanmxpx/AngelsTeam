@@ -15,7 +15,7 @@ import { User } from '../../../models/user';
       ])
     ],
 })
-export class SubsComponent implements OnInit, AfterViewInit {
+export class NewsComponent implements OnInit, AfterViewInit {
 
     users: User[] = [];
     newUsers: number = 10;

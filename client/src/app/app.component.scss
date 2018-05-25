@@ -1,6 +1,6 @@
 @import '~@angular/material/theming';
-@import '~sass/mixins';
 @import '~sass/variables';
+@import '~sass/global';
 
 
 .container {
@@ -9,12 +9,6 @@
         margin-top: 56px;
     }
 }
-
-.title {
-    font-weight: 500;
-    font-size: 26px;
-    padding-top: 10px;
-  }
 
 mat-toolbar.in-body {
     background: $color-primary;
@@ -29,18 +23,29 @@ mat-toolbar.in-body {
         width: 870px;
         display: flex;
         justify-content: space-between;
+        .profile-buttons {
+            color: $color-text-primary;
+            display: flex;
+            align-items: center;
+            button {
+                width: 60px;
+            }
+            mat-icon  {
+                width: 60px;
+                font-size: 40px;
+            }
+        }
+    
     }
 }
 
-.profile-buttons {
-    color: $color-text-primary;
-    display: flex;
-    align-items: center;
-}
+
 
 .title {
     color: $color-text-primary;
     padding: 0;
+    font-weight: 500;
+    font-size: 26px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -61,17 +66,22 @@ mat-toolbar.in-body {
             height: 35px;
         }
     }
-    .title-text{
-        padding-right: 10px;
-        h1 {
-            color: $color-text-primary;
-        }
-        p {
-            color: $color-text-secondary;
-            font-weight: 600;
-            font-size: 14px;
-            margin-top: -5px;
-            margin-bottom: 0;
+    .navigation-toolbar {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        .title-text {
+            padding-right: 10px;
+            h1 {
+                color: $color-text-primary;
+            }
+            p {
+                color: $color-text-secondary;
+                font-weight: 600;
+                font-size: 14px;
+                margin-top: -5px;
+                margin-bottom: 0;
+            }
         }
     }
 }

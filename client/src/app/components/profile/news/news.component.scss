@@ -1,6 +1,5 @@
 @import '~@angular/material/theming';
 @import '~sass/variables';
-@import '~sass/mixins';
 
 .container {
     width: 100%;
@@ -18,7 +17,7 @@
 }
 
 .title {
-    @include text-color();
+    color: $color-text-secondary;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -88,17 +87,3 @@
         }
     }
   }
-
-/* Filter styles */
-::ng-deep .title .mat-form-field-label {
-    @include text-color();
-}
-::ng-deep .title .mat-focused .mat-form-field-label {
-    @include text-color();
-    }
-    ::ng-deep .title .mat-form-field-ripple {
-        @include back-color();
-    }
-    ::ng-deep .title .mat-input-underline {
-        @include back-color();   
- }

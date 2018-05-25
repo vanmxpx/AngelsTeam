@@ -2,7 +2,6 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import '~material-design-icons/iconfont/material-icons.css';
 @import '~@angular/material/theming';
-@import './mixins';
 @import './variables';
 
 html, body {
@@ -14,4 +13,9 @@ html, body {
 
 .scrollable-container {
     position: relative;
+}
+
+.button-primary {
+    color: $color-text-primary;
+    background: $color-text-secondary;
 }

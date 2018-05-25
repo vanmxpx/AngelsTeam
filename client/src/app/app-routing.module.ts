@@ -5,6 +5,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { HomeComponent } from './components/home/home.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { SubscribeComponent } from './components/subscribe/subscribe.component';
+import { TeachingComponent } from './components/teaching/teaching.component';
+import { DepositComponent } from './components/deposit/deposit.component';
 
 
 // import { CanDeactivateGuard } from './can-deactivate-guard.service';
@@ -27,6 +29,14 @@ const appRoutes: Routes = [
   {
     path: 'subscribe',
     component: SubscribeComponent
+  },
+  {
+    path: 'teaching',
+    component: TeachingComponent
+  },
+  {
+    path: 'deposit',
+    component: DepositComponent
   },
 //   {
 //     path: 'admin',

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
 import { MatStepper } from '@angular/material';
+import { ValidatorFn } from '@angular/forms';
 
 @Component({
     selector: 'subscribe',
@@ -19,20 +20,20 @@ export class SubscribeComponent implements OnInit {
     constructor(private _formBuilder: FormBuilder) { }
 
     ngOnInit(): void {
-        this.registrationFormGroup = this._formBuilder.group({
-            firstNameControl: [''],
-            lastNameControl: [''],
-            loginControl: ['', Validators.required],
-            emailControl: ['', Validators.required, Validators.email],
-            passwordControl: ['', Validators.required],
-            confirmPasswordControl: ['', Validators.required, passwordMatchValidator],
+        this.registrationFormGroup = new FormGroup({
+            'firstNameControl': new FormControl(''),
+            'lastNameControl': new FormControl(''),
+            'loginControl': new FormControl('',[Validators.required]),
+            'emailControl': new FormControl('',[Validators.required, Validators.email]),
+            'passwordControl': new FormControl('',[Validators.required]),
+            'confirmPasswordControl': new FormControl('',[Validators.required, passwordMatchValidator()]),
             
         });
         this.firstFormGroup = this._formBuilder.group({
             thirdFormGroup: ['', Validators.required]
         });
         this.fourthFormGroup = this._formBuilder.group({
-            fourthControl: ['', Validators.required, ]
+            fourthControl: ['', Validators.required]
         });
      }
 
@@ -62,7 +63,12 @@ export class SubscribeComponent implements OnInit {
                 '';
     }
 }
-function passwordMatchValidator(g: FormGroup) {
-    return g.get('passwordControl').value === g.get('confirmPasswordControl').value
-       ? null : {'mismatch': true};
+function passwordMatchValidator(): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: any} => {
+        if(control.parent === undefined)
+            return null;
+        return control.parent.get('passwordControl').value === control.parent.get('confirmPasswordControl').value
+        ? null : { 'mismatch': true };
+    };
+
  }
