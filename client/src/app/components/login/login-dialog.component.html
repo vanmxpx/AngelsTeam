@@ -1,35 +1,35 @@
 <div class="container">
-        <h1 mat-dialog-title>Wellcome</h1>
+        <h1 mat-dialog-title>Добро пожаловать!</h1>
         <mat-dialog-content>
           <!-- <p>Do you want to delete this group?</p> -->
           <mat-form-field>
-                <input matInput placeholder="Login" name="login"
+                <input matInput placeholder="Логин" name="login"
                 type="text" (keydown)="authPress($event.key)" [errorStateMatcher]="matchLogin"  [formControl]="loginFormControl"
                 [(ngModel)]="_currLogin">
                 <mat-icon matPrefix>account_box</mat-icon>
                 <mat-error *ngIf="loginFormControl.hasError('required')">
-                    Login is <strong>required</strong>
+                    <strong>Требуется</strong> логин
                 </mat-error>
               </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Password" name="password"
+            <input matInput placeholder="Пароль" name="password"
             [type]="show ? 'text' : 'password'"  [formControl]="passwordFormControl"
             (keydown)="authPress($event.key)" [errorStateMatcher]="matchPassword" [(ngModel)]="_currPass">
             
             <mat-icon matPrefix>fingerprint</mat-icon>
             <mat-icon matSuffix (click)="show = !show">{{show ? 'visibility_off' : 'visibility'}}</mat-icon>
             <mat-error *ngIf="passwordFormControl.hasError('required')">
-                    Password is <strong>required</strong>
+                    <strong>Требуется</strong> пароль
             </mat-error>
             <mat-error *ngIf="passwordFormControl.hasError('valid') && !passwordFormControl.hasError('required')">
-                Password is invalid. Please try again.
+                Пароль или логин не верный, проверьте данные 
             </mat-error>
         </mat-form-field>
+        <div class="additional-buttons"><button color="warn" mat-button>Забыли пароль</button><button color="warn" routerLink="/subscribe" routerLinkActive="active" mat-button>Регистрация</button></div>
 
-
-            </mat-dialog-content>
-        <mat-dialog-actions>
-          <button mat-button color="warn" (click)="onLogIn()">Log In</button>
-          <button mat-button (click)="onNoClick()" cdkFocusInitial>Back</button>
-        </mat-dialog-actions>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-button color="warn" (click)="onLogIn()">Войти</button>
+        <button mat-button (click)="onNoClick()" cdkFocusInitial>Назад</button>
+    </mat-dialog-actions>
       </div>

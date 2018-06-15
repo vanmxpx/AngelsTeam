@@ -16,6 +16,8 @@ export class AppComponent implements OnDestroy {
 
   mobileQuery: MediaQueryList;
   adminMode: boolean = false;
+  profileName: string = '';
+  logged: boolean = false;
   constructor(public dialog: MatDialog, 
     private userService: CurrentUserService, private appService: ApplicationService) {
       this.appService.getMobileQuery()
@@ -23,8 +25,20 @@ export class AppComponent implements OnDestroy {
         .subscribe((value) => {
           this.mobileQuery = value;
       });
-      this.userService.getName().subscribe((value) => {
+      this.userService.getLogin()
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe((value) => {
         this.adminMode = value === 'admin';
+      });
+      this.userService.getAutorized()
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe((value) => {
+        this.logged = value;
+      });
+      this.userService.getLogin()
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe((value) => {
+        this.profileName = value;
       });
     }
 

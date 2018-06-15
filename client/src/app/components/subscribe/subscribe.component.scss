@@ -10,7 +10,7 @@
 
 .content {
     position: fixed;
-    height: 100%;
+    height: calc(100% - 56px);
     width: 100%;
     max-width: 900px;
     overflow-y: scroll;
@@ -127,7 +127,7 @@ mat-step {
     flex-direction: column;
     align-items: center; 
     
-    min-width: 350px;
+    min-width: 550px;
     .names {
         width: 60%;
         display: flex;

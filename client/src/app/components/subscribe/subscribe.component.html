@@ -35,7 +35,7 @@
                     </div>
                 </div>
             </mat-step>
-            <mat-step [stepControl]="registrationFormGroup" label="Регистрация">
+            <mat-step *ngIf="!logged" [stepControl]="registrationFormGroup" label="Регистрация">
                 <div class="page">
                     <h2 class="primary-header">Регистрация</h2>
                     <form class="registration" [formGroup]="registrationFormGroup">
@@ -52,10 +52,11 @@
                         </div>
 
                         <div class="registration-item">
-                            <mat-icon>mail</mat-icon>
-                            <mat-form-field>
-                                <input matInput placeholder="Email" formControlName="emailControl" required>
-                                <mat-error *ngIf="this.registrationFormGroup.controls['emailControl'].invalid">{{getEmailErrorMessage()}}</mat-error>
+                            <img src="./assets/images/telegram-app-brown.png" style="width: 24px;">
+                            <mat-form-field hintLabel="Телеграм нужен для унификации Вашего аккаунта">
+                                <span matPrefix>@</span>
+                                <input matInput placeholder="Telegram" formControlName="telegramControl" required>
+                                <mat-error *ngIf="this.registrationFormGroup.controls['telegramControl'].invalid">{{getTelegramErrorMessage()}}</mat-error>
                             </mat-form-field>
                         </div>
 
@@ -75,21 +76,19 @@
                             </mat-form-field>
                         </div>
 
+                        <h2 class="subheader">Дополнительно</h2> 
+
                         <div class="registration-item">                      
                             <mat-icon >face</mat-icon>
                             <mat-form-field>
                                 <input matInput placeholder="Имя" formControlName="firstNameControl">
                             </mat-form-field>
                         </div>
-                        
-
-                            <h2 class="subheader">Дополнительно</h2> 
-
                         <div class="registration-item">                      
-                                <mat-icon>pets</mat-icon>
-                                <mat-form-field>
-                                    <input matInput placeholder="Фамилия" formControlName="lastNameControl">
-                                </mat-form-field>
+                            <mat-icon>pets</mat-icon>
+                            <mat-form-field>
+                                <input matInput placeholder="Фамилия" formControlName="lastNameControl">
+                            </mat-form-field>
                         </div>
 
                         <div class="process-step">
