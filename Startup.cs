@@ -10,9 +10,12 @@ namespace AngelsTeam
 {
     public class Startup
     {
+        //private readonly ILogger _logger;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+           // _logger = logger;
         }
 
         public IConfiguration Configuration { get; }
@@ -62,6 +65,7 @@ namespace AngelsTeam
 
                 if (env.IsDevelopment())
                 {
+                    // spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });

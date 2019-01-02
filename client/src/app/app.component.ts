@@ -3,16 +3,13 @@ import { MatDialog } from '@angular/material';
 import { LoginDialog } from './components/login/login-dialog.component';
 import { CurrentUserService } from './services/current-user.service';
 import { ApplicationService } from './services/application.service';
-import { Observable, Subject } from 'rxjs-compat';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnDestroy {
-  // Reactive
-  private ngUnsubscribe: Subject<void> = new Subject<void>();
+export class AppComponent {
 
   mobileQuery: MediaQueryList;
   adminMode: boolean = false;
@@ -21,22 +18,18 @@ export class AppComponent implements OnDestroy {
   constructor(public dialog: MatDialog, 
     private userService: CurrentUserService, private appService: ApplicationService) {
       this.appService.getMobileQuery()
-        .takeUntil(this.ngUnsubscribe)
         .subscribe((value) => {
           this.mobileQuery = value;
       });
       this.userService.getLogin()
-      .takeUntil(this.ngUnsubscribe)
       .subscribe((value) => {
         this.adminMode = value === 'admin';
       });
       this.userService.getAutorized()
-      .takeUntil(this.ngUnsubscribe)
       .subscribe((value) => {
         this.logged = value;
       });
       this.userService.getLogin()
-      .takeUntil(this.ngUnsubscribe)
       .subscribe((value) => {
         this.profileName = value;
       });
@@ -55,10 +48,5 @@ export class AppComponent implements OnDestroy {
       console.log('The dialog was closed');
       // this.animal = result;
     });
-  }
-
-  ngOnDestroy() {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
   }
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ErrorStateMatcher } from '@angular/material';
-import { ParallaxConfig } from 'ngx-parallax';
 import { FormControl, Validators, FormGroupDirective, NgForm } from '@angular/forms';
 
 @Component({
@@ -10,10 +9,6 @@ import { FormControl, Validators, FormGroupDirective, NgForm } from '@angular/fo
     styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-    parallaxConfig: ParallaxConfig = {
-        initialValue: 0,
-        ratio: .22
-      };
 
         emailFormControl = new FormControl('', [
           Validators.required,

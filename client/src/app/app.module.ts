@@ -16,7 +16,6 @@ import { CurrentUserService } from './services/current-user.service';
 import { LoginDialog } from './components/login/login-dialog.component';
 import { FocusDirective } from './directives/focus.directive';
 
-import { Parallax, ParallaxConfig, ParallaxModule } from 'ngx-parallax';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 // Material Components
@@ -113,7 +112,6 @@ export class MaterialModule {}
     FocusDirective
   ],
   imports: [
-    ParallaxModule,
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,

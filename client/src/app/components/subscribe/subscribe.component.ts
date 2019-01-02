@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors, 
 import { MatStepper } from '@angular/material';
 import { ValidatorFn } from '@angular/forms';
 import { CurrentUserService } from '../../services/current-user.service';
-import { Subject } from 'rxjs';
 
 @Component({
     selector: 'subscribe',
@@ -13,8 +12,6 @@ import { Subject } from 'rxjs';
 export class SubscribeComponent implements OnInit {
 
     logged: boolean = false;
-    // Reactive
-    private ngUnsubscribe: Subject<void> = new Subject<void>();
     
     @ViewChild('stepper') stepper: MatStepper;
     selectedSub:  string = 'free';
@@ -25,7 +22,6 @@ export class SubscribeComponent implements OnInit {
     fourthFormGroup: FormGroup;
     constructor(private _formBuilder: FormBuilder,private userService: CurrentUserService) { 
         this.userService.getAutorized()
-        .takeUntil(this.ngUnsubscribe)
         .subscribe((value) => {
           this.logged = value;
         });
@@ -75,11 +71,6 @@ export class SubscribeComponent implements OnInit {
         return control.hasError('required') ? 'Подтвердите пароль' :
             control.hasError('mismatch') ? 'Пароли не совпадают' :
                 '';
-    }
-
-    ngOnDestroy() {
-        this.ngUnsubscribe.next();
-        this.ngUnsubscribe.complete();
     }
 }
 function passwordMatchValidator(): ValidatorFn {

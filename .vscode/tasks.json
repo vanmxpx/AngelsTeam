@@ -5,12 +5,12 @@
     "tasks": [
         {
             "label": "build",
-            "command": "dotnet build",
-            "type": "shell",
-            "group": "build",
-            "presentation": {
-                "reveal": "silent"
-            },
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/AngelsTeam.csproj"
+            ],
             "problemMatcher": "$msCompile"
         }
     ]
