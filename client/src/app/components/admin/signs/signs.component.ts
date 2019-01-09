@@ -4,7 +4,7 @@ import { MatPaginator, MatSort, MatTableDataSource, MatSnackBar, MatDialog } fro
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { NewSignalDialog } from './new-signal/new-signal.component';
 import { Signal } from '../../../models/Signal';
-import { SignalStatus, Period } from '../../../models/signalStatus';
+import { SignalLevel, Period } from '../../../models/signalStatus';
 import { ITarget } from '../../../models/target';
 @Component({
     selector: 'signs',
@@ -29,7 +29,7 @@ export class SignsComponent implements AfterViewInit {
     expandedElement: any;
 
     users: Signal[] = [];
-    SignalStatus = SignalStatus;
+    SignalLevel = SignalLevel;
 
     date: Date = new Date();
     displayedColumns = ['Id', 'Coin', 'Date', 'Status', 'Edit', 'Remove'];
@@ -114,7 +114,7 @@ export class SignsComponent implements AfterViewInit {
         Stop: 'asff',
         Description: 'faf', },
       Description: 'dasfdaf',
-      Status: SignalStatus[SignalStatus[Math.round(Math.random() * 2)]]
+      Status: SignalLevel[SignalLevel[Math.round(Math.random() * 2)]]
     };
   }
 

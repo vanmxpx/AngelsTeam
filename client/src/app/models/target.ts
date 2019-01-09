@@ -5,5 +5,4 @@ export interface ITarget {
     Buy: string;
     Profits: string[];
     Stop: string;
-    Description: string;
 }

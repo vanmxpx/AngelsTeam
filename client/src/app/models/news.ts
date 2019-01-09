@@ -1,5 +1,5 @@
 import { ITarget } from './target';
-import { SignalStatus } from './signalStatus';
+import { SignalLevel } from './signalStatus';
 
 export interface News {
     id: string;
