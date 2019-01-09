@@ -14,7 +14,11 @@ namespace AngelsTeam.Model
         public DbSet<Subscription> Subscriptions { get; set; }
         public DbSet<SubscriptionType> SubscriptionTypes { get; set; }
 
-        public AngelsDbContext(DbContextOptions<AngelsDbContext> options) : base(options) { }
+
+        public AngelsDbContext(DbContextOptions<AngelsDbContext> options) : base(options)
+        {
+            Database.EnsureCreated();
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>(entity =>
@@ -46,9 +50,9 @@ namespace AngelsTeam.Model
                 entity.Property(p => p.Title).HasMaxLength(64);
                 entity.Property(p => p.Date).HasDefaultValue(DateTime.Now).HasColumnType("datetime");
                 entity.Property(p => p.Text).HasMaxLength(512);
-                entity.Property(p=>p.IsFree).HasDefaultValue(false);
-                entity.Property(p=>p.Risk).HasDefaultValue("Low");
-                entity.Property(p=>p.Coin).HasMaxLength(3);
+                entity.Property(p => p.IsFree).HasDefaultValue(false);
+                entity.Property(p => p.Risk).HasDefaultValue("Low");
+                entity.Property(p => p.Coin).HasMaxLength(3);
 
             });
             modelBuilder.Entity<Subscription>(entity =>
@@ -60,40 +64,31 @@ namespace AngelsTeam.Model
                 entity.HasKey(e => e.Id);
                 entity.Property(p => p.Title).HasMaxLength(64);
                 entity.Property(p => p.Description).HasMaxLength(512);
-                entity.Property(p=>p.Cost).HasColumnType("float");
+                entity.Property(p => p.Cost).HasColumnType("float");
             });
-            //Users
-            // modelBuilder.Entity<User>(entity =>
-            // {
-            //     entity.HasKey(u => u.Id);
-
-            //     entity.HasIndex(u => u.Telegram).IsUnique();
-
-            //     entity.Property(u => u.IsAdmin).HasDefaultValue(false);
-            //     entity.Property(u => u.Telegram).HasColumnType("varchar(32)").IsRequired();
-            //     entity.Property(u=> u.Name).HasColumnType("varchar(32)");
-            //     entity.Property(u=> u.Surname).HasColumnType("varchar(32)");
-            //     entity.Property(u=> u.ExpirationDate).HasColumnType("datetime2");
-
-            //     entity.HasOne(u=>u.Credential)
-            //     .WithOne(r=>r.User)
-            //     .HasForeignKey<Credential>(r => r.UserId).OnDelete(DeleteBehavior.Cascade);                
-
-            //     entity.HasMany(u=>u.Subscriptions)
-            //     .WithOne(p=>p.User)
-            //     .HasForeignKey(p=>p.UserId);
 
 
-            // });
+            modelBuilder.Entity<User>().HasData(
+           new User[]
+           {
+                new User {
+                     Id=1,
+                      Name="Tom",
+                       Surname = "Koval",
+                       Telegram = "Noderoid64",
+                       IsAdmin = true,
+                       ExpirationDate = DateTime.Now
+                       },
+                        new User {
+                     Id=2,
+                      Name="Ivan",
+                       Surname = "Ivanov",
+                       Telegram = "IvanovIvan",
+                       IsAdmin = false,
+                       ExpirationDate = DateTime.Now
+                       }
 
-
-
-            /*
-            .Entity<User>()
-            .HasOne(u => u.Profile)
-            .WithOne(p => p.User)
-            .HasForeignKey<UserProfile>(p => p.UserKey);
-             */
+           });
 
         }
     }
