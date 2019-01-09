@@ -55,6 +55,7 @@ import { NewsProfileComponent } from './components/profile/news/news.component';
 import { ApplicationService } from './services/application.service';
 import { TeachingComponent } from './components/teaching/teaching.component';
 import { DepositComponent } from './components/deposit/deposit.component';
+import { environment } from '../environments/environment';
 
 
 
@@ -120,7 +121,18 @@ export class MaterialModule {}
     AppRoutingModule
   ],
   entryComponents: [ LoginDialog, NewSignalDialog],
-  providers: [ ApplicationService, CurrentUserService ],
+  providers: [
+      {
+          provide: 'BASE_URL', useFactory: () => {
+              if (environment.production) {
+                return window.location.protocol + '//' + window.location.host + '/' + (window.location.pathname.split('/')[1] + '/' || '');
+              } else {
+                return 'http://localhost:5000/';
+              }
+          }
+      },
+      ApplicationService,
+      CurrentUserService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

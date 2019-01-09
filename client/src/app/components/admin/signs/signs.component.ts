@@ -3,7 +3,7 @@ import { Component, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular
 import { MatPaginator, MatSort, MatTableDataSource, MatSnackBar, MatDialog } from '@angular/material';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { NewSignalDialog } from './new-signal/new-signal.component';
-import { ISignal } from '../../../models/Signal';
+import { Signal } from '../../../models/Signal';
 import { SignalStatus, Period } from '../../../models/signalStatus';
 import { ITarget } from '../../../models/target';
 @Component({
@@ -28,12 +28,12 @@ export class SignsComponent implements AfterViewInit {
     // Details
     expandedElement: any;
 
-    users: ISignal[] = [];
+    users: Signal[] = [];
     SignalStatus = SignalStatus;
 
     date: Date = new Date();
     displayedColumns = ['Id', 'Coin', 'Date', 'Status', 'Edit', 'Remove'];
-    dataSourceSigns: MatTableDataSource<ISignal>;
+    dataSourceSigns: MatTableDataSource<Signal>;
 
     @ViewChild('paginatorSigns') paginatorSigns: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
@@ -99,7 +99,7 @@ export class SignsComponent implements AfterViewInit {
   }
 
   /** Builds and returns a new User. */
-  function createNewUser(id: number): ISignal {
+  function createNewUser(id: number): Signal {
     const name =
         NAMES[Math.round(Math.random() * (NAMES.length - 1))];
 

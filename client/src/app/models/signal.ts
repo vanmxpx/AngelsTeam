@@ -1,7 +1,7 @@
 import { ITarget } from './target';
 import { SignalStatus } from './signalStatus';
 
-export interface ISignal {
+export interface Signal {
     Id: string;
     Date: string;
     Coin: string;
