@@ -215,6 +215,27 @@ namespace AngelsTeam.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
+
+            modelBuilder.Entity("AngelsTeam.Model.Credential", b =>
+                {
+                    b.HasOne("AngelsTeam.Model.User", "User")
+                        .WithOne("Credential")
+                        .HasForeignKey("AngelsTeam.Model.Credential", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("AngelsTeam.Model.Subscription", b =>
+                {
+                    b.HasOne("AngelsTeam.Model.SubscriptionType", "SubscribtionType")
+                        .WithMany("Subscriptions")
+                        .HasForeignKey("SubscriptionTypeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("AngelsTeam.Model.User", "User")
+                        .WithMany("Subscriptions")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
 #pragma warning restore 612, 618
         }
     }
