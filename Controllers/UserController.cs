@@ -12,21 +12,21 @@ namespace AngelsTeam.Controllers
     [Route("api/[controller]")]
     public class UserController : Controller
     {
-        IUserRepository userRepository;
-        public UserController(IUserRepository userRepository)
+        IRepositoryWrapper wrapper;
+        public UserController(IRepositoryWrapper wrapper)
         {
-            this.userRepository = userRepository;
+            this.wrapper = wrapper;
         }
         [HttpPost]
-        public async Task<IActionResult> CreateOwner([FromBody] User user)
+        public async Task<IActionResult> CreateOwner( User user)
         {
-            await userRepository.CreateAsync(user);
+            await wrapper.UserRepository.CreateAsync(user);
             return new OkObjectResult(user);
         }
         [HttpGet]
         public async Task<IActionResult> GetUserById(int id)
         {
-            var user = await userRepository.GetByIdAsync(id);
+            var user = await wrapper.UserRepository.GetByIdAsync(id);
             return new OkObjectResult(user);
         }
     }

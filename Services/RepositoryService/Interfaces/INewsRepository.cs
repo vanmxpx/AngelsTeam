@@ -5,8 +5,8 @@ using AngelsTeam.Model;
 
 namespace AngelsTeam.Services
 {
-    public interface IUserRepository : ICRUDRepository<User>
+    public interface INewsRepository: ICRUDRepository<News>
     {
-        Task<IEnumerable<User>> GetAllUsersAsync();
+        Task<IEnumerable<News>> GetAllNewsAsync();
     }
 }
