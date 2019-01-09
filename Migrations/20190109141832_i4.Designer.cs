@@ -4,14 +4,16 @@ using AngelsTeam.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AngelsTeam.Migrations
 {
     [DbContext(typeof(AngelsDbContext))]
-    partial class AngelsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190109141832_i4")]
+    partial class i4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,7 +54,7 @@ namespace AngelsTeam.Migrations
                     b.Property<DateTime>("Date")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2019, 1, 9, 16, 33, 10, 522, DateTimeKind.Local).AddTicks(6668));
+                        .HasDefaultValue(new DateTime(2019, 1, 9, 16, 18, 31, 401, DateTimeKind.Local).AddTicks(3162));
 
                     b.Property<string>("Text")
                         .HasMaxLength(512);
@@ -73,33 +75,23 @@ namespace AngelsTeam.Migrations
 
                     b.Property<string>("Buy");
 
-                    b.Property<string>("Coin")
-                        .HasMaxLength(3);
+                    b.Property<string>("Coin");
 
-                    b.Property<DateTime>("Date")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2019, 1, 9, 16, 33, 10, 527, DateTimeKind.Local).AddTicks(3783));
+                    b.Property<DateTime>("Date");
 
-                    b.Property<string>("Duration");
+                    b.Property<int>("Duration");
 
-                    b.Property<bool>("IsFree")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValue(false);
+                    b.Property<bool>("IsFree");
 
-                    b.Property<string>("Risk")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValue("Low");
+                    b.Property<string>("Risk");
 
                     b.Property<string>("Sell");
 
                     b.Property<string>("TPs");
 
-                    b.Property<string>("Text")
-                        .HasMaxLength(512);
+                    b.Property<string>("Text");
 
-                    b.Property<string>("Title")
-                        .HasMaxLength(64);
+                    b.Property<string>("Title");
 
                     b.HasKey("Id");
 
@@ -114,7 +106,7 @@ namespace AngelsTeam.Migrations
 
                     b.Property<int>("SubscriptionTypeId");
 
-                    b.Property<int>("UserId");
+                    b.Property<int?>("UserId");
 
                     b.HasKey("Id");
 
@@ -131,14 +123,11 @@ namespace AngelsTeam.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<double>("Cost")
-                        .HasColumnType("float");
+                    b.Property<float>("Cost");
 
-                    b.Property<int>("Description")
-                        .HasMaxLength(512);
+                    b.Property<int>("Description");
 
-                    b.Property<string>("Title")
-                        .HasMaxLength(64);
+                    b.Property<string>("Title");
 
                     b.HasKey("Id");
 
@@ -154,7 +143,7 @@ namespace AngelsTeam.Migrations
                     b.Property<DateTime>("ExpirationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("date")
-                        .HasDefaultValue(new DateTime(2019, 1, 9, 16, 33, 10, 509, DateTimeKind.Local).AddTicks(1546));
+                        .HasDefaultValue(new DateTime(2019, 1, 9, 16, 18, 31, 390, DateTimeKind.Local).AddTicks(6591));
 
                     b.Property<bool>("IsAdmin")
                         .ValueGeneratedOnAdd()
@@ -190,10 +179,9 @@ namespace AngelsTeam.Migrations
                         .HasForeignKey("SubscriptionTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("AngelsTeam.Model.User", "User")
+                    b.HasOne("AngelsTeam.Model.User")
                         .WithMany("Subscriptions")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }

@@ -4,14 +4,16 @@ using AngelsTeam.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AngelsTeam.Migrations
 {
     [DbContext(typeof(AngelsDbContext))]
-    partial class AngelsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190109135225_i1")]
+    partial class i1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,13 +27,9 @@ namespace AngelsTeam.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(32);
+                    b.Property<string>("Email");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(32);
+                    b.Property<string>("Password");
 
                     b.Property<int>("UserId");
 
@@ -49,16 +47,11 @@ namespace AngelsTeam.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("Date")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2019, 1, 9, 16, 33, 10, 522, DateTimeKind.Local).AddTicks(6668));
+                    b.Property<DateTime>("Date");
 
-                    b.Property<string>("Text")
-                        .HasMaxLength(512);
+                    b.Property<string>("Text");
 
-                    b.Property<string>("Title")
-                        .HasMaxLength(64);
+                    b.Property<string>("Title");
 
                     b.HasKey("Id");
 
@@ -73,33 +66,23 @@ namespace AngelsTeam.Migrations
 
                     b.Property<string>("Buy");
 
-                    b.Property<string>("Coin")
-                        .HasMaxLength(3);
+                    b.Property<string>("Coin");
 
-                    b.Property<DateTime>("Date")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2019, 1, 9, 16, 33, 10, 527, DateTimeKind.Local).AddTicks(3783));
+                    b.Property<DateTime>("Date");
 
-                    b.Property<string>("Duration");
+                    b.Property<int>("Duration");
 
-                    b.Property<bool>("IsFree")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValue(false);
+                    b.Property<bool>("IsFree");
 
-                    b.Property<string>("Risk")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValue("Low");
+                    b.Property<string>("Risk");
 
                     b.Property<string>("Sell");
 
                     b.Property<string>("TPs");
 
-                    b.Property<string>("Text")
-                        .HasMaxLength(512);
+                    b.Property<string>("Text");
 
-                    b.Property<string>("Title")
-                        .HasMaxLength(64);
+                    b.Property<string>("Title");
 
                     b.HasKey("Id");
 
@@ -114,11 +97,12 @@ namespace AngelsTeam.Migrations
 
                     b.Property<int>("SubscriptionTypeId");
 
-                    b.Property<int>("UserId");
+                    b.Property<int?>("UserId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SubscriptionTypeId");
+                    b.HasIndex("SubscriptionTypeId")
+                        .IsUnique();
 
                     b.HasIndex("UserId");
 
@@ -131,14 +115,11 @@ namespace AngelsTeam.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<double>("Cost")
-                        .HasColumnType("float");
+                    b.Property<float>("Cost");
 
-                    b.Property<int>("Description")
-                        .HasMaxLength(512);
+                    b.Property<int>("Description");
 
-                    b.Property<string>("Title")
-                        .HasMaxLength(64);
+                    b.Property<string>("Title");
 
                     b.HasKey("Id");
 
@@ -151,24 +132,15 @@ namespace AngelsTeam.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("ExpirationDate")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("date")
-                        .HasDefaultValue(new DateTime(2019, 1, 9, 16, 33, 10, 509, DateTimeKind.Local).AddTicks(1546));
+                    b.Property<DateTime>("ExpirationDate");
 
-                    b.Property<bool>("IsAdmin")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValue(false);
+                    b.Property<bool>("IsAdmin");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(32);
+                    b.Property<string>("Name");
 
-                    b.Property<string>("Surname")
-                        .HasMaxLength(32);
+                    b.Property<string>("Surname");
 
-                    b.Property<string>("Telegram")
-                        .IsRequired()
-                        .HasMaxLength(32);
+                    b.Property<string>("Telegram");
 
                     b.HasKey("Id");
 
@@ -186,14 +158,13 @@ namespace AngelsTeam.Migrations
             modelBuilder.Entity("AngelsTeam.Model.Subscription", b =>
                 {
                     b.HasOne("AngelsTeam.Model.SubscriptionType", "SubscribtionType")
-                        .WithMany("Subscriptions")
-                        .HasForeignKey("SubscriptionTypeId")
+                        .WithOne("Subscription")
+                        .HasForeignKey("AngelsTeam.Model.Subscription", "SubscriptionTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("AngelsTeam.Model.User", "User")
+                    b.HasOne("AngelsTeam.Model.User")
                         .WithMany("Subscriptions")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }

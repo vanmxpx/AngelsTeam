@@ -1,22 +1,21 @@
-using System.ComponentModel.DataAnnotations;
+using System;
+using System.Collections.Generic;
 
 namespace AngelsTeam.Model
 {
     public class User
     {
-        [Key]
         public int Id { get; set; }
-        [Required]
-        [MinLength(6)]
-        [MaxLength(20)]
-        public string Login { get; set; }
-        [Required]
-        [MinLength(8)]
-        [MaxLength(20)]
-        public string Password { get; set; }
-        [Required]
         public string Telegram { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
+        public DateTime ExpirationDate {get;set;}
+        public bool IsAdmin {get;set;}
+
+        //Credential
+        public Credential Credential { get; set; }
+
+        //Subscription
+        public List<Subscription> Subscriptions {get;set;}
     }
 }
