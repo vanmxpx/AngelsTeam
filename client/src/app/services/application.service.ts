@@ -1,12 +1,12 @@
-import { Injectable, OnDestroy } from "@angular/core";
-import { ChangeDetectorRef } from "@angular/core";
-import { MediaMatcher } from "@angular/cdk/layout";
-import { BehaviorSubject } from "rxjs";
-import { ApplicationRef } from "@angular/core";
+import { Injectable, OnDestroy } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { BehaviorSubject } from 'rxjs';
+import { ApplicationRef } from '@angular/core';
 
 @Injectable()
 export class ApplicationService implements OnDestroy {
-    
+
     private _mobileQuery: MediaQueryList;
     private _mobileQueryChange: BehaviorSubject<MediaQueryList>;
     private _mobileQueryListener: () => void;
@@ -20,10 +20,10 @@ export class ApplicationService implements OnDestroy {
             ref.tick();
             this._mobileQueryChange.next(this._mobileQuery);
 
-         }
+         };
          this._mobileQuery.addListener(this._mobileQueryListener);
     }
-  
+
     getMobileQuery(): BehaviorSubject<MediaQueryList> {
         return this._mobileQueryChange;
     }

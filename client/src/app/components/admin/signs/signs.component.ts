@@ -112,7 +112,8 @@ export class SignsComponent implements AfterViewInit {
         Buy: 'fasf',
         Profits: ['ads', 'dqw' ],
         Stop: 'asff',
-        Description: 'faf', },
+        },
+      Attachment: null,
       Description: 'dasfdaf',
       Status: SignalLevel[SignalLevel[Math.round(Math.random() * 2)]]
     };

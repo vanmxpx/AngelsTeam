@@ -3,6 +3,7 @@ export interface Subscription {
     price: number;
     exchange: string;
     duration: SubscriptionDuration;
+    description: string[];
 }
 
 export enum SubscriptionDuration {

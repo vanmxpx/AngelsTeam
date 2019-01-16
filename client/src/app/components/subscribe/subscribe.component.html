@@ -5,33 +5,13 @@
                 <div class="page first">
                     <h2 class="primary-header">Выберите подписку</h2>
                     <div class="panels">
-                        <button mat-button (click)="getSub('free')" class="first">
-                            <h2 class="header">Бесплатная</h2>
-                            <h1 class="price">0 BTC</h1>
+                        <div *ngFor="let subscription of subscriptions" (click)="getSub('free')" class="subscription">
+                            <h2 class="header">{{ subscription.name }}</h2>
+                            <h1 class="price">{{ subscription.price + ' ' + subscription.exchange }}</h1>
                             <ul>
-                                <li><mat-icon>label</mat-icon><div class="text">Ознакомление с контентом</div></li>
-                                <li><mat-icon>label</mat-icon><div class="text">Бесплатные сигналы</div></li>
-                                <li><mat-icon>label</mat-icon><div class="text">Разборы некоторых монет</div></li>
+                                <li *ngFor="let text of subscription.description"><mat-icon>label</mat-icon><div class="text">{{ text }}</div></li>
                             </ul>
-                        </button>
-                        <button mat-button (click)="getSub('mounth')" class="second">
-                            <h2 class="header">Ежемесячная</h2>
-                            <h1 class="price">0.02 BTC</h1>
-                            <ul>
-                                <li><mat-icon>label</mat-icon><div class="text">Приватные сигналы</div></li>
-                                <li><mat-icon>label</mat-icon><div class="text">Приватный чат участников</div></li>
-                                <li><mat-icon>label</mat-icon><div class="text big"><div>Продление подписки,</div><div class="sec">если месячный профит </div><div class="sec"> составил &lt; 60%</div></div></li>
-                            </ul>
-                        </button>
-                        <button mat-button (click)="getSub('unlimit')" class="third">
-                            <h2 class="header">Безлимитная</h2>
-                            <h1 class="price">0.04 BTC</h1>
-                            <ul>
-                                <li><mat-icon>label</mat-icon><div class="text">Безлимитные сигналы</div></li>
-                                <li><mat-icon>label</mat-icon><div class="text">Личные консультации</div></li>
-                                <li><mat-icon>label</mat-icon><div class="text">Разбор Ваших монет</div></li>
-                            </ul>
-                        </button>
+                        </div>
                     </div>
                 </div>
             </mat-step>
@@ -47,12 +27,12 @@
                             <mat-icon>account_circle</mat-icon>
                             <mat-form-field>
                                 <input matInput placeholder="Логин" formControlName="loginControl" required>
-                                <mat-error *ngIf="this.registrationFormGroup.controls['loginControl'].invalid">{{getLoginErrorMessage()}}</mat-error>
+                                <mat-error *ngIf="this.registrationFormGroup?.controls['loginControl'].invalid">{{getLoginErrorMessage()}}</mat-error>
                             </mat-form-field>
                         </div>
 
                         <div class="registration-item">
-                            <img src="./assets/images/telegram-app-brown.png" style="width: 24px;">
+                            <img src="assets/images/telegram-app-brown.png" style="width: 24px;">
                             <mat-form-field hintLabel="Телеграм нужен для унификации Вашего аккаунта">
                                 <span matPrefix>@</span>
                                 <input matInput placeholder="Telegram" formControlName="telegramControl" required>
