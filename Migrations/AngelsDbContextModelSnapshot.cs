@@ -46,9 +46,23 @@ namespace AngelsTeam.Migrations
                         new
                         {
                             Id = 1,
-                            Email = "admin",
-                            Password = "admin",
+                            Email = "admin1212",
+                            Password = "admin1212",
                             UserId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Email = "ivanov1212",
+                            Password = "ivanov1212",
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Email = "user1212",
+                            Password = "user1212",
+                            UserId = 3
                         });
                 });
 
@@ -61,7 +75,7 @@ namespace AngelsTeam.Migrations
                     b.Property<DateTime>("Date")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2019, 1, 16, 23, 1, 1, 871, DateTimeKind.Local).AddTicks(4033));
+                        .HasDefaultValue(new DateTime(2019, 1, 17, 0, 39, 24, 702, DateTimeKind.Local).AddTicks(7629));
 
                     b.Property<string>("Text")
                         .HasMaxLength(512);
@@ -104,6 +118,36 @@ namespace AngelsTeam.Migrations
                         });
                 });
 
+            modelBuilder.Entity("AngelsTeam.Model.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "User"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Subscriber"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Admin"
+                        });
+                });
+
             modelBuilder.Entity("AngelsTeam.Model.Signal", b =>
                 {
                     b.Property<int>("Id")
@@ -118,7 +162,7 @@ namespace AngelsTeam.Migrations
                     b.Property<DateTime>("Date")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2019, 1, 16, 23, 1, 1, 874, DateTimeKind.Local).AddTicks(1934));
+                        .HasDefaultValue(new DateTime(2019, 1, 17, 0, 39, 24, 706, DateTimeKind.Local).AddTicks(1958));
 
                     b.Property<string>("Description")
                         .HasMaxLength(512);
@@ -246,14 +290,12 @@ namespace AngelsTeam.Migrations
                     b.Property<DateTime>("ExpirationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("date")
-                        .HasDefaultValue(new DateTime(2019, 1, 16, 23, 1, 1, 859, DateTimeKind.Local).AddTicks(8510));
-
-                    b.Property<bool>("IsAdmin")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValue(false);
+                        .HasDefaultValue(new DateTime(2019, 1, 17, 0, 39, 24, 692, DateTimeKind.Local).AddTicks(4708));
 
                     b.Property<string>("Name")
                         .HasMaxLength(32);
+
+                    b.Property<int>("RoleId");
 
                     b.Property<string>("Surname")
                         .HasMaxLength(32);
@@ -264,26 +306,37 @@ namespace AngelsTeam.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("RoleId");
+
                     b.ToTable("Users");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            ExpirationDate = new DateTime(2019, 1, 16, 23, 1, 1, 885, DateTimeKind.Local).AddTicks(8017),
-                            IsAdmin = true,
+                            ExpirationDate = new DateTime(2019, 1, 17, 0, 39, 24, 720, DateTimeKind.Local).AddTicks(368),
                             Name = "Admin",
+                            RoleId = 3,
                             Surname = "Admin",
                             Telegram = "yourAdmin"
                         },
                         new
                         {
                             Id = 2,
-                            ExpirationDate = new DateTime(2019, 1, 16, 23, 1, 1, 885, DateTimeKind.Local).AddTicks(8620),
-                            IsAdmin = false,
+                            ExpirationDate = new DateTime(2019, 1, 17, 0, 39, 24, 720, DateTimeKind.Local).AddTicks(1338),
                             Name = "Ivan",
+                            RoleId = 2,
                             Surname = "Ivanov",
                             Telegram = "IvanovIvan"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ExpirationDate = new DateTime(2019, 1, 17, 0, 39, 24, 720, DateTimeKind.Local).AddTicks(1360),
+                            Name = "Lexa",
+                            RoleId = 1,
+                            Surname = "Lepexa",
+                            Telegram = "Lepexa"
                         });
                 });
 
@@ -326,6 +379,14 @@ namespace AngelsTeam.Migrations
                     b.HasOne("AngelsTeam.Model.Period", "Period")
                         .WithMany()
                         .HasForeignKey("PeriodId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("AngelsTeam.Model.User", b =>
+                {
+                    b.HasOne("AngelsTeam.Model.Role", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

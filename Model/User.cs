@@ -10,13 +10,16 @@ namespace AngelsTeam.Model
         public string Telegram { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public DateTime ExpirationDate {get;set;}
-        public bool IsAdmin {get;set;}
+        public DateTime ExpirationDate { get; set; }
+
+        //Role
+        public int RoleId { get; set; }
+        public Role Role { get; set; }
 
         //Credential
         public Credential Credential { get; set; }
 
         //Subscription
-        public List<Subscription> Subscriptions {get;set;}
+        public List<Subscription> Subscriptions { get; set; }
     }
 }

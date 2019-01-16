@@ -15,21 +15,38 @@ namespace AngelsTeam.Controllers
 
         public ValuesController()//Diagnostics diagnostics)
         {
-           // this.diagnostics = diagnostics;
+            // this.diagnostics = diagnostics;
         }
         // GET api/values
-        [HttpGet]
-        [Authorize]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+
+
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [Authorize]
+        [HttpGet("User")]
+        public string GetUser()
         {
-            return "value";
+            return "User";
+        }
+
+        [Authorize(Roles = "Admin,Subscriber")]
+        [HttpGet("Subscriber")]
+        public string GetSubscriber()
+        {
+            return "Subscriber";
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet("Admin")]
+        public string GetAdmin()
+        {
+            return "Admin";
+        }
+
+        [HttpGet("Unauthorize")]
+        public string GetUnauthorize()
+        {
+            return "Unauthorize";
         }
 
         // POST api/values

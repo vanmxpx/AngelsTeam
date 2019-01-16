@@ -15,6 +15,7 @@ namespace AngelsTeam.Model
         public DbSet<SubscriptionType> SubscriptionTypes { get; set; }
         public DbSet<SignalLevel> SignalLevels { get; set; }
         public DbSet<Period> Periods { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
 
         public AngelsDbContext(DbContextOptions<AngelsDbContext> options) : base(options)
@@ -30,7 +31,6 @@ namespace AngelsTeam.Model
                 entity.Property(p => p.Name).HasMaxLength(32);
                 entity.Property(p => p.Surname).HasMaxLength(32);
                 entity.Property(p => p.ExpirationDate).HasDefaultValue(DateTime.Now).HasColumnType("date");
-                entity.Property(p => p.IsAdmin).HasDefaultValue(false);
 
             });
             modelBuilder.Entity<Credential>(entity =>
@@ -74,7 +74,25 @@ namespace AngelsTeam.Model
             {
                 entity.HasKey(e => e.Id);
             });
+            modelBuilder.Entity<Role>(entiry =>
+            {
+                entiry.HasKey(e => e.Id);
+            });
 
+            modelBuilder.Entity<Role>().HasData(new Role[] {
+                    new Role {
+                        Id = 1,
+                        Name = "User"
+                    },
+                    new Role{
+                        Id = 2,
+                       Name = "Subscriber"
+                    },
+                    new Role{
+                        Id = 3,
+                        Name = "Admin"
+                    }
+                });
             modelBuilder.Entity<Period>().HasData(new Period[] {
                     new Period {
                         Id = 1,
@@ -111,9 +129,21 @@ namespace AngelsTeam.Model
                 new Credential[] {
                     new Credential {
                         Id = 1,
-                        Email = "admin",
-                        Password = "admin",
-                         UserId = 1,
+                        Email = "admin1212",
+                        Password = "admin1212",
+                        UserId = 1,
+                    },
+                    new Credential {
+                        Id = 2,
+                        Email = "ivanov1212",
+                        Password = "ivanov1212",
+                        UserId = 2,
+                    },
+                    new Credential {
+                        Id = 3,
+                        Email = "user1212",
+                        Password = "user1212",
+                        UserId = 3,
                     }
                 }
             );
@@ -124,16 +154,24 @@ namespace AngelsTeam.Model
                         Name="Admin",
                         Surname = "Admin",
                         Telegram = "yourAdmin",
-                        IsAdmin = true,
-                        ExpirationDate = DateTime.Now
+                        ExpirationDate = DateTime.Now,
+                        RoleId = 3
                     },
                     new User {
                         Id=2,
                         Name="Ivan",
                         Surname = "Ivanov",
                         Telegram = "IvanovIvan",
-                        IsAdmin = false,
-                        ExpirationDate = DateTime.Now
+                        ExpirationDate = DateTime.Now,
+                        RoleId = 2
+                    },
+                    new User{
+                        Id = 3,
+                        Name = "Lexa",
+                        Surname = "Lepexa",
+                        Telegram = "Lepexa",
+                        ExpirationDate = DateTime.Now,
+                        RoleId = 1
                     }
                 }
             );

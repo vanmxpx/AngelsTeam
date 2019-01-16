@@ -32,14 +32,20 @@ namespace AngelsTeam.Controllers
                 return BadRequest("Invalid client request");
             }
             Credential userCredential = wrapper.CredentialRepository.GetCredentialByEmail(cred.Email).Result;
+            User user = wrapper.UserRepository.GetByIdAsync(userCredential.UserId).Result;
+            Role role = await wrapper.RoleRepository.GetRoleByUser(user);
             if (userCredential.Password == cred.Password)
             {
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(keyService.SecretKey));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
+                var claims = new List<Claim>{                    
+                    new Claim(ClaimTypes.Role, role.Name)
+                    };
+
                 var tokeOptions = new JwtSecurityToken(
-                    claims: new List<Claim>(),
-                    
+                    claims: claims,
+
                     signingCredentials: signinCredentials
                 );
 
