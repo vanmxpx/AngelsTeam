@@ -1,9 +1,9 @@
-import { ITarget } from './target';
-import { SignalLevel } from './signalStatus';
-
 export interface News {
-    id: string;
-    date: string;
-    description: string;
+    id: number;
+    date: Date;
+    likes: number;
+    dislikes: number; 
+    title: string;
+    body: string;
     attachment: string;
 }

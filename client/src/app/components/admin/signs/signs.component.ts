@@ -4,8 +4,7 @@ import { MatPaginator, MatSort, MatTableDataSource, MatSnackBar, MatDialog } fro
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { NewSignalDialog } from './new-signal/new-signal.component';
 import { Signal } from '../../../models/Signal';
-import { SignalLevel, Period } from '../../../models/signalStatus';
-import { ITarget } from '../../../models/target';
+import { SignalLevel, Period } from '../../../models/signal-status';
 @Component({
     selector: 'signs',
     templateUrl: './signs.component.html',
@@ -104,18 +103,18 @@ export class SignsComponent implements AfterViewInit {
         NAMES[Math.round(Math.random() * (NAMES.length - 1))];
 
     return {
-      Id: id.toString(),
-      Coin: name,
-      Date: randomDate(new Date(2012, 0, 1), new Date()).toDateString(),
-      Target: {
-        Period: Period.Short,
-        Buy: 'fasf',
-        Profits: ['ads', 'dqw' ],
-        Stop: 'asff',
+      id: id.toString(),
+      coin: name,
+      date: randomDate(new Date(2012, 0, 1), new Date()).toDateString(),
+      target: {
+        period: Period.Short,
+        buy: 'fasf',
+        profits: ['ads', 'dqw' ],
+        stop: 'asff',
         },
-      Attachment: null,
-      Description: 'dasfdaf',
-      Status: SignalLevel[SignalLevel[Math.round(Math.random() * 2)]]
+      attachment: null,
+      body: 'dasfdaf',
+      status: SignalLevel[SignalLevel[Math.round(Math.random() * 2)]]
     };
   }
 

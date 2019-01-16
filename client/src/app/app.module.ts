@@ -34,6 +34,7 @@ import { DataApiService } from './services/data-api.service';
 import { DataApiMockService } from './services/data-api-mock.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './modules/material.module';
+import { NewsControlComponent } from './components/profile/news/news-control/news-control.component';
 
 
 @NgModule({
@@ -58,7 +59,9 @@ import { MaterialModule } from './modules/material.module';
     NewAnnounceDialog,
     // directives
     CdkDetailRowDirective,
-    FocusDirective
+    FocusDirective,
+    // controls
+    NewsControlComponent
   ],
   imports: [
     HttpClientModule,
