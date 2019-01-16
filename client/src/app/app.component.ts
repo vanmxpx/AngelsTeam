@@ -15,7 +15,7 @@ export class AppComponent {
   adminMode: boolean = false;
   profileName: string = '';
   logged: boolean = false;
-  constructor(public dialog: MatDialog, 
+  constructor(public dialog: MatDialog,
     private userService: CurrentUserService, private appService: ApplicationService) {
       this.appService.getMobileQuery()
         .subscribe((value) => {
@@ -36,7 +36,7 @@ export class AppComponent {
     }
 
   ngAfterViewInit() {
-    
+
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(LoginDialog, {

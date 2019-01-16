@@ -19,7 +19,7 @@ namespace AngelsTeam.Model
 
         public AngelsDbContext(DbContextOptions<AngelsDbContext> options) : base(options)
         {
-            Database.EnsureCreated();
+           // Database.EnsureCreated();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -77,8 +77,8 @@ namespace AngelsTeam.Model
 
             modelBuilder.Entity<Period>().HasData(new Period[] {
                     new Period {
-                         Id = 1,
-                         Name = "Short"
+                        Id = 1,
+                        Name = "Short"
                     },
                     new Period {
                         Id = 2,

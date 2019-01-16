@@ -27,6 +27,7 @@ namespace AngelsTeam
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddAngelsDbContext(Configuration);
+            services.AddJWTAuthentication(Configuration);
             services.AddWrapper();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -51,6 +52,7 @@ namespace AngelsTeam
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
