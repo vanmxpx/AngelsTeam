@@ -24,17 +24,17 @@ namespace AngelsTeam.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Auth(Credential cred)
+        public async Task<IActionResult> Auth(string Email, string Password)
         {
 
-            if (cred.Email == null || cred.Password == null)
+            if (Email == null || Password == null)
             {
                 return BadRequest("Invalid client request");
             }
-            Credential userCredential = wrapper.CredentialRepository.GetCredentialByEmail(cred.Email).Result;
+            Credential userCredential = wrapper.CredentialRepository.GetCredentialByEmail(Email).Result;
             User user = wrapper.UserRepository.GetByIdAsync(userCredential.UserId).Result;
             Role role = await wrapper.RoleRepository.GetRoleByUser(user);
-            if (userCredential.Password == cred.Password)
+            if (userCredential.Password == Password)
             {
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(keyService.SecretKey));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
