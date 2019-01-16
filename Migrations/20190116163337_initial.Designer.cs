@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AngelsTeam.Migrations
 {
     [DbContext(typeof(AngelsDbContext))]
-    [Migration("20190109155712_i6")]
-    partial class i6
+    [Migration("20190116163337_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -54,7 +54,7 @@ namespace AngelsTeam.Migrations
                     b.Property<DateTime>("Date")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2019, 1, 9, 17, 57, 10, 271, DateTimeKind.Local).AddTicks(9738));
+                        .HasDefaultValue(new DateTime(2019, 1, 16, 18, 33, 37, 47, DateTimeKind.Local).AddTicks(1790));
 
                     b.Property<string>("Text")
                         .HasMaxLength(512);
@@ -67,13 +67,43 @@ namespace AngelsTeam.Migrations
                     b.ToTable("News");
                 });
 
+            modelBuilder.Entity("AngelsTeam.Model.Period", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Periods");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Short"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Middle"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Long"
+                        });
+                });
+
             modelBuilder.Entity("AngelsTeam.Model.Signal", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Buy");
+                    b.Property<string>("Attachment");
 
                     b.Property<string>("Coin")
                         .HasMaxLength(3);
@@ -81,31 +111,63 @@ namespace AngelsTeam.Migrations
                     b.Property<DateTime>("Date")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2019, 1, 9, 17, 57, 10, 275, DateTimeKind.Local).AddTicks(19));
+                        .HasDefaultValue(new DateTime(2019, 1, 16, 18, 33, 37, 50, DateTimeKind.Local).AddTicks(490));
 
-                    b.Property<string>("Duration");
+                    b.Property<string>("Description")
+                        .HasMaxLength(512);
 
                     b.Property<bool>("IsFree")
                         .ValueGeneratedOnAdd()
                         .HasDefaultValue(false);
 
-                    b.Property<string>("Risk")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValue("Low");
+                    b.Property<int>("SignalLevelId");
 
-                    b.Property<string>("Sell");
+                    b.Property<int>("TargetId");
 
-                    b.Property<string>("TPs");
-
-                    b.Property<string>("Text")
-                        .HasMaxLength(512);
-
-                    b.Property<string>("Title")
-                        .HasMaxLength(64);
+                    b.Property<string>("Title");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("SignalLevelId");
+
+                    b.HasIndex("TargetId");
+
                     b.ToTable("Signals");
+                });
+
+            modelBuilder.Entity("AngelsTeam.Model.SignalLevel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SignalLevels");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Hight"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Middle"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Low"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Info"
+                        });
                 });
 
             modelBuilder.Entity("AngelsTeam.Model.Subscription", b =>
@@ -147,6 +209,27 @@ namespace AngelsTeam.Migrations
                     b.ToTable("SubscriptionTypes");
                 });
 
+            modelBuilder.Entity("AngelsTeam.Model.Target", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Buy");
+
+                    b.Property<int>("PeriodId");
+
+                    b.Property<string>("Profits");
+
+                    b.Property<string>("Stop");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PeriodId");
+
+                    b.ToTable("Target");
+                });
+
             modelBuilder.Entity("AngelsTeam.Model.User", b =>
                 {
                     b.Property<int>("Id")
@@ -156,7 +239,7 @@ namespace AngelsTeam.Migrations
                     b.Property<DateTime>("ExpirationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("date")
-                        .HasDefaultValue(new DateTime(2019, 1, 9, 17, 57, 10, 262, DateTimeKind.Local).AddTicks(4716));
+                        .HasDefaultValue(new DateTime(2019, 1, 16, 18, 33, 37, 36, DateTimeKind.Local).AddTicks(1221));
 
                     b.Property<bool>("IsAdmin")
                         .ValueGeneratedOnAdd()
@@ -180,7 +263,7 @@ namespace AngelsTeam.Migrations
                         new
                         {
                             Id = 1,
-                            ExpirationDate = new DateTime(2019, 1, 9, 17, 57, 10, 281, DateTimeKind.Local).AddTicks(3686),
+                            ExpirationDate = new DateTime(2019, 1, 16, 18, 33, 37, 61, DateTimeKind.Local).AddTicks(4551),
                             IsAdmin = true,
                             Name = "Tom",
                             Surname = "Koval",
@@ -189,7 +272,7 @@ namespace AngelsTeam.Migrations
                         new
                         {
                             Id = 2,
-                            ExpirationDate = new DateTime(2019, 1, 9, 17, 57, 10, 281, DateTimeKind.Local).AddTicks(4203),
+                            ExpirationDate = new DateTime(2019, 1, 16, 18, 33, 37, 61, DateTimeKind.Local).AddTicks(5218),
                             IsAdmin = false,
                             Name = "Ivan",
                             Surname = "Ivanov",
@@ -205,6 +288,19 @@ namespace AngelsTeam.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("AngelsTeam.Model.Signal", b =>
+                {
+                    b.HasOne("AngelsTeam.Model.SignalLevel", "SignalLevel")
+                        .WithMany()
+                        .HasForeignKey("SignalLevelId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("AngelsTeam.Model.Target", "Target")
+                        .WithMany()
+                        .HasForeignKey("TargetId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("AngelsTeam.Model.Subscription", b =>
                 {
                     b.HasOne("AngelsTeam.Model.SubscriptionType", "SubscribtionType")
@@ -215,6 +311,14 @@ namespace AngelsTeam.Migrations
                     b.HasOne("AngelsTeam.Model.User", "User")
                         .WithMany("Subscriptions")
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("AngelsTeam.Model.Target", b =>
+                {
+                    b.HasOne("AngelsTeam.Model.Period", "Period")
+                        .WithMany()
+                        .HasForeignKey("PeriodId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
