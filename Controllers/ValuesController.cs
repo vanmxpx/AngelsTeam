@@ -11,11 +11,11 @@ namespace AngelsTeam.Controllers
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
-        private Diagnostics diagnostics;
+        //private Diagnostics diagnostics;
 
-        public ValuesController(Diagnostics diagnostics)
+        public ValuesController()//Diagnostics diagnostics)
         {
-            this.diagnostics = diagnostics;
+           // this.diagnostics = diagnostics;
         }
         // GET api/values
         [HttpGet]

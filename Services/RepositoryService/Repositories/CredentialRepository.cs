@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 using AngelsTeam.Model;
 
@@ -21,6 +22,11 @@ namespace AngelsTeam.Services
         {
             Delete(credential);
             await SaveAsync();
+        }
+
+        public async Task<Credential> GetCredentialByEmail(string email)
+        {
+           return await FindOneByConditionAsync(c=>c.Email == email);           
         }
 
         public async Task UpdateCredentialAsync(Credential oldCredential, Credential credential)

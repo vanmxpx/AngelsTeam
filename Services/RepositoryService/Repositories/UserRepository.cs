@@ -31,9 +31,7 @@ namespace AngelsTeam.Services
 
         public async Task<User> GetByIdAsync(int userId)
         {
-            var user = await FindByConditionAync(o => o.Id.Equals(userId));
-            return user.DefaultIfEmpty(new User())
-                    .FirstOrDefault();
+            return await FindOneByConditionAsync(o => o.Id.Equals(userId));
         }
 
         public async Task UpdateUserAsync(User oldUser, User user)

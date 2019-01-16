@@ -19,7 +19,7 @@ namespace AngelsTeam.Model
 
         public AngelsDbContext(DbContextOptions<AngelsDbContext> options) : base(options)
         {
-           // Database.EnsureCreated();
+            // Database.EnsureCreated();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -107,14 +107,23 @@ namespace AngelsTeam.Model
                         Name = "Info"
                     }
                 });
-
+            modelBuilder.Entity<Credential>().HasData(
+                new Credential[] {
+                    new Credential {
+                        Id = 1,
+                        Email = "admin",
+                        Password = "admin",
+                         UserId = 1,
+                    }
+                }
+            );
             modelBuilder.Entity<User>().HasData(
                 new User[] {
                     new User {
                         Id=1,
-                        Name="Tom",
-                        Surname = "Koval",
-                        Telegram = "Noderoid64",
+                        Name="Admin",
+                        Surname = "Admin",
+                        Telegram = "yourAdmin",
                         IsAdmin = true,
                         ExpirationDate = DateTime.Now
                     },

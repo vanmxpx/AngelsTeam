@@ -30,6 +30,7 @@ namespace AngelsTeam
             services.AddAngelsDbContext(Configuration);
             services.AddJWTAuthentication(Configuration);
             services.AddWrapper();
+            services.AddJWTSecureKeyService(Configuration);
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {

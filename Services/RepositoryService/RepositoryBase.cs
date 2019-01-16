@@ -23,9 +23,13 @@ namespace AngelsTeam.Services
             return await this.RepositoryContext.Set<T>().ToListAsync();
         }
 
-        public async Task<IEnumerable<T>> FindByConditionAync(Expression<Func<T, bool>> expression)
+        public async Task<IEnumerable<T>> FindByConditionAsync(Expression<Func<T, bool>> expression)
         {
             return await this.RepositoryContext.Set<T>().Where(expression).ToListAsync();
+        }
+        public async Task<T> FindOneByConditionAsync(Expression<Func<T, bool>> expression)
+        {
+            return await this.RepositoryContext.Set<T>().FirstOrDefaultAsync(expression);
         }
 
         public void Create(T entity)

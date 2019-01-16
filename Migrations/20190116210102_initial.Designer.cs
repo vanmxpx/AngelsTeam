@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AngelsTeam.Migrations
 {
     [DbContext(typeof(AngelsDbContext))]
-    [Migration("20190116163337_initial")]
+    [Migration("20190116210102_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,6 +43,15 @@ namespace AngelsTeam.Migrations
                         .IsUnique();
 
                     b.ToTable("Credentials");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "admin",
+                            Password = "admin",
+                            UserId = 1
+                        });
                 });
 
             modelBuilder.Entity("AngelsTeam.Model.News", b =>
@@ -54,7 +63,7 @@ namespace AngelsTeam.Migrations
                     b.Property<DateTime>("Date")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2019, 1, 16, 18, 33, 37, 47, DateTimeKind.Local).AddTicks(1790));
+                        .HasDefaultValue(new DateTime(2019, 1, 16, 23, 1, 1, 871, DateTimeKind.Local).AddTicks(4033));
 
                     b.Property<string>("Text")
                         .HasMaxLength(512);
@@ -111,7 +120,7 @@ namespace AngelsTeam.Migrations
                     b.Property<DateTime>("Date")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2019, 1, 16, 18, 33, 37, 50, DateTimeKind.Local).AddTicks(490));
+                        .HasDefaultValue(new DateTime(2019, 1, 16, 23, 1, 1, 874, DateTimeKind.Local).AddTicks(1934));
 
                     b.Property<string>("Description")
                         .HasMaxLength(512);
@@ -239,7 +248,7 @@ namespace AngelsTeam.Migrations
                     b.Property<DateTime>("ExpirationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("date")
-                        .HasDefaultValue(new DateTime(2019, 1, 16, 18, 33, 37, 36, DateTimeKind.Local).AddTicks(1221));
+                        .HasDefaultValue(new DateTime(2019, 1, 16, 23, 1, 1, 859, DateTimeKind.Local).AddTicks(8510));
 
                     b.Property<bool>("IsAdmin")
                         .ValueGeneratedOnAdd()
@@ -263,16 +272,16 @@ namespace AngelsTeam.Migrations
                         new
                         {
                             Id = 1,
-                            ExpirationDate = new DateTime(2019, 1, 16, 18, 33, 37, 61, DateTimeKind.Local).AddTicks(4551),
+                            ExpirationDate = new DateTime(2019, 1, 16, 23, 1, 1, 885, DateTimeKind.Local).AddTicks(8017),
                             IsAdmin = true,
-                            Name = "Tom",
-                            Surname = "Koval",
-                            Telegram = "Noderoid64"
+                            Name = "Admin",
+                            Surname = "Admin",
+                            Telegram = "yourAdmin"
                         },
                         new
                         {
                             Id = 2,
-                            ExpirationDate = new DateTime(2019, 1, 16, 18, 33, 37, 61, DateTimeKind.Local).AddTicks(5218),
+                            ExpirationDate = new DateTime(2019, 1, 16, 23, 1, 1, 885, DateTimeKind.Local).AddTicks(8620),
                             IsAdmin = false,
                             Name = "Ivan",
                             Surname = "Ivanov",

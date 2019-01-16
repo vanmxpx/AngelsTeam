@@ -15,7 +15,7 @@ namespace AngelsTeam.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Title = table.Column<string>(maxLength: 64, nullable: true),
-                    Date = table.Column<DateTime>(type: "datetime", nullable: false, defaultValue: new DateTime(2019, 1, 16, 18, 33, 37, 47, DateTimeKind.Local).AddTicks(1790)),
+                    Date = table.Column<DateTime>(type: "datetime", nullable: false, defaultValue: new DateTime(2019, 1, 16, 23, 1, 1, 871, DateTimeKind.Local).AddTicks(4033)),
                     Text = table.Column<string>(maxLength: 512, nullable: true)
                 },
                 constraints: table =>
@@ -73,7 +73,7 @@ namespace AngelsTeam.Migrations
                     Telegram = table.Column<string>(maxLength: 32, nullable: false),
                     Name = table.Column<string>(maxLength: 32, nullable: true),
                     Surname = table.Column<string>(maxLength: 32, nullable: true),
-                    ExpirationDate = table.Column<DateTime>(type: "date", nullable: false, defaultValue: new DateTime(2019, 1, 16, 18, 33, 37, 36, DateTimeKind.Local).AddTicks(1221)),
+                    ExpirationDate = table.Column<DateTime>(type: "date", nullable: false, defaultValue: new DateTime(2019, 1, 16, 23, 1, 1, 859, DateTimeKind.Local).AddTicks(8510)),
                     IsAdmin = table.Column<bool>(nullable: false, defaultValue: false)
                 },
                 constraints: table =>
@@ -157,7 +157,7 @@ namespace AngelsTeam.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Title = table.Column<string>(nullable: true),
-                    Date = table.Column<DateTime>(type: "datetime", nullable: false, defaultValue: new DateTime(2019, 1, 16, 18, 33, 37, 50, DateTimeKind.Local).AddTicks(490)),
+                    Date = table.Column<DateTime>(type: "datetime", nullable: false, defaultValue: new DateTime(2019, 1, 16, 23, 1, 1, 874, DateTimeKind.Local).AddTicks(1934)),
                     Description = table.Column<string>(maxLength: 512, nullable: true),
                     IsFree = table.Column<bool>(nullable: false, defaultValue: false),
                     Coin = table.Column<string>(maxLength: 3, nullable: true),
@@ -208,9 +208,14 @@ namespace AngelsTeam.Migrations
                 columns: new[] { "Id", "ExpirationDate", "IsAdmin", "Name", "Surname", "Telegram" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2019, 1, 16, 18, 33, 37, 61, DateTimeKind.Local).AddTicks(4551), true, "Tom", "Koval", "Noderoid64" },
-                    { 2, new DateTime(2019, 1, 16, 18, 33, 37, 61, DateTimeKind.Local).AddTicks(5218), false, "Ivan", "Ivanov", "IvanovIvan" }
+                    { 1, new DateTime(2019, 1, 16, 23, 1, 1, 885, DateTimeKind.Local).AddTicks(8017), true, "Admin", "Admin", "yourAdmin" },
+                    { 2, new DateTime(2019, 1, 16, 23, 1, 1, 885, DateTimeKind.Local).AddTicks(8620), false, "Ivan", "Ivanov", "IvanovIvan" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Credentials",
+                columns: new[] { "Id", "Email", "Password", "UserId" },
+                values: new object[] { 1, "admin", "admin", 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Credentials_UserId",

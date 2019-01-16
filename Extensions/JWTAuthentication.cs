@@ -23,5 +23,8 @@ namespace AngelsTeam.Extension
                 };
             });
         }
+        public static void AddJWTSecureKeyService(this IServiceCollection services, IConfiguration config){
+            services.AddScoped<JWTSecretKeyService>();
+        }
     }
 }
