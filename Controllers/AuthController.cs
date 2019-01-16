@@ -38,6 +38,8 @@ namespace AngelsTeam.Controllers
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
                 var tokeOptions = new JwtSecurityToken(
+                    claims: new List<Claim>(),
+                    
                     signingCredentials: signinCredentials
                 );
 

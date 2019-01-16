@@ -15,15 +15,20 @@ namespace AngelsTeam.Extension
         public static void AddJWTAuthentication(this IServiceCollection services, IConfiguration config)
         {
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(options => {
+            .AddJwtBearer(options =>
+            {
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
+                    RequireExpirationTime = false,
                     ValidateIssuerSigningKey = true,
+                    ValidateAudience = false,
+                    ValidateIssuer = false,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config.GetSection("SecretKey").Value))
                 };
             });
         }
-        public static void AddJWTSecureKeyService(this IServiceCollection services, IConfiguration config){
+        public static void AddJWTSecureKeyService(this IServiceCollection services, IConfiguration config)
+        {
             services.AddScoped<JWTSecretKeyService>();
         }
     }
