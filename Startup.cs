@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AngelsTeam.Tools;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -15,7 +16,7 @@ namespace AngelsTeam
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-           // _logger = logger;
+            // _logger = logger;
         }
 
         public IConfiguration Configuration { get; }
@@ -30,6 +31,8 @@ namespace AngelsTeam
             {
                 configuration.RootPath = "client/dist";
             });
+
+            services.AddSingleton<Diagnostics>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
