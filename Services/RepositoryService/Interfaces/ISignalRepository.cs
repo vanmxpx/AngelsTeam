@@ -5,9 +5,10 @@ using AngelsTeam.Model;
 
 namespace AngelsTeam.Services
 {
-    public interface ISignalRepository : ICRUDRepository<Signal>
+    public interface ISignalRepository : IRepositoryBase<Signal> 
     {
-        Task<IEnumerable<Signal>> GetAllFreeSignalAsync();
-        Task<IEnumerable<Signal>> GetAllSignalAsync();
+        Task CreateSignalAsync(Signal signal);
+        Task UpdateSignalAsync(Signal oldSignal, Signal signal);
+        Task DeleteSignalAsync(Signal signal);
     }
 }

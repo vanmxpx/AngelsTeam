@@ -10,28 +10,24 @@ namespace AngelsTeam.Services
         public CredentialRepository(AngelsDbContext repositoryContext) : base(repositoryContext)
         {
         }
-        #region ICRUDRepository
-        public async Task<Credential> GetByIdAsync(int entityId)
+
+        public async Task CreateCredentialAsync(Credential credential)
         {
-            var credential = await FindByConditionAync(o => o.Id.Equals(entityId));
-            return credential.DefaultIfEmpty(new Credential())
-                    .FirstOrDefault();
-        }
-        public async Task CreateAsync(Credential entity)
-        {
-            Create(entity);
+            Create(credential);
             await SaveAsync();
         }
-        public async Task UpdateAsync(Credential entity)
+
+        public async Task DeleteCredentialAsync(Credential credential)
         {
-            Update(entity);
+            Delete(credential);
             await SaveAsync();
         }
-        public async Task DeleteAsync(Credential entity)
+
+        public async Task UpdateCredentialAsync(Credential oldCredential, Credential credential)
         {
-            Delete(entity);
+            oldCredential.Clone(credential);
+            Update(oldCredential);
             await SaveAsync();
         }
-        #endregion
     }
 }

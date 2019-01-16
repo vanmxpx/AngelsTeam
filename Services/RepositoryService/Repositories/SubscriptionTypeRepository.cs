@@ -9,29 +9,9 @@ namespace AngelsTeam.Services{
         {
         }
 
-        public Task CreateAsync(SubscriptionType entity)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task DeleteAsync(SubscriptionType entity)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public Task<IEnumerable<SubscriptionType>> GetAllSubscriptionTypeAsync()
         {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<SubscriptionType> GetByIdAsync(int entityId)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task UpdateAsync(SubscriptionType entity)
-        {
-            throw new System.NotImplementedException();
+            return FindAllAsync();
         }
     }
 }

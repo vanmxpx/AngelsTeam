@@ -5,8 +5,10 @@ using AngelsTeam.Model;
 
 namespace AngelsTeam.Services
 {
-    public interface INewsRepository: ICRUDRepository<News>
+    public interface INewsRepository: IRepositoryBase<News> 
     {
-        Task<IEnumerable<News>> GetAllNewsAsync();
+        Task CreateNewsAsync(News news);
+        Task UpdateNewsAsync(News oldnews, News news);
+        Task DeleteNewsAsync(News news);
     }
 }

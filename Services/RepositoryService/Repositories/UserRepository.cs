@@ -12,7 +12,23 @@ namespace AngelsTeam.Services
         {
         }
 
-        #region ICRUDRepository
+        public async Task CreateUserAsync(User user)
+        {
+            Create(user);
+            await SaveAsync();
+        }
+
+        public async Task DeleteUserAsync(User user)
+        {
+            Delete(user);
+            await SaveAsync();
+        }
+
+        public Task<IEnumerable<User>> GetAllUsersAsync()
+        {
+            return FindAllAsync();
+        }
+
         public async Task<User> GetByIdAsync(int userId)
         {
             var user = await FindByConditionAync(o => o.Id.Equals(userId));
@@ -20,29 +36,11 @@ namespace AngelsTeam.Services
                     .FirstOrDefault();
         }
 
-        public async Task CreateAsync(User user)
+        public async Task UpdateUserAsync(User oldUser, User user)
         {
-            Create(user);
-            await SaveAsync();
-        }
-
-        public async Task DeleteAsync(User user)
-        {
-            Delete(user);
-            await SaveAsync();
-        }
-
-        public async Task UpdateAsync(User user)
-        {
-            Update(user);
-            await SaveAsync();
-        }
-        #endregion
-
-        public async Task<IEnumerable<User>> GetAllUsersAsync()
-        {
-            var user = await FindAllAsync();
-            return user.OrderBy(x => x.Name);
+            oldUser.Clone(user);
+            Update(oldUser);
+            await SaveAsync();            
         }
     }
 }

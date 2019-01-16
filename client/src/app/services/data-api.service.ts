@@ -20,8 +20,8 @@ export class DataApiService {
             .get<Subscription[]>(`${this.url}subscription`).toPromise();
     }
     public async getSignals(userCred: Credentials) {
-        return await this.http
-            .get<Signal[]>(`${this.url}signal`, { params: userCred}).toPromise();
+        // return await this.http
+        //     .get<Signal[]>(`${this.url}signal`, { params: userCred}).toPromise();
     }
     public async getNews() {
         return await this.http

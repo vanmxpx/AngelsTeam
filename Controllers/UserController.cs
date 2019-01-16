@@ -17,17 +17,17 @@ namespace AngelsTeam.Controllers
         {
             this.wrapper = wrapper;
         }
-        [HttpPost]
-        public async Task<IActionResult> CreateOwner( User user)
-        {
-            await wrapper.UserRepository.CreateAsync(user);
-            return new OkObjectResult(user);
-        }
-        [HttpGet]
-        public async Task<IActionResult> GetUserById(int id)
-        {
-            var user = await wrapper.UserRepository.GetByIdAsync(id);
-            return new OkObjectResult(user);
-        }
+        // [HttpPost]
+        // public async Task<IActionResult> CreateOwner( User user)
+        // {
+        //     await wrapper.UserRepository.CreateAsync(user);
+        //     return new OkObjectResult(user);
+        // }
+        // [HttpGet]
+        // public async Task<IActionResult> GetUserById(int id)
+        // {
+        //     var user = await wrapper.UserRepository.GetByIdAsync(id);
+        //     return new OkObjectResult(user);
+        // }
     }
 }

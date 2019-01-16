@@ -1,37 +1,33 @@
+using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using AngelsTeam.Model;
 
 namespace AngelsTeam.Services{
-    public class NewsRepository : RepositoryBase<NewsRepository>, INewsRepository
+    public class NewsRepository : RepositoryBase<News>, INewsRepository
     {
         public NewsRepository(AngelsDbContext repositoryContext) : base(repositoryContext)
         {
         }
 
-        public Task CreateAsync(News entity)
+        public async Task CreateNewsAsync(News news)
         {
-            throw new System.NotImplementedException();
+            Create(news);
+            await SaveAsync();
         }
 
-        public Task DeleteAsync(News entity)
+        public async Task DeleteNewsAsync(News news)
         {
-            throw new System.NotImplementedException();
+            Delete(news);
+            await SaveAsync();
         }
 
-        public Task<IEnumerable<News>> GetAllNewsAsync()
+        public async Task UpdateNewsAsync(News oldnews, News news)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<News> GetByIdAsync(int entityId)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task UpdateAsync(News entity)
-        {
-            throw new System.NotImplementedException();
+            oldnews.Clone(news);
+            Update(oldnews);
+            await SaveAsync();
         }
     }
 }

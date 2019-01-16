@@ -13,6 +13,8 @@ namespace AngelsTeam.Model
         public DbSet<Signal> Signals { get; set; }
         public DbSet<Subscription> Subscriptions { get; set; }
         public DbSet<SubscriptionType> SubscriptionTypes { get; set; }
+        public DbSet<SignalLevel> SignalLevels { get; set; }
+        public DbSet<Period> Periods { get; set; }
 
 
         public AngelsDbContext(DbContextOptions<AngelsDbContext> options) : base(options)
@@ -47,11 +49,9 @@ namespace AngelsTeam.Model
             modelBuilder.Entity<Signal>(entity =>
             {
                 entity.HasKey(e => e.Id);
-                entity.Property(p => p.Title).HasMaxLength(64);
                 entity.Property(p => p.Date).HasDefaultValue(DateTime.Now).HasColumnType("datetime");
-                entity.Property(p => p.Text).HasMaxLength(512);
+                entity.Property(p => p.Description).HasMaxLength(512);
                 entity.Property(p => p.IsFree).HasDefaultValue(false);
-                entity.Property(p => p.Risk).HasDefaultValue("Low");
                 entity.Property(p => p.Coin).HasMaxLength(3);
 
             });
@@ -66,30 +66,68 @@ namespace AngelsTeam.Model
                 entity.Property(p => p.Description).HasMaxLength(512);
                 entity.Property(p => p.Cost).HasColumnType("float");
             });
+            modelBuilder.Entity<Period>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+            });
+            modelBuilder.Entity<SignalLevel>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+            });
 
+            modelBuilder.Entity<Period>().HasData(new Period[] {
+                    new Period {
+                         Id = 1,
+                         Name = "Short"
+                    },
+                    new Period {
+                        Id = 2,
+                        Name = "Middle"
+                    },
+                    new Period {
+                        Id = 3,
+                        Name = "Long"
+                    }
+            });
+            modelBuilder.Entity<SignalLevel>().HasData(new SignalLevel[] {
+                    new SignalLevel {
+                        Id = 1,
+                        Name = "Hight"
+                    },
+                    new SignalLevel {
+                        Id = 2,
+                        Name = "Middle"
+                    },
+                    new SignalLevel {
+                        Id = 3,
+                        Name = "Low"
+                    },
+                    new SignalLevel {
+                        Id = 4,
+                        Name = "Info"
+                    }
+                });
 
             modelBuilder.Entity<User>().HasData(
-           new User[]
-           {
-                new User {
-                     Id=1,
-                      Name="Tom",
-                       Surname = "Koval",
-                       Telegram = "Noderoid64",
-                       IsAdmin = true,
-                       ExpirationDate = DateTime.Now
-                       },
-                        new User {
-                     Id=2,
-                      Name="Ivan",
-                       Surname = "Ivanov",
-                       Telegram = "IvanovIvan",
-                       IsAdmin = false,
-                       ExpirationDate = DateTime.Now
-                       }
-
-           });
-
+                new User[] {
+                    new User {
+                        Id=1,
+                        Name="Tom",
+                        Surname = "Koval",
+                        Telegram = "Noderoid64",
+                        IsAdmin = true,
+                        ExpirationDate = DateTime.Now
+                    },
+                    new User {
+                        Id=2,
+                        Name="Ivan",
+                        Surname = "Ivanov",
+                        Telegram = "IvanovIvan",
+                        IsAdmin = false,
+                        ExpirationDate = DateTime.Now
+                    }
+                }
+            );
         }
     }
 }

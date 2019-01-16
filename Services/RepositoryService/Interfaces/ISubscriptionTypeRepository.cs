@@ -5,7 +5,7 @@ using AngelsTeam.Model;
 
 namespace AngelsTeam.Services
 {
-    public interface ISubscriptionTypeRepository: ICRUDRepository<SubscriptionType>
+    public interface ISubscriptionTypeRepository: IRepositoryBase<SubscriptionType> 
     {
         Task<IEnumerable<SubscriptionType>> GetAllSubscriptionTypeAsync();
     }
