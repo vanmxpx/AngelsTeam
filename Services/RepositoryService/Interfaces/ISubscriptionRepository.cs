@@ -5,10 +5,10 @@ using AngelsTeam.Model;
 
 namespace AngelsTeam.Services
 {
-    public interface ISubscriptionRepository: ICRUDRepository<Subscription>
+    public interface ISubscriptionRepository: IRepositoryBase<Subscription> 
     {
-        Task<IEnumerable<Subscription>> GetAllSubscriptionAsync();
-        Task<IEnumerable<Subscription>> GetAllSubscriptionByUserAsync(User user);
-        Task<IEnumerable<Subscription>> GetAllSubscriptionBySubscriptionTypeAsync(SubscriptionType user);
+        Task CreateSubscriptionAsync(Subscription subscription);
+        Task UpdateSubscriptionAsync(Subscription oldSubscription, Subscription subscription);
+        Task DeleteSubscriptionAsync(Subscription subscription);
     }
 }
