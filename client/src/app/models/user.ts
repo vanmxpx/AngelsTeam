@@ -1,8 +1,14 @@
+import { Subscription } from "./subscription";
+
 export interface User {
-    Id: string;
-    Name: string;
+    id: number;
+    name: string;
     Contact: string;
-    Sub: string;
-    SubLeft: number;
-    NewUser: boolean;
+    subscription: Subscription;
+    subLeft: number;
+    userType: UserType;
+  }
+
+  export enum UserType {
+      Unveryfied, Usual, Admin
   }

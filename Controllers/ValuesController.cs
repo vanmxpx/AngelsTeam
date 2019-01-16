@@ -12,10 +12,10 @@ namespace AngelsTeam.Controllers
     {
         private Diagnostics diagnostics;
 
-        public ValuesController(Diagnostics diagnostics)
-        {
-            this.diagnostics = diagnostics;
-        }
+        // public ValuesController(Diagnostics diagnostics)
+        // {
+        //     this.diagnostics = diagnostics;
+        // }
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()

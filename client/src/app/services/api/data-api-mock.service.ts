@@ -1,10 +1,10 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Credentials } from '../models/credentials';
-import { Signal } from '../models/Signal';
-import { News } from '../models/news';
-import { User } from '../models/user';
-import { Subscription, SubscriptionDuration } from '../models/subscription';
+import { Credentials } from '../../models/credentials';
+import { Signal } from '../../models/Signal';
+import { News } from '../../models/news';
+import { User, UserType } from '../../models/user';
+import { Subscription, SubscriptionDuration } from '../../models/subscription';
 
 @Injectable()
 export class DataApiMockService {
@@ -54,9 +54,19 @@ export class DataApiMockService {
             resolve(values);
         });
     }
-    public getUsers(): Promise<User[]> {
+    public getAllUsers(): Promise<User[]> {
         return new Promise((resolve, reject) => {
             resolve();
+        });
+    }
+    public getUser(login: string): Promise<User> {
+        return new Promise((resolve, reject) => {
+            if (login === 'admin'){
+                resolve({ userType: UserType.Admin, name: '', Contact: '', id: 0, subscription: this.getSubscriptions()[0], subLeft: 0});
+
+            } else {
+                resolve({ userType: UserType.Usual, name: '', Contact: '', id: 0, subscription: this.getSubscriptions()[0], subLeft: 0});
+            }
         });
     }
     public updateSignal(signal: Signal, userCred: Credentials): Promise<Signal> {
@@ -80,9 +90,13 @@ export class DataApiMockService {
         });
     }
 
-    public authorizate(login: string, password: string): Promise<Credentials> {
+    public authorizate(login: string, password: string): Promise<string> {
         return new Promise((resolve, reject) => {
-            resolve();
+            if (login === 'admin' && password === 'admin'){
+                resolve('admin');
+            } else {
+                resolve('123');
+            }
         });
     }
 

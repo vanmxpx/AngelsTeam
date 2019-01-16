@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { DataApiMockService } from '../../../services/data-api-mock.service';
+import { DataApiMockService } from '../../../services/api/data-api-mock.service';
 import { News } from '../../../models/news';
 
 @Component({

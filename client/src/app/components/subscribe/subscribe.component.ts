@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors, 
 import { MatStepper } from '@angular/material';
 import { ValidatorFn } from '@angular/forms';
 import { CurrentUserService } from '../../services/current-user.service';
-import { DataApiMockService } from '../../services/data-api-mock.service';
+import { DataApiMockService } from '../../services/api/data-api-mock.service';
 import { Signal } from '../../models/Signal';
 import { Subscription } from '../../models/subscription';
 
