@@ -3,6 +3,9 @@ import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors, 
 import { MatStepper } from '@angular/material';
 import { ValidatorFn } from '@angular/forms';
 import { CurrentUserService } from '../../services/current-user.service';
+import { DataApiMockService } from '../../services/data-api-mock.service';
+import { Signal } from '../../models/Signal';
+import { Subscription } from '../../models/subscription';
 
 @Component({
     selector: 'subscribe',
@@ -12,31 +15,36 @@ import { CurrentUserService } from '../../services/current-user.service';
 export class SubscribeComponent implements OnInit {
 
     logged: boolean = false;
-    
+
+    subscriptions: Subscription[];
+
     @ViewChild('stepper') stepper: MatStepper;
     selectedSub:  string = 'free';
     paymentStep;
     firstFormGroup: FormGroup;
-    registrationFormGroup: FormGroup;
+    registrationFormGroup: FormGroup = new FormGroup({
+        'firstNameControl': new FormControl(''),
+        'lastNameControl': new FormControl(''),
+        'loginControl': new FormControl('', [Validators.required]),
+        'telegramControl': new FormControl('', [Validators.required]),
+        'passwordControl': new FormControl('', [Validators.required]),
+        'confirmPasswordControl': new FormControl('', [Validators.required, passwordMatchValidator()]),
+    });
     thirdFormGroup: FormGroup;
     fourthFormGroup: FormGroup;
-    constructor(private _formBuilder: FormBuilder,private userService: CurrentUserService) { 
-        this.userService.getAutorized()
-        .subscribe((value) => {
-          this.logged = value;
+    constructor(
+        private _formBuilder: FormBuilder,
+        private userService: CurrentUserService,
+        private api: DataApiMockService) {
+        this.api.getSubscriptions().then(value => {
+            this.subscriptions = value;
+        });
+        this.userService.getAutorized().subscribe((value) => {
+            this.logged = value;
         });
     }
 
     ngOnInit(): void {
-        this.registrationFormGroup = new FormGroup({
-            'firstNameControl': new FormControl(''),
-            'lastNameControl': new FormControl(''),
-            'loginControl': new FormControl('',[Validators.required]),
-            'telegramControl': new FormControl('',[Validators.required]),
-            'passwordControl': new FormControl('',[Validators.required]),
-            'confirmPasswordControl': new FormControl('',[Validators.required, passwordMatchValidator()]),
-            
-        });
         this.firstFormGroup = this._formBuilder.group({
             thirdFormGroup: ['', Validators.required]
         });
@@ -61,21 +69,22 @@ export class SubscribeComponent implements OnInit {
                 '';
     }
     getPasswordErrorMessage() {
-        this.registrationFormGroup.controls['confirmPasswordControl'].setValue('');
-        
+        //this.registrationFormGroup.controls['confirmPasswordControl'].setValue('');
+
         return this.registrationFormGroup.controls['passwordControl'].hasError('required') ? 'Введиет пароль' :
                 '';
     }
     getConfirmPassErrorMessage() {
-        var control = this.registrationFormGroup.controls['confirmPasswordControl'];
+        let control = this.registrationFormGroup.controls['confirmPasswordControl'];
         return control.hasError('required') ? 'Подтвердите пароль' :
             control.hasError('mismatch') ? 'Пароли не совпадают' :
                 '';
     }
 }
+
 function passwordMatchValidator(): ValidatorFn {
     return (control: AbstractControl): {[key: string]: any} => {
-        if(control.parent === undefined)
+        if (!control.parent)
             return null;
         return control.parent.get('passwordControl').value === control.parent.get('confirmPasswordControl').value
         ? null : { 'mismatch': true };

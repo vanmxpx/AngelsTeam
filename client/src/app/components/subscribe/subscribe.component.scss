@@ -55,13 +55,14 @@ mat-step {
     flex-flow: row wrap;
     justify-content: space-around;
 
-    button {
+    .subscription {
         display: flex;
+            padding: 25px;
         flex-direction: column;
-        align-items: center;
+        // align-items: center;
         justify-content: flex-start;
         min-width: 250px;
-        height: 264px;
+        min-height: 200px;
         margin-bottom: 10px;
         width: 30%;
         border: gainsboro 1px solid;
@@ -88,10 +89,14 @@ mat-step {
             margin-bottom: 12px;
         }
         .price {
+            padding-top: 10px;
             margin-bottom: 8px;
-            color: #790212;
-            //background: brown;
-            font-weight: 700;
+            // color: #790212;
+            // //background: brown;
+            // font-weight: 700;
+        }
+        .text {
+            word-break: break-word;
         }
     }
     
