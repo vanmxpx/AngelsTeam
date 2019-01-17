@@ -62,9 +62,10 @@ namespace AngelsTeam.Model
             modelBuilder.Entity<SubscriptionType>(entity =>
             {
                 entity.HasKey(e => e.Id);
-                entity.Property(p => p.Title).HasMaxLength(64);
+                entity.Property(p => p.Name).HasMaxLength(64);
                 entity.Property(p => p.Description).HasMaxLength(512);
-                entity.Property(p => p.Cost).HasColumnType("float");
+                entity.Property(p => p.Price);
+                entity.Property(p => p.Duration).HasColumnType("varchar(32)");
             });
             modelBuilder.Entity<Period>(entity =>
             {
@@ -78,7 +79,29 @@ namespace AngelsTeam.Model
             {
                 entiry.HasKey(e => e.Id);
             });
-
+            modelBuilder.Entity<SubscriptionType>().HasData(new SubscriptionType[]{
+                    new SubscriptionType{
+                        Id = 1,
+                        Description = "Ознакомление с контентом\nБесплатные сигналы\nРазбор некоторых монет",
+                        Duration = -1,
+                        Name = "Бесплатная",
+                        Price = 0,                    
+                    },
+                    new SubscriptionType{
+                        Id = 2,
+                        Description = "Приватные сигналы\nПриватный чат участников\nПродление подписки, если ежемесячный профит составил < 60%",
+                        Duration = 1,
+                        Name = "Ежемесячная",
+                        Price = 2,                    
+                    },
+                    new SubscriptionType{
+                        Id = 3,
+                        Description = "Безлимитные сигналы\nЛичные консультации\nРазбор ваших монет",
+                        Duration = -1,
+                        Name = "Безлимитная",
+                        Price = 4,                    
+                    }
+            });
             modelBuilder.Entity<Role>().HasData(new Role[] {
                     new Role {
                         Id = 1,
