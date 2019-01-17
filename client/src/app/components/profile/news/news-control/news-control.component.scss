@@ -40,9 +40,18 @@
             display: flex;
             justify-content: space-between;
             padding: 0 24px;
-            mat-icon {
-                cursor: pointer;
-                color: rgba(0,0,0,.54);
+            button {
+                margin: 0 5px;
+                mat-icon {
+                    cursor: pointer;
+                    color: rgba(0,0,0,.54);
+                    &.like {
+                        color: #3c93d4;
+                    }
+                    &.dislike {
+                        color: #aa0202;
+                    }
+                }
             }
         }
     }

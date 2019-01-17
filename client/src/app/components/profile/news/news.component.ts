@@ -37,8 +37,7 @@ export class NewsProfileComponent implements OnInit {
         this.focusTrigger.emit(true);
     }
 
-    identify(index, item){
-        return item.id; 
+    identify(index, item) {
+        return item.id;
      }
-     
 }

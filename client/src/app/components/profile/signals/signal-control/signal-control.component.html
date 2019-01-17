@@ -1,0 +1,21 @@
+<div class="list-item" [ngClass]="signal.status">
+    <!-- info safe warning danger-->
+    <!-- info beenhere warning priority_high-->
+    <div class="item">
+        <div class="item-content">
+            <div class="content-header">                         
+                <a>{{ signal.title }}</a>
+                <p>{{ signal.date.toString() }}</p>
+            </div>
+            <div class="content-body">  
+                <img [src]="signal.attachment">
+            </div>
+            <div class="content-footer">
+                <p class="mat-typography">{{ signal.body }}</p>
+            </div>
+        </div>
+        <div class="sign" [matTooltip]="iconTooltip()">
+            <mat-icon>{{ icon() }}</mat-icon>
+        </div>
+    </div>
+</div>

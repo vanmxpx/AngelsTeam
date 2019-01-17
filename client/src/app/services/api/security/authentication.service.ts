@@ -1,6 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Credentials } from '../../../models/credentials';
 import { User } from '../../../models/user';
 import { DataApiMockService } from '../data-api-mock.service';
 
@@ -29,7 +28,7 @@ export class AuthenticationService {
     localStorage.setItem('login', JSON.stringify(login));
     this.profile = await this.apiService.getUser(login);
     localStorage.setItem('profile', JSON.stringify(this.profile));
-    
+
     return false;
   }
 

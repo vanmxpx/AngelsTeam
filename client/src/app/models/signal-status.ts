@@ -1,5 +1,5 @@
 export enum SignalLevel {
-    Hight, Middle, Low, Info
+    Hight = 'hight', Middle = 'middle', Low = 'low', Info = 'info'
 }
 
 export enum Period {

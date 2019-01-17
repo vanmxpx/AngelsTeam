@@ -6,9 +6,9 @@ import { NewSignalDialog } from './new-signal/new-signal.component';
 import { Signal } from '../../../models/Signal';
 import { SignalLevel, Period } from '../../../models/signal-status';
 @Component({
-    selector: 'signs',
-    templateUrl: './signs.component.html',
-    styleUrls: ['./signs.component.scss'],
+    selector: 'signal-manager',
+    templateUrl: './signal-manager.component.html',
+    styleUrls: ['./signal-manager.component.scss'],
     animations: [
       trigger('detailExpand', [
         state('void', style({ height: '0px', minHeight: '0', visibility: 'hidden' })),
@@ -22,7 +22,7 @@ import { SignalLevel, Period } from '../../../models/signal-status';
         ]),
     ],
 })
-export class SignsComponent implements AfterViewInit {
+export class SignalManagerComponent implements AfterViewInit {
 
     // Details
     expandedElement: any;
@@ -104,8 +104,9 @@ export class SignsComponent implements AfterViewInit {
 
     return {
       id: id.toString(),
+      title: 'Заголовок',
       coin: name,
-      date: randomDate(new Date(2012, 0, 1), new Date()).toDateString(),
+      date: randomDate(new Date(2012, 0, 1), new Date()),
       target: {
         period: Period.Short,
         buy: 'fasf',

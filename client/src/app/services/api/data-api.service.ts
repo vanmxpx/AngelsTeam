@@ -1,6 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Credentials } from '../../models/credentials';
 import { Signal } from '../../models/Signal';
 import { News } from '../../models/news';
 import { User } from '../../models/user';
@@ -31,21 +30,21 @@ export class DataApiService {
         return this.http
             .get<User[]>(`${this.url}api/user`).toPromise();
     }
-    public updateSignal(signal: Signal, userCred: Credentials): Promise<Signal> {
+    public updateSignal(signal: Signal): Promise<Signal> {
         return this.http
-            .post<Signal>(`${this.url}api/signal`, { signal: signal, userCred: userCred }).toPromise();
+            .post<Signal>(`${this.url}api/signal`, { signal: signal }).toPromise();
     }
-    public updateNews(news: News, userCred: Credentials): Promise<News> {
+    public updateNews(news: News): Promise<News> {
         return this.http
-            .post<News>(`${this.url}api/news`, { news: news, userCred: userCred }).toPromise();
+            .post<News>(`${this.url}api/news`, { news: news }).toPromise();
     }
-    public updateUser(user: User, userCred: Credentials): Promise<User> {
+    public updateUser(user: User): Promise<User> {
         return this.http
-            .post<User>(`${this.url}api/user`, { user: user, userCred: userCred }).toPromise();
+            .post<User>(`${this.url}api/user`, { user: user }).toPromise();
     }
-    public registerUser(user: User, userCred: Credentials): Promise<User> {
+    public registerUser(user: User): Promise<User> {
         return this.http
-            .post<User>(`${this.url}api/auth/register`, { user: user, userCred: userCred }).toPromise();
+            .post<User>(`${this.url}api/auth/register`, { user: user }).toPromise();
     }
 
     public authorizate(login: string, password: string): Promise<string> {

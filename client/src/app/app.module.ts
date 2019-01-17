@@ -19,10 +19,8 @@ import { FocusDirective } from './directives/focus.directive';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 import { SubscribeComponent } from './components/subscribe/subscribe.component';
-import { SignsComponent } from './components/admin/signs/signs.component';
 import { SetsComponent } from './components/admin/sets/sets.component';
 import { CdkDetailRowDirective } from './directives/cdk-detail-row.directive';
-import { NewSignalDialog } from './components/admin/signs/new-signal/new-signal.component';
 import { NewAnnounceDialog } from './components/admin/news/new-announce/new-announce.component';
 import { NewsComponent } from './components/admin/news/news.component';
 import { NewsProfileComponent } from './components/profile/news/news.component';
@@ -35,6 +33,9 @@ import { DataApiMockService } from './services/api/data-api-mock.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './modules/material.module';
 import { NewsControlComponent } from './components/profile/news/news-control/news-control.component';
+import { SignalManagerComponent } from './components/admin/signal-manager/signal-manager.component';
+import { NewSignalDialog } from './components/admin/signal-manager/new-signal/new-signal.component';
+import { SignalControlComponent } from './components/profile/signals/signal-control/signal-control.component';
 
 
 @NgModule({
@@ -44,7 +45,7 @@ import { NewsControlComponent } from './components/profile/news/news-control/new
     ProfileComponent,
     AdminComponent,
     SubsComponent,
-    SignsComponent,
+    SignalManagerComponent,
     SetsComponent,
     NewsComponent,
     SubscribeComponent,
@@ -61,6 +62,7 @@ import { NewsControlComponent } from './components/profile/news/news-control/new
     CdkDetailRowDirective,
     FocusDirective,
     // controls
+    SignalControlComponent,
     NewsControlComponent
   ],
   imports: [
