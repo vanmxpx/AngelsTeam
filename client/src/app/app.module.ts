@@ -31,6 +31,7 @@ import { SignalControlComponent } from './components/profile/signals/signal-cont
 import { AuthenticationService } from './services/api/security/authentication.service';
 import { AuthGuard } from './guards/auth.guard';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { AdminGuard } from './guards/admin.guard';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
           }
       },
       AuthGuard,
+      AdminGuard,
       JwtHelperService,
       ApplicationService,
       AuthenticationService,
