@@ -3,20 +3,13 @@ import { PageNotFoundComponent } from '../page-not-found/page-not-found.componen
 import { NgModule } from '@angular/core';
 import { AdminComponent } from './admin.component';
 
-const appRoutes: Routes = [
+const routes: Routes = [
     { path: '', component: AdminComponent },
 ];
 
 @NgModule({
     imports: [
-        RouterModule.forRoot(
-            appRoutes,
-            {
-               // enableTracing: true// , // <-- debugging purposes only
-                // preloadingStrategy: SelectivePreloadingStrategy,
-
-            }
-        )
+        RouterModule.forChild(routes)
     ],
     exports: [
         RouterModule

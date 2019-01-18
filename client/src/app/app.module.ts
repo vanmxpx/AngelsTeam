@@ -31,8 +31,6 @@ import { DataApiMockService } from './services/api/data-api-mock.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './modules/material.module';
 import { NewsControlComponent } from './components/profile/news/news-control/news-control.component';
-import { SignalManagerComponent } from './components/admin/signal-manager/signal-manager.component';
-import { NewSignalDialog } from './components/admin/signal-manager/new-signal/new-signal.component';
 import { SignalControlComponent } from './components/profile/signals/signal-control/signal-control.component';
 import { AuthenticationService } from './services/api/security/authentication.service';
 import { AuthGuard } from './guards/auth.guard';
@@ -52,7 +50,6 @@ import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
     // dialogs
     LoginDialog,
     // directives
-    CdkDetailRowDirective,
     FocusDirective,
     // controls
     SignalControlComponent,
