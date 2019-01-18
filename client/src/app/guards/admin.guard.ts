@@ -3,13 +3,13 @@ import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, CanLo
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class AdminGuard implements CanLoad {
 
     constructor(
         private router: Router,
         public jwtHelper: JwtHelperService) { }
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    canLoad() {
         const token = JSON.parse(localStorage.getItem('token'));
 
         if (!token) {

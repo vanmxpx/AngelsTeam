@@ -1,8 +1,8 @@
 <mat-toolbar class="in-body">
     <div class="toolbar-content">
         <div class="hidden-menu" *ngIf="mobileQuery.matches">
-            <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon class="burger">menu</mat-icon></button>
-            <mat-menu #menu="matMenu">
+            <button mat-icon-button [matMenuTriggerFor]="menuPages"><mat-icon class="burger">menu</mat-icon></button>
+            <mat-menu #menuPages="matMenu">
                 <a mat-menu-item routerLink="/subscribe" routerLinkActive="active" >Cигналы</a>
                 <a mat-menu-item routerLink="/teaching" routerLinkActive="active" >Обучение</a>
                 <a mat-menu-item routerLink="/deposit" routerLinkActive="active" >Дов. управление</a>
@@ -29,13 +29,17 @@
 
         <div class="profile-buttons mat-typography">
             <ng-container *ngIf="profile; else elseTemplate">
-                <button mat-icon-button routerLink="/profile" matTooltipPosition="above" matTooltip="Профиль">
+                <button mat-icon-button [matMenuTriggerFor]="menuPages" matTooltipPosition="above" matTooltip="Профиль">
                     <div class="button-wrapper">
                         <img class="profile-icon" [src]="profile.photo || 'assets/images/candles.png'">
                         <h1 class="profile-name"> {{ profile.name }} </h1>
                     </div>
                 </button>
-
+                <mat-menu #menuPages="matMenu">
+                    <a mat-menu-item routerLink="/profile" routerLinkActive="active" > Профиль </a>
+                    <mat-divider></mat-divider>
+                    <a mat-menu-item (click)='logout()'> Выход </a>
+                </mat-menu>
             </ng-container>
             <ng-template #elseTemplate>
                 <button mat-icon-button (click)="openDialog()" matTooltipPosition="above">

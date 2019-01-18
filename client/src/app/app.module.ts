@@ -17,10 +17,6 @@ import { FocusDirective } from './directives/focus.directive';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 import { SubscribeComponent } from './components/subscribe/subscribe.component';
-import { SetsComponent } from './components/admin/sets/sets.component';
-import { CdkDetailRowDirective } from './directives/cdk-detail-row.directive';
-import { NewAnnounceDialog } from './components/admin/news/new-announce/new-announce.component';
-import { NewsComponent } from './components/admin/news/news.component';
 import { NewsProfileComponent } from './components/profile/news/news.component';
 import { ApplicationService } from './services/application.service';
 import { TeachingComponent } from './components/teaching/teaching.component';

@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../../../models/user';
 import { DataApiMockService } from '../data-api-mock.service';
 import { BehaviorSubject } from 'rxjs';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -12,12 +14,25 @@ const httpOptions = {
 
 @Injectable()
 export class AuthenticationService {
-    private profile: User;
+    private profile: User | null;
     private profileChange: BehaviorSubject<User>;
 
     constructor(
-        private apiService: DataApiMockService) {
-        this.profileChange = new BehaviorSubject<User>(this.profile);
+        private apiService: DataApiMockService,
+        private jwtService: JwtHelperService,
+        private router: Router) {
+        this.profileChange = new BehaviorSubject<User | null>(this.profile);
+        // if(this.jwtService.isTokenExpired()) {
+        //     this.logout();
+        //     return;
+        // }
+        // TODO: uncomment
+        this.profile = JSON.parse(localStorage.getItem('profile'));
+        if(!this.profile) {
+            this.logout();
+            return;
+        }
+        this.profileChange.next(this.profile);
     }
 
     getProfile(): BehaviorSubject<User> {
@@ -43,6 +58,9 @@ export class AuthenticationService {
 
     public logout() {
         localStorage.clear();
+        this.profile = null;
+        this.profileChange.next(this.profile);
+        this.router.navigate(['/home']);
     }
 
 }

@@ -8,6 +8,7 @@ import { SubscribeComponent } from '../components/subscribe/subscribe.component'
 import { TeachingComponent } from '../components/teaching/teaching.component';
 import { DepositComponent } from '../components/deposit/deposit.component';
 import { AuthGuard } from '../guards/auth.guard';
+import { AdminGuard } from '../guards/admin.guard';
 
 
 // import { CanDeactivateGuard } from './can-deactivate-guard.service';
@@ -21,12 +22,13 @@ const appRoutes: Routes = [
     },
     {
         path: 'profile',
-        component: ProfileComponent
+        component: ProfileComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'admin',
         loadChildren: '../components/admin/admin.module#AdminModule',
-        canLoad: [AuthGuard]
+        canLoad: [AdminGuard]
     },
     {
         path: 'subscribe',

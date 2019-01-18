@@ -33,4 +33,8 @@ export class AppComponent {
         this.dialog.open(LoginDialog);
     }
 
+    logout(): void {
+        this.auth.logout();
+    }
+
 }
