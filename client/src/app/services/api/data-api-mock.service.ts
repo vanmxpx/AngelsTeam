@@ -86,10 +86,9 @@ export class DataApiMockService {
     public getUser(login: string): Promise<User> {
         return new Promise((resolve, reject) => {
             if (login === 'admin'){
-                resolve({ userType: UserType.Admin, name: '', Contact: '', id: 0, subscription: this.getSubscriptions()[0], subLeft: 0});
-
+                resolve({ userType: UserType.Admin, name: 'admin', contact: '', id: 0, subscription: this.getSubscriptions()[0], subLeft: 0});
             } else {
-                resolve({ userType: UserType.Usual, name: '', Contact: '', id: 0, subscription: this.getSubscriptions()[0], subLeft: 0});
+                resolve({ userType: UserType.Usual, name: 'Nick', contact: '', id: 1, subscription: this.getSubscriptions()[0], subLeft: 0});
             }
         });
     }
@@ -118,6 +117,8 @@ export class DataApiMockService {
         return new Promise((resolve, reject) => {
             if (login === 'admin' && password === 'admin'){
                 resolve('admin');
+            } else if (login === 'invalid') {
+                resolve();
             } else {
                 resolve('123');
             }

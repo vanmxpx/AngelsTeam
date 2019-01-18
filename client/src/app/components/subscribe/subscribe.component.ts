@@ -6,6 +6,8 @@ import { CurrentUserService } from '../../services/current-user.service';
 import { DataApiMockService } from '../../services/api/data-api-mock.service';
 import { Signal } from '../../models/Signal';
 import { Subscription } from '../../models/subscription';
+import { User, UserType } from '../../models/user';
+import { AuthenticationService } from '../../services/api/security/authentication.service';
 
 @Component({
     selector: 'subscribe',
@@ -14,8 +16,7 @@ import { Subscription } from '../../models/subscription';
 })
 export class SubscribeComponent implements OnInit {
 
-    logged: boolean = false;
-
+    profile: User;
     subscriptions: Subscription[];
 
     @ViewChild('stepper') stepper: MatStepper;
@@ -34,13 +35,13 @@ export class SubscribeComponent implements OnInit {
     fourthFormGroup: FormGroup;
     constructor(
         private _formBuilder: FormBuilder,
-        private userService: CurrentUserService,
+        private auth: AuthenticationService,
         private api: DataApiMockService) {
         this.api.getSubscriptions().then(value => {
             this.subscriptions = value;
         });
-        this.userService.getAutorized().subscribe((value) => {
-            this.logged = value;
+        this.auth.getProfile().subscribe((value) => {
+            this.profile = value;
         });
     }
 

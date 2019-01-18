@@ -70,7 +70,7 @@ export class NewsComponent implements OnInit, AfterViewInit {
     return {
       id: id,
       name: name,
-      Contact: Math.round(Math.random() * 100).toString(),
+      contact: Math.round(Math.random() * 100).toString(),
       subscription: { id: 0, description:[''], duration: SubscriptionDuration.Mounth, exchange: 'BTC', name: 'test', price:1   },
       subLeft: subLeft,
       userType: newUser ? UserType.Unveryfied : UserType.Usual

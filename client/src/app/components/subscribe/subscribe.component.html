@@ -15,7 +15,7 @@
                     </div>
                 </div>
             </mat-step>
-            <mat-step *ngIf="!logged" [stepControl]="registrationFormGroup" label="Регистрация">
+            <mat-step *ngIf="!profile" [stepControl]="registrationFormGroup" label="Регистрация">
                 <div class="page">
                     <h2 class="primary-header">Регистрация</h2>
                     <form class="registration" [formGroup]="registrationFormGroup">

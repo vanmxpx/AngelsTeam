@@ -1,25 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, CanLoad } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class AuthGuard implements CanLoad {
 
-    constructor(private router: Router) { }
+    constructor(
+        private router: Router,
+        public jwtHelper: JwtHelperService) { }
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        // let login = JSON.parse(localStorage.getItem('login'));
+    canLoad() {
         const token = JSON.parse(localStorage.getItem('token'));
-        console.log('AuthGuard is working!');
-        // console.log(login);
-        // console.log(token);
-        // console.log(state.url);
 
-        if (token) {
-            return true;
+        if (!token) {
+            this.router.navigate(['/home']);
+            return false;
         }
-
-        // пользователь не залогиненый, переадркссовываем его на строницу /login
-        this.router.navigate(['/home']);
-        return false;
+        return true;
+        return !this.jwtHelper.isTokenExpired();
     }
 }

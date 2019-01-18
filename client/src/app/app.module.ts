@@ -7,9 +7,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { AdminComponent } from './components/admin/admin.component';
 import { SignalsComponent } from './components/profile/signals/signals.component';
-import { SubsComponent } from './components/admin/subs/subs.component';
 
 import { AppRoutingModule } from './modules/routing.module';
 import { CurrentUserService } from './services/current-user.service';
@@ -36,18 +34,15 @@ import { NewsControlComponent } from './components/profile/news/news-control/new
 import { SignalManagerComponent } from './components/admin/signal-manager/signal-manager.component';
 import { NewSignalDialog } from './components/admin/signal-manager/new-signal/new-signal.component';
 import { SignalControlComponent } from './components/profile/signals/signal-control/signal-control.component';
-
+import { AuthenticationService } from './services/api/security/authentication.service';
+import { AuthGuard } from './guards/auth.guard';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ProfileComponent,
-    AdminComponent,
-    SubsComponent,
-    SignalManagerComponent,
-    SetsComponent,
-    NewsComponent,
     SubscribeComponent,
     PageNotFoundComponent,
     TeachingComponent,
@@ -56,8 +51,6 @@ import { SignalControlComponent } from './components/profile/signals/signal-cont
     NewsProfileComponent,
     // dialogs
     LoginDialog,
-    NewSignalDialog,
-    NewAnnounceDialog,
     // directives
     CdkDetailRowDirective,
     FocusDirective,
@@ -72,9 +65,16 @@ import { SignalControlComponent } from './components/profile/signals/signal-cont
     ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    JwtModule.forRoot({
+        config: {
+            tokenGetter: () => {
+                return localStorage.getItem('token');
+            }
+        }
+    })
   ],
-  entryComponents: [ LoginDialog, NewSignalDialog ],
+  entryComponents: [ LoginDialog ],
   providers: [
       {
           provide: 'BASE_URL', useFactory: () => {
@@ -85,7 +85,10 @@ import { SignalControlComponent } from './components/profile/signals/signal-cont
               }
           }
       },
+      AuthGuard,
+      JwtHelperService,
       ApplicationService,
+      AuthenticationService,
       DataApiService,
       DataApiMockService,
       CurrentUserService ],

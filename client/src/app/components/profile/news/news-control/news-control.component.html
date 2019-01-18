@@ -3,7 +3,7 @@
         <div class="item-content">
             <div class="content-header">                         
                 <a>{{ news.title }}</a>
-                <p>{{ news.date.toString() }}</p>
+                <p>{{ news.date.toLocaleString() }}</p>
             </div>
             <div class="content-body">  
                 <img [src]="news.attachment">

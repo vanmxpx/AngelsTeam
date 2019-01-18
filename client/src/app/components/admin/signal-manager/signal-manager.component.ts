@@ -103,7 +103,7 @@ export class SignalManagerComponent implements AfterViewInit {
         NAMES[Math.round(Math.random() * (NAMES.length - 1))];
 
     return {
-      id: id.toString(),
+      id: id,
       title: 'Заголовок',
       coin: name,
       date: randomDate(new Date(2012, 0, 1), new Date()),
