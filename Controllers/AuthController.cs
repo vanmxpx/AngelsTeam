@@ -16,8 +16,8 @@ namespace AngelsTeam.Controllers
     public class AuthController : Controller
     {
         IRepositoryWrapper wrapper;
-        JWTSecretKeyService keyService;
-        public AuthController(IRepositoryWrapper wrapper, JWTSecretKeyService keyService)
+        JWTService keyService;
+        public AuthController(IRepositoryWrapper wrapper, JWTService keyService)
         {
             this.wrapper = wrapper;
             this.keyService = keyService;
@@ -33,7 +33,7 @@ namespace AngelsTeam.Controllers
             }
             Credential userCredential = wrapper.CredentialRepository.GetCredentialByEmail(Email).Result;
             User user = wrapper.UserRepository.GetByIdAsync(userCredential.UserId).Result;
-            Role role = await wrapper.RoleRepository.GetRoleByUser(user);
+            UserType role = await wrapper.UserTypeRepository.GetUserTypeByUser(user);
             if (userCredential.Password == Password)
             {
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(keyService.SecretKey));

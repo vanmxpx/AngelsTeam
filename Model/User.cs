@@ -12,9 +12,9 @@ namespace AngelsTeam.Model
         public string Surname { get; set; }
         public DateTime ExpirationDate { get; set; }
 
-        //Role
-        public int RoleId { get; set; }
-        public Role Role { get; set; }
+        //UserType
+        public int UserTypeId { get; set; }
+        public UserType UserType { get; set; }
 
         //Credential
         public Credential Credential { get; set; }

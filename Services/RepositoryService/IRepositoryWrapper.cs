@@ -8,6 +8,6 @@ namespace AngelsTeam.Services
         ISubscriptionRepository SubscriptionRepository { get; }
         ISubscriptionTypeRepository SubscriptionTypeRepository { get; }
         IUserRepository UserRepository { get; }
-        IRoleRepository RoleRepository { get; }
+        IUserTypeRepository UserTypeRepository { get; }
     }
 }

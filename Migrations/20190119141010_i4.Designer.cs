@@ -4,14 +4,16 @@ using AngelsTeam.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AngelsTeam.Migrations
 {
     [DbContext(typeof(AngelsDbContext))]
-    partial class AngelsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190119141010_i4")]
+    partial class i4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,12 +84,12 @@ namespace AngelsTeam.Migrations
                     b.Property<string>("Attachment");
 
                     b.Property<string>("Body")
-                        .HasMaxLength(1024);
+                        .HasMaxLength(512);
 
                     b.Property<DateTime>("Date")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2019, 1, 19, 16, 55, 2, 900, DateTimeKind.Local).AddTicks(4375));
+                        .HasDefaultValue(new DateTime(2019, 1, 19, 16, 10, 9, 671, DateTimeKind.Local).AddTicks(2895));
 
                     b.Property<int>("Dislikes")
                         .ValueGeneratedOnAdd()
@@ -103,28 +105,6 @@ namespace AngelsTeam.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("News");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Attachment = "assets/images/test.jpeg",
-                            Body = "Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс. У нас хорошие новости. Освободилось ровно три места. По всем вопросам: Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс . У нас хорошие новости. Освободилось ровно три места. По всем вопросам: Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс . У нас хорошие новости. Освободилось ровно три места. По всем вопросам: Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс . У нас хорошие новости. Освободилось ровно три места. По всем вопросам: Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс . У нас хорошие новости. Освободилось ровно три места. По всем вопросам:",
-                            Date = new DateTime(2019, 1, 19, 16, 55, 2, 916, DateTimeKind.Local).AddTicks(2910),
-                            Dislikes = 10,
-                            Likes = 20,
-                            Title = "Новость дня"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Attachment = "assets/images/test.jpeg",
-                            Body = "Дорогие друзья, сегодня ...",
-                            Date = new DateTime(2019, 1, 19, 16, 55, 2, 916, DateTimeKind.Local).AddTicks(3585),
-                            Dislikes = 3,
-                            Likes = 15,
-                            Title = "Новость дня 2"
-                        });
                 });
 
             modelBuilder.Entity("AngelsTeam.Model.Period", b =>
@@ -174,7 +154,7 @@ namespace AngelsTeam.Migrations
                     b.Property<DateTime>("Date")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2019, 1, 19, 16, 55, 2, 905, DateTimeKind.Local).AddTicks(1819));
+                        .HasDefaultValue(new DateTime(2019, 1, 19, 16, 10, 9, 676, DateTimeKind.Local).AddTicks(9889));
 
                     b.Property<bool>("IsFree")
                         .ValueGeneratedOnAdd()
@@ -193,32 +173,6 @@ namespace AngelsTeam.Migrations
                     b.HasIndex("TargetId");
 
                     b.ToTable("Signals");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Attachment = "assets/images/test.jpeg",
-                            Body = "Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс ",
-                            Coin = "BTC",
-                            Date = new DateTime(2019, 1, 19, 16, 55, 2, 917, DateTimeKind.Local).AddTicks(1925),
-                            IsFree = true,
-                            SignalLevelId = 1,
-                            TargetId = 1,
-                            Title = "Бесплатный сигнал дня"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Attachment = "assets/images/test.jpeg",
-                            Body = "Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс ",
-                            Coin = "BTC",
-                            Date = new DateTime(2019, 1, 19, 16, 55, 2, 917, DateTimeKind.Local).AddTicks(4468),
-                            IsFree = false,
-                            SignalLevelId = 3,
-                            TargetId = 2,
-                            Title = "Платный сигнал дня"
-                        });
                 });
 
             modelBuilder.Entity("AngelsTeam.Model.SignalLevel", b =>
@@ -350,24 +304,6 @@ namespace AngelsTeam.Migrations
                     b.HasIndex("PeriodId");
 
                     b.ToTable("Target");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Buy = "0.123",
-                            PeriodId = 2,
-                            Profits = "prof",
-                            Stop = "0.132"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Buy = "0.123",
-                            PeriodId = 2,
-                            Profits = "prof",
-                            Stop = "0.132"
-                        });
                 });
 
             modelBuilder.Entity("AngelsTeam.Model.User", b =>
@@ -379,7 +315,7 @@ namespace AngelsTeam.Migrations
                     b.Property<DateTime>("ExpirationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("date")
-                        .HasDefaultValue(new DateTime(2019, 1, 19, 16, 55, 2, 889, DateTimeKind.Local).AddTicks(1990));
+                        .HasDefaultValue(new DateTime(2019, 1, 19, 16, 10, 9, 658, DateTimeKind.Local).AddTicks(2992));
 
                     b.Property<string>("Name")
                         .HasMaxLength(32);
@@ -403,7 +339,7 @@ namespace AngelsTeam.Migrations
                         new
                         {
                             Id = 1,
-                            ExpirationDate = new DateTime(2019, 1, 19, 16, 55, 2, 919, DateTimeKind.Local).AddTicks(1135),
+                            ExpirationDate = new DateTime(2019, 1, 19, 16, 10, 9, 691, DateTimeKind.Local).AddTicks(8737),
                             Name = "Admin",
                             Surname = "Admin",
                             Telegram = "yourAdmin",
@@ -412,7 +348,7 @@ namespace AngelsTeam.Migrations
                         new
                         {
                             Id = 2,
-                            ExpirationDate = new DateTime(2019, 1, 19, 16, 55, 2, 919, DateTimeKind.Local).AddTicks(2071),
+                            ExpirationDate = new DateTime(2019, 1, 19, 16, 10, 9, 692, DateTimeKind.Local).AddTicks(182),
                             Name = "Ivan",
                             Surname = "Ivanov",
                             Telegram = "IvanovIvan",
@@ -421,7 +357,7 @@ namespace AngelsTeam.Migrations
                         new
                         {
                             Id = 3,
-                            ExpirationDate = new DateTime(2019, 1, 19, 16, 55, 2, 919, DateTimeKind.Local).AddTicks(2093),
+                            ExpirationDate = new DateTime(2019, 1, 19, 16, 10, 9, 692, DateTimeKind.Local).AddTicks(216),
                             Name = "Lexa",
                             Surname = "Lepexa",
                             Telegram = "Lepexa",
@@ -430,7 +366,7 @@ namespace AngelsTeam.Migrations
                         new
                         {
                             Id = 4,
-                            ExpirationDate = new DateTime(2019, 1, 19, 16, 55, 2, 919, DateTimeKind.Local).AddTicks(2101),
+                            ExpirationDate = new DateTime(2019, 1, 19, 16, 10, 9, 692, DateTimeKind.Local).AddTicks(225),
                             Name = "Mark",
                             Surname = "zuckerberg",
                             Telegram = "MarkZuck",

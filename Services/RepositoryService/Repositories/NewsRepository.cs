@@ -23,6 +23,11 @@ namespace AngelsTeam.Services{
             await SaveAsync();
         }
 
+        public Task<News> GetNewsById(int id)
+        {
+            return FindOneByConditionAsync(u=>u.Id.Equals(id));
+        }
+
         public async Task UpdateNewsAsync(News oldnews, News news)
         {
             oldnews.Clone(news);

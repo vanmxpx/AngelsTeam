@@ -11,7 +11,7 @@ namespace AngelsTeam.Services
         private ISubscriptionRepository subscriptionRepository;
         private ISubscriptionTypeRepository subscriptionTypeRepository;
         private IUserRepository userRepository;
-        private IRoleRepository roleRepository;
+        private IUserTypeRepository userTypeRepository;
 
         public RepositoryWrapper(AngelsDbContext context)
         {
@@ -28,6 +28,6 @@ namespace AngelsTeam.Services
         public IUserRepository UserRepository {get { return userRepository ?? (userRepository = new UserRepository(context));}}
 
        public ICredentialRepository CredentialRepository {get { return credentialRepository ?? (credentialRepository = new CredentialRepository(context));}}    
-       public IRoleRepository RoleRepository {get { return roleRepository ?? (roleRepository = new RoleRepository(context));}}   
+       public IUserTypeRepository UserTypeRepository {get { return userTypeRepository ?? (userTypeRepository = new UserTypeRepository(context));}}   
     }
 }

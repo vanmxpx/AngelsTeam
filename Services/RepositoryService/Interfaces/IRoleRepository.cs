@@ -5,8 +5,8 @@ using AngelsTeam.Model;
 
 namespace AngelsTeam.Services
 {
-    public interface IRoleRepository: IRepositoryBase<Role> 
+    public interface IUserTypeRepository: IRepositoryBase<UserType> 
     {
-        Task<Role> GetRoleByUser (User user);
+        Task<UserType> GetUserTypeByUser (User user);
     }
 }

@@ -6,8 +6,8 @@ namespace AngelsTeam.Model
         {
             user.Credential = newUser.Credential;
             user.ExpirationDate = newUser.ExpirationDate;
-            user.RoleId = newUser.RoleId;
-            user.Role = newUser.Role;
+            user.UserTypeId = newUser.UserTypeId;
+            user.UserType = newUser.UserType;
             user.Name = newUser.Name;
             user.Subscriptions = newUser.Subscriptions;
             user.Surname = newUser.Surname;

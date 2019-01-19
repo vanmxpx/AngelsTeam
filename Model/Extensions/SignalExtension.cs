@@ -7,7 +7,7 @@ namespace AngelsTeam.Model
             signal.Attachment = newSignal.Attachment;
             signal.Coin = newSignal.Coin;
             signal.Date = newSignal.Date;
-            signal.Description = newSignal.Description;
+            signal.Body = newSignal.Body;
             signal.IsFree = newSignal.IsFree;
             signal.SignalLevel = newSignal.SignalLevel;
             signal.SignalLevelId = newSignal.SignalLevelId;

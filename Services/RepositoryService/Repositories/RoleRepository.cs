@@ -3,15 +3,15 @@ using System.Threading.Tasks;
 using AngelsTeam.Model;
 
 namespace AngelsTeam.Services{
-    public class RoleRepository : RepositoryBase<Role>, IRoleRepository
+    public class UserTypeRepository : RepositoryBase<UserType>, IUserTypeRepository
     {
-        public RoleRepository(AngelsDbContext repositoryContext) : base(repositoryContext)
+        public UserTypeRepository(AngelsDbContext repositoryContext) : base(repositoryContext)
         {
         }
 
-        public async Task<Role> GetRoleByUser(User user)
+        public async Task<UserType> GetUserTypeByUser(User user)
         {
-           return await FindOneByConditionAsync(u=>u.Id.Equals(user.RoleId));
+           return await FindOneByConditionAsync(u=>u.Id.Equals(user.UserTypeId));
         }
     }
 }

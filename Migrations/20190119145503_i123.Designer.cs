@@ -4,14 +4,16 @@ using AngelsTeam.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AngelsTeam.Migrations
 {
     [DbContext(typeof(AngelsDbContext))]
-    partial class AngelsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190119145503_i123")]
+    partial class i123
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -21,6 +21,16 @@ namespace AngelsTeam.Services{
             await SaveAsync();
         }
 
+        public Task<IEnumerable<Signal>> GetAllPaidSignals()
+        {
+            return FindByConditionAsync(u=>u.IsFree==false);
+        }
+
+        public Task<IEnumerable<Signal>> GetAllSignals()
+        {
+            return FindAllAsync();
+        }
+
         public async Task UpdateSignalAsync(Signal oldSignal, Signal signal)
         {
             oldSignal.Clone(signal);
