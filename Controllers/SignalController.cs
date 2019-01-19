@@ -27,21 +27,42 @@ namespace AngelsTeam.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            string token = HttpContext.Request.Headers["Authorization"];
-            string role = jwtService.GetValueByKey(token.Remove(0, 7), "http://schemas.microsoft.com/ws/2008/06/identity/claims/role");
-            
-            if (role == "Admin" || role == "User")
+            try
             {
-                var result = await wrapper.SignalRepository.GetAllSignals();
-                return new OkObjectResult(result);
+                string role = jwtService.GetValueByHeader(HttpContext.Request.Headers["Authorization"]);
+
+                if (role == "Admin" || role == "User")
+                {
+                    var result = await wrapper.SignalRepository.GetAllSignals();
+                    return new OkObjectResult(result);
+                }
+                else
+                {
+                    var result = await wrapper.SignalRepository.GetAllPaidSignals();
+                    return new OkObjectResult(result);
+                }
             }
-            else
+            catch
             {
-                var result = await wrapper.SignalRepository.GetAllPaidSignals();
-                return new OkObjectResult(result);
+                return StatusCode(500, "Internal server error");
+            }
+        }
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public async Task<IActionResult> UpdateSignal(Signal signal)
+        {
+            try
+            {
+                var oldSignal = await wrapper.SignalRepository.GetById(signal.Id);
+                await wrapper.SignalRepository.UpdateSignalAsync(oldSignal, signal);
+                return Ok();
+            }
+            catch
+            {
+                return StatusCode(500, "Internal server error");
             }
 
-            
+
         }
 
     }

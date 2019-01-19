@@ -31,6 +31,11 @@ namespace AngelsTeam.Services{
             return FindAllAsync();
         }
 
+        public Task<Signal> GetById(int id)
+        {
+            return FindOneByConditionAsync(u=>u.Id.Equals(id));
+        }
+
         public async Task UpdateSignalAsync(Signal oldSignal, Signal signal)
         {
             oldSignal.Clone(signal);

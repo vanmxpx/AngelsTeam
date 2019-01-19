@@ -9,6 +9,7 @@ namespace AngelsTeam.Services
     {
         Task<IEnumerable<Signal>> GetAllSignals ();
         Task<IEnumerable<Signal>> GetAllPaidSignals();
+        Task<Signal> GetById(int id);
         Task CreateSignalAsync(Signal signal);
         Task UpdateSignalAsync(Signal oldSignal, Signal signal);
         Task DeleteSignalAsync(Signal signal);

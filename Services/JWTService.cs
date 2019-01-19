@@ -19,11 +19,12 @@ namespace AngelsTeam.Services
         {
             this.secretKey = configuration.GetSection("SecretKey").Value;
         }
-        public string GetValueByKey(string token, string key)
+        public string GetValueByHeader(string header)
         {
+            string token = header.Remove(0, 7);            
             var handler = new JwtSecurityTokenHandler();
             var jsonToken = handler.ReadToken(token) as JwtSecurityToken;
-            return jsonToken.Claims.First(claim => claim.Type == key).Value;
+            return jsonToken.Claims.First(claim => claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role").Value;
         }
 
     }
