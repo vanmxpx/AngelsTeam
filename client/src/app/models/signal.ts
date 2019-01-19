@@ -1,12 +1,13 @@
-import { ITarget } from './target';
-import { SignalLevel } from './signalStatus';
+import { Target } from './target';
+import { SignalLevel } from './signal-status';
 
 export interface Signal {
-    Id: string;
-    Date: string;
-    Coin: string;
-    Target: ITarget;
-    Status: SignalLevel;
-    Description: string;
-    Attachment: string;
+    id: number;
+    title: string;
+    date: Date;
+    coin: string;
+    body: string;
+    attachment: string;
+    target: Target;
+    status: SignalLevel;
 }

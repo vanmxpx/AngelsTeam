@@ -1,0 +1,81 @@
+@import '~@angular/material/theming';
+@import '~sass/variables';
+
+%item-shared {
+    display: flex;
+    padding: 5px 16px;
+    align-items: center;
+    margin-bottom: 10px;
+    border-left: 3px solid;
+    min-height: 60px;
+    .item {
+        width: 100%;
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+    .item-content { width: calc(100% - 33px); }
+        .content-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            button { font-weight: 600;}
+            p { font-size: 12px; color: gray;}
+        }
+        .content-body {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            img {
+                width: 60%;
+                margin-right: 10px;
+                height: 150px;
+            }
+            .targets {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+        
+    }
+    mat-icon {
+        cursor: pointer;
+    }
+  }
+
+.info {
+    @extend %item-shared;
+    background: rgb(244, 248, 250);
+    border-color: rgb(0, 188, 212) ;
+    mat-icon {
+        color:lightseagreen;
+    }
+}
+
+.low {
+    @extend %item-shared;
+    background: rgb(243, 250, 243);
+    border-color: rgb(139, 195, 74);
+    mat-icon {
+        color:green;
+    }
+}
+
+.middle {
+    @extend %item-shared;
+    background: #fdf1e1;
+    border-color: #fc9e23;
+    mat-icon {
+        color: orange;
+    }
+}
+
+.hight {
+    @extend %item-shared;
+    background: #f7e9e9;
+    border-color: #e91717 ;
+    mat-icon {
+        color: red;
+    }
+}

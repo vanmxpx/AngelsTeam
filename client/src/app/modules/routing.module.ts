@@ -7,6 +7,8 @@ import { AdminComponent } from '../components/admin/admin.component';
 import { SubscribeComponent } from '../components/subscribe/subscribe.component';
 import { TeachingComponent } from '../components/teaching/teaching.component';
 import { DepositComponent } from '../components/deposit/deposit.component';
+import { AuthGuard } from '../guards/auth.guard';
+import { AdminGuard } from '../guards/admin.guard';
 
 
 // import { CanDeactivateGuard } from './can-deactivate-guard.service';
@@ -14,68 +16,63 @@ import { DepositComponent } from '../components/deposit/deposit.component';
 // import { SelectivePreloadingStrategy } from './selective-preloading-strategy';
 
 const appRoutes: Routes = [
-  {
-    path: 'home',
-    component: HomeComponent
-  },
-  {
-    path: 'profile',
-    component: ProfileComponent
-  },
-  {
-    path: 'admin',
-    component: AdminComponent
-  },
-  {
-    path: 'subscribe',
-    component: SubscribeComponent
-  },
-  {
-    path: 'teaching',
-    component: TeachingComponent
-  },
-  {
-    path: 'deposit',
-    component: DepositComponent
-  },
-//   {
-//     path: 'admin',
-//     loadChildren: 'app/component/admin.module#AdminModule'// ,
-//     // canLoad: [AuthGuard]
-//   },
-//   {
-//     path: 'crisis-center',
-//     loadChildren: 'app/crisis-center/crisis-center.module#CrisisCenterModule',
-//     data: { preload: true }
-//   },
-  { path: '',   redirectTo: '/home', pathMatch: 'full' },
-  { path: '**', component: PageNotFoundComponent }
+    {
+        path: 'home',
+        component: HomeComponent
+    },
+    {
+        path: 'profile',
+        component: ProfileComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'admin',
+        loadChildren: '../components/admin/admin.module#AdminModule',
+        canLoad: [AdminGuard]
+    },
+    {
+        path: 'subscribe',
+        component: SubscribeComponent
+    },
+    {
+        path: 'teaching',
+        component: TeachingComponent
+    },
+    {
+        path: 'deposit',
+        component: DepositComponent
+    },
+    //   {
+    //     path: 'admin',
+    //     loadChildren: 'app/component/admin.module#AdminModule'// ,
+    //     // canLoad: [AuthGuard]
+    //   },
+    //   {
+    //     path: 'crisis-center',
+    //     loadChildren: 'app/crisis-center/crisis-center.module#CrisisCenterModule',
+    //     data: { preload: true }
+    //   },
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(
-      appRoutes,
-      {
-        enableTracing: true// , // <-- debugging purposes only
-        // preloadingStrategy: SelectivePreloadingStrategy,
+    imports: [
+        RouterModule.forRoot(
+            appRoutes,
+            {
+                // enableTracing: true// , // <-- debugging purposes only
+                // preloadingStrategy: SelectivePreloadingStrategy,
 
-      }
-    )
-  ],
-  exports: [
-    RouterModule
-  ],
-  providers: [
-    // CanDeactivateGuard,
-    // SelectivePreloadingStrategy
-  ]
+            }
+        )
+    ],
+    exports: [
+        RouterModule
+    ],
+    providers: [
+        // CanDeactivateGuard,
+        // SelectivePreloadingStrategy
+    ]
 })
 export class AppRoutingModule { }
-
-
-/*
-Copyright 2017-2018 Google Inc. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/

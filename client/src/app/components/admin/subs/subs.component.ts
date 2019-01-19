@@ -2,7 +2,8 @@ import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
 
 import {MatPaginator, MatSort, MatTableDataSource, MatDialog, MatSnackBar} from '@angular/material';
 import { trigger, style, transition, state, animate } from '@angular/animations';
-import { User } from '../../../models/user';
+import { User, UserType } from '../../../models/user';
+import { SubscriptionDuration } from '../../../models/subscription';
 @Component({
     selector: 'subs',
     templateUrl: './subs.component.html',
@@ -39,7 +40,7 @@ export class SubsComponent implements OnInit, AfterViewInit {
       this.dataSourceSubs.sort = this.sortSubs;
     }
     apply(row: User): void {
-      row.NewUser = false;
+      row.userType = UserType.Usual;
     }
 
     applyFilter(filterValue: string) {
@@ -67,13 +68,13 @@ export class SubsComponent implements OnInit, AfterViewInit {
     const newUser = sub === 'FREE' ? false : Math.round(Math.random() * 2) === 2;
     const subLeft = newUser || sub === 'FREE' || sub === 'UNLIMIT' ? 0 : Math.round(Math.random() * 30);
     return {
-      Id: id.toString(),
-      Name: name,
-      Contact: Math.round(Math.random() * 100).toString(),
-      Sub: sub,
-      SubLeft: subLeft,
-      NewUser: newUser
-    };
+        id: id,
+        name: name,
+        contact: Math.round(Math.random() * 100).toString(),
+        subscription: { id: 0, description:[''], duration: SubscriptionDuration.Mounth, exchange: 'BTC', name: 'test', price:1   },
+        subLeft: subLeft,
+        userType: newUser ? UserType.Unveryfied : UserType.Usual
+      };
   }
 
   /** Constants used to fill up our data base. */
