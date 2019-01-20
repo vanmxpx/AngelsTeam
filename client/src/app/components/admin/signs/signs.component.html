@@ -37,13 +37,13 @@
             <mat-header-cell *matHeaderCellDef mat-sort-header> Риск </mat-header-cell>
             <mat-cell *matCellDef="let row"> 
                 <div [ngSwitch]="row.Status">
-                    <div class="sign safe" matTooltip="Риск: Низкий" *ngSwitchCase="SignalLevel.Low">
+                    <div class="sign safe" matTooltip="Риск: Низкий" *ngSwitchCase="SignalStatus.Low">
                         <mat-icon >beenhere</mat-icon>
                     </div>
-                    <div class="sign warning" matTooltip="Риск: Средний" *ngSwitchCase="SignalLevel.Middle">
+                    <div class="sign warning" matTooltip="Риск: Средний" *ngSwitchCase="SignalStatus.Middle">
                         <mat-icon >warning</mat-icon>
                     </div>
-                    <div class="sign danger" matTooltip="Риск: Высокий. Торговля опасна" *ngSwitchCase="SignalLevel.Hight">
+                    <div class="sign danger" matTooltip="Риск: Высокий. Торговля опасна" *ngSwitchCase="SignalStatus.Hight">
                         <mat-icon style="margin-left: -5px;">priority_high</mat-icon>
                         <mat-icon style="margin-left: -15px;">priority_high</mat-icon>
                     </div>

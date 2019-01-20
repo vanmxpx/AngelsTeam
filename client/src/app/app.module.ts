@@ -7,36 +7,96 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { AdminComponent } from './components/admin/admin.component';
 import { SignalsComponent } from './components/profile/signals/signals.component';
+import { SubsComponent } from './components/admin/subs/subs.component';
 
-import { AppRoutingModule } from './modules/routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { CurrentUserService } from './services/current-user.service';
 import { LoginDialog } from './components/login/login-dialog.component';
 import { FocusDirective } from './directives/focus.directive';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
+// Material Components
+import {
+  MatToolbarModule,
+  MatSidenavModule,
+  MatMenuModule,
+  MatTabsModule,
+  MatTooltipModule,
+  MatIconModule,
+  MatButtonModule,
+  MatCheckboxModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatCardModule,
+  MatExpansionModule,
+  MatStepperModule,
+  MatSnackBarModule,
+  MatDialogModule,
+  MatTableModule,
+  MatGridListModule,
+  MatListModule,
+  MatSelectModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatRippleModule } from '@angular/material';
 import { SubscribeComponent } from './components/subscribe/subscribe.component';
+import { SignsComponent } from './components/admin/signs/signs.component';
+import { SetsComponent } from './components/admin/sets/sets.component';
+import { CdkDetailRowDirective } from './directives/cdk-detail-row.directive';
+import { NewSignalDialog } from './components/admin/signs/new-signal/new-signal.component';
+import { NewAnnounceDialog } from './components/admin/news/new-announce/new-announce.component';
+import { NewsComponent } from './components/admin/news/news.component';
 import { NewsProfileComponent } from './components/profile/news/news.component';
 import { ApplicationService } from './services/application.service';
 import { TeachingComponent } from './components/teaching/teaching.component';
 import { DepositComponent } from './components/deposit/deposit.component';
-import { environment } from '../environments/environment';
-import { DataApiService } from './services/api/data-api.service';
-import { DataApiMockService } from './services/api/data-api-mock.service';
-import { HttpClientModule } from '@angular/common/http';
-import { MaterialModule } from './modules/material.module';
-import { NewsControlComponent } from './components/profile/news/news-control/news-control.component';
-import { SignalControlComponent } from './components/profile/signals/signal-control/signal-control.component';
-import { AuthenticationService } from './services/api/security/authentication.service';
-import { AuthGuard } from './guards/auth.guard';
-import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+
+
+
+@NgModule({
+  exports: [
+    MatToolbarModule,
+    MatSidenavModule,
+    MatMenuModule,
+    MatTabsModule,
+    MatCheckboxModule,
+    MatTooltipModule,
+    MatIconModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+    MatExpansionModule,
+    MatStepperModule,
+    MatSnackBarModule,
+    MatDialogModule,
+    MatTableModule,
+    MatGridListModule,
+    MatListModule,
+    MatSelectModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRippleModule ]
+})
+export class MaterialModule {}
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ProfileComponent,
+    AdminComponent,
+    SubsComponent,
+    SignsComponent,
+    SetsComponent,
+    NewsComponent,
     SubscribeComponent,
     PageNotFoundComponent,
     TeachingComponent,
@@ -45,46 +105,22 @@ import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
     NewsProfileComponent,
     // dialogs
     LoginDialog,
+    NewSignalDialog,
+    NewAnnounceDialog,
     // directives
-    FocusDirective,
-    // controls
-    SignalControlComponent,
-    NewsControlComponent
+    CdkDetailRowDirective,
+    FocusDirective
   ],
   imports: [
-    HttpClientModule,
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
-    JwtModule.forRoot({
-        config: {
-            tokenGetter: () => {
-                return localStorage.getItem('token');
-            }
-        }
-    })
+    AppRoutingModule
   ],
-  entryComponents: [ LoginDialog ],
-  providers: [
-      {
-          provide: 'BASE_URL', useFactory: () => {
-              if (environment.production) {
-                return window.location.protocol + '//' + window.location.host + '/' + (window.location.pathname.split('/')[1] + '/' || '');
-              } else {
-                return 'http://localhost:5000/';
-              }
-          }
-      },
-      AuthGuard,
-      JwtHelperService,
-      ApplicationService,
-      AuthenticationService,
-      DataApiService,
-      DataApiMockService,
-      CurrentUserService ],
+  entryComponents: [ LoginDialog, NewSignalDialog],
+  providers: [ ApplicationService, CurrentUserService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

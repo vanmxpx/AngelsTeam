@@ -2,7 +2,6 @@
   "rulesDirectory": [
     "node_modules/codelyzer"
   ],
-  "defaultSeverity": "warn",
   "rules": {
     "arrow-return-shorthand": true,
     "callable-types": true,
@@ -11,6 +10,7 @@
       true,
       "check-space"
     ],
+    "curly": true,
     "deprecation": {
       "severity": "warn"
     },
@@ -60,11 +60,11 @@
     "no-empty-interface": true,
     "no-eval": true,
     "no-inferrable-types": [
-      false,
+      true,
       "ignore-params"
     ],
     "no-misused-new": true,
-    "no-non-null-assertion": false,
+    "no-non-null-assertion": true,
     "no-shadowed-variable": true,
     "no-string-literal": false,
     "no-string-throw": true,
@@ -82,7 +82,7 @@
       "check-else",
       "check-whitespace"
     ],
-    "prefer-const": false,
+    "prefer-const": true,
     "quotemark": [
       true,
       "single"
@@ -119,11 +119,13 @@
     "directive-selector": [
       true,
       "attribute",
+      "app",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
+      "app",
       "kebab-case"
     ],
     "no-output-on-prefix": true,

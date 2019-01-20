@@ -1,8 +1,9 @@
 <div class="container">
         <h1 mat-dialog-title>Добро пожаловать!</h1>
         <mat-dialog-content>
+          <!-- <p>Do you want to delete this group?</p> -->
           <mat-form-field>
-                <input cdkFocusInitial matInput placeholder="Логин" name="login"
+                <input matInput placeholder="Логин" name="login"
                 type="text" (keydown)="authPress($event.key)" [errorStateMatcher]="matchLogin"  [formControl]="loginFormControl"
                 [(ngModel)]="_currLogin">
                 <mat-icon matPrefix>account_box</mat-icon>
@@ -29,6 +30,6 @@
     </mat-dialog-content>
     <mat-dialog-actions>
         <button mat-button color="warn" (click)="onLogIn()">Войти</button>
-        <button mat-button (click)="onNoClick()">Назад</button>
+        <button mat-button (click)="onNoClick()" cdkFocusInitial>Назад</button>
     </mat-dialog-actions>
       </div>

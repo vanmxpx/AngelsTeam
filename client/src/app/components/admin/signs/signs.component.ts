@@ -3,12 +3,13 @@ import { Component, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular
 import { MatPaginator, MatSort, MatTableDataSource, MatSnackBar, MatDialog } from '@angular/material';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { NewSignalDialog } from './new-signal/new-signal.component';
-import { Signal } from '../../../models/Signal';
-import { SignalLevel, Period } from '../../../models/signal-status';
+import { ISignal } from '../../../models/Signal';
+import { SignalStatus, Period } from '../../../models/signalStatus';
+import { ITarget } from '../../../models/target';
 @Component({
-    selector: 'signal-manager',
-    templateUrl: './signal-manager.component.html',
-    styleUrls: ['./signal-manager.component.scss'],
+    selector: 'signs',
+    templateUrl: './signs.component.html',
+    styleUrls: ['./signs.component.scss'],
     animations: [
       trigger('detailExpand', [
         state('void', style({ height: '0px', minHeight: '0', visibility: 'hidden' })),
@@ -22,17 +23,17 @@ import { SignalLevel, Period } from '../../../models/signal-status';
         ]),
     ],
 })
-export class SignalManagerComponent implements AfterViewInit {
+export class SignsComponent implements AfterViewInit {
 
     // Details
     expandedElement: any;
 
-    users: Signal[] = [];
-    SignalLevel = SignalLevel;
+    users: ISignal[] = [];
+    SignalStatus = SignalStatus;
 
     date: Date = new Date();
     displayedColumns = ['Id', 'Coin', 'Date', 'Status', 'Edit', 'Remove'];
-    dataSourceSigns: MatTableDataSource<Signal>;
+    dataSourceSigns: MatTableDataSource<ISignal>;
 
     @ViewChild('paginatorSigns') paginatorSigns: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
@@ -98,24 +99,22 @@ export class SignalManagerComponent implements AfterViewInit {
   }
 
   /** Builds and returns a new User. */
-  function createNewUser(id: number): Signal {
+  function createNewUser(id: number): ISignal {
     const name =
         NAMES[Math.round(Math.random() * (NAMES.length - 1))];
 
     return {
-      id: id,
-      title: 'Заголовок',
-      coin: name,
-      date: randomDate(new Date(2012, 0, 1), new Date()),
-      target: {
-        period: Period.Short,
-        buy: 'fasf',
-        profits: ['ads', 'dqw' ],
-        stop: 'asff',
-        },
-      attachment: null,
-      body: 'dasfdaf',
-      status: SignalLevel[SignalLevel[Math.round(Math.random() * 2)]]
+      Id: id.toString(),
+      Coin: name,
+      Date: randomDate(new Date(2012, 0, 1), new Date()).toDateString(),
+      Target: {
+        Period: Period.Short,
+        Buy: 'fasf',
+        Profits: ['ads', 'dqw' ],
+        Stop: 'asff',
+        Description: 'faf', },
+      Description: 'dasfdaf',
+      Status: SignalStatus[SignalStatus[Math.round(Math.random() * 2)]]
     };
   }
 
