@@ -4,7 +4,6 @@ import { CurrentUserService } from '../../services/current-user.service';
 import { Validators, FormControl, FormGroupDirective, NgForm, AbstractControl, ValidationErrors } from '@angular/forms';
 import { MyErrorStateMatcher } from '../home/home.component';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../../services/api/security/authentication.service';
 
 @Component({
     // tslint:disable-next-line:component-selector
@@ -29,10 +28,12 @@ import { AuthenticationService } from '../../services/api/security/authenticatio
       this.validPass
     ]);
 
+    matchLogin = new MyErrorStateMatcher();
+    matchPassword = new MyErrorStateMatcher();
 
     constructor(
       public dialogRef: MatDialogRef<LoginDialog>,
-      private auth: AuthenticationService,
+      private userService: CurrentUserService,
       private router: Router,
       @Inject(MAT_DIALOG_DATA) public data: any) { }
 
@@ -42,14 +43,14 @@ import { AuthenticationService } from '../../services/api/security/authenticatio
       }
     }
 
-    async onLogIn() {
-        if (await this.auth.login(this._currLogin, this._currPass)) {
-            this.dialogRef.close(true);
-            this.router.navigate(['/profile']);
-        } else {
-                LoginDialog.dialogRes = false;
-        }
-        this.passwordFormControl.updateValueAndValidity();
+    onLogIn(): void {
+      if (this.userService.autorize(this._currLogin, this._currPass)) {
+        this.dialogRef.close(true);
+       this.router.navigate(['/profile']);
+      } else {
+        LoginDialog.dialogRes = false;
+      }
+      this.passwordFormControl.updateValueAndValidity();
     }
     onNoClick(): void {
       this.dialogRef.close();

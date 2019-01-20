@@ -1,8 +1,8 @@
 <mat-toolbar class="in-body">
     <div class="toolbar-content">
         <div class="hidden-menu" *ngIf="mobileQuery.matches">
-            <button mat-icon-button [matMenuTriggerFor]="menuPages"><mat-icon class="burger">menu</mat-icon></button>
-            <mat-menu #menuPages="matMenu">
+            <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon class="burger">menu</mat-icon></button>
+            <mat-menu #menu="matMenu">
                 <a mat-menu-item routerLink="/subscribe" routerLinkActive="active" >Cигналы</a>
                 <a mat-menu-item routerLink="/teaching" routerLinkActive="active" >Обучение</a>
                 <a mat-menu-item routerLink="/deposit" routerLinkActive="active" >Дов. управление</a>
@@ -11,7 +11,7 @@
         </div>  
         <div class="title">
             <div class="logo" routerLink="/home" routerLinkActive="active">
-                <img src="assets/images/logo.png">
+                <img src="./assets/images/logo.png">
             </div>  
             <div class="navigation-toolbar" *ngIf="!mobileQuery.matches">
             <section class="mat-typography title-text">
@@ -22,32 +22,19 @@
                 <button mat-button routerLink="/subscribe" routerLinkActive="active" >Cигналы</button>
                 <button mat-button routerLink="/teaching" routerLinkActive="active" >Обучение</button>
                 <button mat-button routerLink="/deposit" routerLinkActive="active" ><div class="button-text">Доверительное</div><div>управление</div></button>
-                <button *ngIf="profile && profile.userType === userType.Admin" mat-button routerLink="/admin" routerLinkActive="active">Admin</button>
+                <button *ngIf="adminMode" mat-button routerLink="/admin" routerLinkActive="active">Admin</button>
             </div>
 
         </div>
 
         <div class="profile-buttons mat-typography">
-            <ng-container *ngIf="profile; else elseTemplate">
-                <button mat-icon-button [matMenuTriggerFor]="menuPages" matTooltipPosition="above" matTooltip="Профиль">
-                    <div class="button-wrapper">
-                        <img class="profile-icon" [src]="profile.photo || 'assets/images/candles.png'">
-                        <h1 class="profile-name"> {{ profile.name }} </h1>
-                    </div>
-                </button>
-                <mat-menu #menuPages="matMenu">
-                    <a mat-menu-item routerLink="/profile" routerLinkActive="active" > Профиль </a>
-                    <mat-divider></mat-divider>
-                    <a mat-menu-item (click)='logout()'> Выход </a>
-                </mat-menu>
+            <ng-container *ngIf="logged; else elseTemplate">
+                <button mat-icon-button routerLink="/profile"  matTooltipPosition="above" matTooltip="Профиль"><img class="profile-icon" src="assets/images/candles.png"></button>
+                <h1 class="profile-name">{{profileName}}</h1> 
             </ng-container>
             <ng-template #elseTemplate>
-                <button mat-icon-button (click)="openDialog()" matTooltipPosition="above">
-                    <div class="button-wrapper">
-                        <mat-icon>account_circle</mat-icon>
-                        <h4 class="profile-login"> Войти </h4>
-                    </div>
-                </button>
+                <button mat-icon-button (click)="openDialog()" matTooltipPosition="above" matTooltip="Войти"> <mat-icon>account_circle</mat-icon></button>
+ 
             </ng-template>
         </div>  
     </div>

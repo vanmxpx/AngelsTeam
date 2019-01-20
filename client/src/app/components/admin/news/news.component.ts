@@ -2,8 +2,7 @@ import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
 
 import {MatPaginator, MatSort, MatTableDataSource, MatDialog, MatSnackBar} from '@angular/material';
 import { trigger, style, transition, state, animate } from '@angular/animations';
-import { User, UserType } from '../../../models/user';
-import { SubscriptionDuration } from '../../../models/subscription';
+import { User } from '../../../models/user';
 @Component({
     selector: 'news',
     templateUrl: './news.component.html',
@@ -40,7 +39,7 @@ export class NewsComponent implements OnInit, AfterViewInit {
       this.dataSourceSubs.sort = this.sortSubs;
     }
     apply(row: User): void {
-      row.userType = UserType.Usual;
+      row.NewUser = false;
     }
 
     applyFilter(filterValue: string) {
@@ -68,12 +67,12 @@ export class NewsComponent implements OnInit, AfterViewInit {
     const newUser = sub === 'FREE' ? false : Math.round(Math.random() * 2) === 2;
     const subLeft = newUser || sub === 'FREE' || sub === 'UNLIMIT' ? 0 : Math.round(Math.random() * 30);
     return {
-      id: id,
-      name: name,
-      contact: Math.round(Math.random() * 100).toString(),
-      subscription: { id: 0, description:[''], duration: SubscriptionDuration.Mounth, exchange: 'BTC', name: 'test', price:1   },
-      subLeft: subLeft,
-      userType: newUser ? UserType.Unveryfied : UserType.Usual
+      Id: id.toString(),
+      Name: name,
+      Contact: Math.round(Math.random() * 100).toString(),
+      Sub: sub,
+      SubLeft: subLeft,
+      NewUser: newUser
     };
   }
 
