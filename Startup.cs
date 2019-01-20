@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+using Swashbuckle.AspNetCore.Swagger;
+using AngelsTeam.Extension;
+
 namespace AngelsTeam
 {
     public class Startup
@@ -25,14 +28,19 @@ namespace AngelsTeam
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
+            services.AddAngelsDbContext(Configuration);
+            services.AddJWTAuthentication(Configuration);
+            services.AddWrapper();
+            services.AddJWTSecureKeyService(Configuration);
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "client/dist";
             });
-
-            services.AddSingleton<Diagnostics>();
+            services.AddSwaggerGen(c =>
+    {
+        c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+    });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +59,17 @@ namespace AngelsTeam
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+            app.UseAuthentication();
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             app.UseMvc(routes =>
             {

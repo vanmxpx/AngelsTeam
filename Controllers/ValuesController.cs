@@ -4,30 +4,49 @@ using System.Linq;
 using System.Threading.Tasks;
 using AngelsTeam.Tools;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AngelsTeam.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
-        private Diagnostics diagnostics;
+        //private Diagnostics diagnostics;
 
-        // public ValuesController(Diagnostics diagnostics)
-        // {
-        //     this.diagnostics = diagnostics;
-        // }
-        // GET api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
+        public ValuesController()//Diagnostics diagnostics)
         {
-            return new string[] { "value1", "value2" };
+            // this.diagnostics = diagnostics;
         }
+        // GET api/values
+
+
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [Authorize]
+        [HttpGet("User")]
+        public string GetUser()
         {
-            return "value";
+            return "User";
+        }
+
+        [Authorize(Roles = "Admin,Subscriber")]
+        [HttpGet("Subscriber")]
+        public string GetSubscriber()
+        {
+            return "Subscriber";
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet("Admin")]
+        public string GetAdmin()
+        {
+            return "Admin";
+        }
+
+        [HttpGet("Unauthorize")]
+        public string GetUnauthorize()
+        {
+            return "Unauthorize";
         }
 
         // POST api/values
