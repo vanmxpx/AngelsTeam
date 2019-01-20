@@ -1,9 +1,8 @@
-import { Period } from './signalStatus';
+import { Period } from './signal-status';
 
-export interface ITarget {
-    Period: Period;
-    Buy: string;
-    Profits: string[];
-    Stop: string;
-    Description: string;
+export interface Target {
+    period: Period;
+    buy: string;
+    profits: string[];
+    stop: string;
 }

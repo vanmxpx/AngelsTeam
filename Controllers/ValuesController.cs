@@ -2,43 +2,63 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AngelsTeam.Tools;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AngelsTeam.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
-        // GET api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
+        //private Diagnostics diagnostics;
+
+        public ValuesController()//Diagnostics diagnostics)
         {
-            return new string[] { "value1", "value2" };
+            // this.diagnostics = diagnostics;
         }
+        // GET api/values
+
+
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [Authorize]
+        [HttpGet("User")]
+        public string GetUser()
         {
-            return "value";
+            return "User";
+        }
+
+        [Authorize(Roles = "Admin,Subscriber")]
+        [HttpGet("Subscriber")]
+        public string GetSubscriber()
+        {
+            return "Subscriber";
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet("Admin")]
+        public string GetAdmin()
+        {
+            return "Admin";
+        }
+
+        [HttpGet("Unauthorize")]
+        public string GetUnauthorize()
+        {
+            return "Unauthorize";
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
-        {
-        }
+        public void Post([FromBody] string value) { }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+        public void Put(int id, [FromBody] string value) { }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        public void Delete(int id) { }
     }
 }

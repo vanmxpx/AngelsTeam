@@ -1,5 +1,7 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { DataApiMockService } from '../../../services/api/data-api-mock.service';
+import { Signal } from '../../../models/Signal';
 
 @Component({
     // tslint:disable-next-line:component-selector
@@ -23,7 +25,12 @@ export class SignalsComponent implements OnInit {
     public focusTrigger = new EventEmitter<boolean>();
     isFilterExpanded = false;
     filter: any;
-    constructor() { }
+    signals: Signal[];
+    constructor(private api: DataApiMockService) {
+        this.api.getSignals().then(value => {
+            this.signals = value;
+        });
+     }
 
     ngOnInit(): void { }
 
@@ -32,5 +39,9 @@ export class SignalsComponent implements OnInit {
     }
     focusFilter() {
         this.focusTrigger.emit(true);
+    }
+
+    identify(index, item) {
+        return item.id;
     }
 }

@@ -9,11 +9,19 @@
     display: flex;
     align-items: center;
     overflow: hidden;
-    max-height: 842px;
+    min-height: 700px;
+    background-image: url('assets/main6.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     video {
         width: 100%;
         min-width: 700px;
         margin-left: -100%;
+    }
+    .main-picture {
+        // width: 100%;
+
     }
 }
 
@@ -21,16 +29,17 @@
     display: flex;
     justify-content: space-around;
     width: 100%;
+    margin-bottom: 139px;
     z-index: 2;
     .border {
-        margin-left: -500px;
+        //margin-left: -500px;
         @media only screen and (max-width: 760px) {
             margin-left: 0;
         }
-        padding: 10px;
-        //background: rgba(0, 0, 0, 0.078);
+        //padding: 10px;
+        background: rgba(253, 253, 253, 0.88);
         width: 385px;
-        height: 360px;
+        height: 320px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -41,6 +50,38 @@
             flex-direction: column;
             align-items: center;
     }
+    h3.quote {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 15px;
+        flex-direction: column;
+        // background: rgba(253, 253, 253, 0.88);
+        color: #cc141c;
+        font-family: 'Squada One';
+        font-size: 24px;
+        line-height: 40px;
+        // margin-bottom: 24px;
+    }
+    
+    h3.quote:after {
+        background: #cc141c;
+        content: '';
+        display: block;
+        height: 2px;
+        margin-bottom: 10px;
+        width: 90%;
+    }
+
+    // h3.quote { 
+    //     background: rgba(253, 253, 253, 0.88);
+    //     color: #201e1e; 
+    //     font-family: 'Lato', sans-serif; 
+    //     font-size: 24px; 
+    //     font-weight: 300; 
+    //     line-height: 58px; 
+    //     margin: 0 0 58px; 
+    // }
     ul{
         padding-left: 0;
         margin-top: 16px;
@@ -153,6 +194,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    overflow-x: auto;
     height: 70px;
     padding: 0 20px; 
     background: rgb(195, 0, 47);
