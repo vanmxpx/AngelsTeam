@@ -83,12 +83,26 @@ export class DataApiMockService {
             resolve();
         });
     }
-    public getUser(login: string): Promise<User> {
+    public async getUser(login: string): Promise<User> {
         return new Promise((resolve, reject) => {
-            if (login === 'admin'){
-                resolve({ userType: UserType.Admin, name: 'admin', contact: '', id: 0, subscription: this.getSubscriptions()[0], subLeft: 0});
+            if (login === 'admin') {
+                resolve({
+                    userType: UserType.Admin, name: 'admin', contact: 'test', id: 0,
+                    photo: 'assets/images/candles.jpeg',
+                    subscription: {
+                        id: 1, name: 'Mounth', price: 10, exchange: 'BTC', duration: SubscriptionDuration.Mounth,
+                        description: ['Ознакомление с контентом', 'Бесплатные сигналы', 'Разборы некоторых монет']
+                    },
+                    subLeft: 0});
             } else {
-                resolve({ userType: UserType.Usual, name: 'Nick', contact: '', id: 1, subscription: this.getSubscriptions()[0], subLeft: 0});
+
+                resolve({ userType: UserType.Usual, name: 'Nick', contact: 'test', id: 1,
+                    photo: 'assets/images/candles.jpeg',
+                    subscription: {
+                        id: 1, name: 'Mounth', price: 10, exchange: 'BTC', duration: SubscriptionDuration.Mounth,
+                        description: ['Ознакомление с контентом', 'Бесплатные сигналы', 'Разборы некоторых монет']
+                    },
+                    subLeft: 0});
             }
         });
     }

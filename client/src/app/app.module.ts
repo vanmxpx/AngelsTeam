@@ -1,6 +1,6 @@
-import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -10,7 +10,6 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { SignalsComponent } from './components/profile/signals/signals.component';
 
 import { AppRoutingModule } from './modules/routing.module';
-import { CurrentUserService } from './services/current-user.service';
 import { LoginDialog } from './components/login/login-dialog.component';
 import { FocusDirective } from './directives/focus.directive';
 
@@ -34,59 +33,60 @@ import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { AdminGuard } from './guards/admin.guard';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    ProfileComponent,
-    SubscribeComponent,
-    PageNotFoundComponent,
-    TeachingComponent,
-    DepositComponent,
-    SignalsComponent,
-    NewsProfileComponent,
-    // dialogs
-    LoginDialog,
-    // directives
-    FocusDirective,
-    // controls
-    SignalControlComponent,
-    NewsControlComponent
-  ],
-  imports: [
-    HttpClientModule,
-    MaterialModule,
-    FormsModule,
-    ReactiveFormsModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    JwtModule.forRoot({
-        config: {
-            tokenGetter: () => {
-                return localStorage.getItem('token');
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        ProfileComponent,
+        SubscribeComponent,
+        PageNotFoundComponent,
+        TeachingComponent,
+        DepositComponent,
+        SignalsComponent,
+        NewsProfileComponent,
+        // dialogs
+        LoginDialog,
+        // directives
+        FocusDirective,
+        // controls
+        SignalControlComponent,
+        NewsControlComponent
+    ],
+    imports: [
+        HttpClientModule,
+        MaterialModule,
+        FormsModule,
+        ReactiveFormsModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        JwtModule.forRoot({
+            config: {
+                tokenGetter: () => {
+                    return localStorage.getItem('token');
+                }
             }
-        }
-    })
-  ],
-  entryComponents: [ LoginDialog ],
-  providers: [
-      {
-          provide: 'BASE_URL', useFactory: () => {
-              if (environment.production) {
-                return window.location.protocol + '//' + window.location.host + '/' + (window.location.pathname.split('/')[1] + '/' || '');
-              } else {
-                return 'http://localhost:5000/';
-              }
-          }
-      },
-      AuthGuard,
-      AdminGuard,
-      JwtHelperService,
-      ApplicationService,
-      AuthenticationService,
-      DataApiService,
-      DataApiMockService,
-      CurrentUserService ],
-  bootstrap: [ AppComponent ]
+        })
+    ],
+    entryComponents: [LoginDialog],
+    providers: [
+        {
+            provide: 'BASE_URL', useFactory: () => {
+                if (environment.production) {
+                    return window.location.protocol + '//' +
+                        window.location.host + '/' + (window.location.pathname.split('/')[1] + '/' || '');
+                } else {
+                    return 'http://localhost:5000/';
+                }
+            }
+        },
+        AuthGuard,
+        AdminGuard,
+        JwtHelperService,
+        ApplicationService,
+        AuthenticationService,
+        DataApiService,
+        DataApiMockService
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

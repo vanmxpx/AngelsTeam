@@ -5,7 +5,7 @@
                 <div class="page first">
                     <h2 class="primary-header">Выберите подписку</h2>
                     <div class="panels">
-                        <div *ngFor="let subscription of subscriptions" (click)="getSub('free')" class="subscription">
+                        <div *ngFor="let subscription of subscriptions" (click)="setSub(subscription)" class="subscription">
                             <h2 class="header">{{ subscription.name }}</h2>
                             <h1 class="price">{{ subscription.price + ' ' + subscription.exchange }}</h1>
                             <ul>
@@ -78,7 +78,7 @@
                     </form>
                 </div>
             </mat-step>
-            <mat-step *ngIf="selectedSub!='free'" [stepControl]="thirdControl" label="Оплата">
+            <mat-step *ngIf="selectedSub?.price !== 0" [stepControl]="thirdControl" label="Оплата">
                 <button class="button-primary" mat-button matStepperPrevious>Назад</button>
                 <button class="button-primary" mat-button matStepperNext>Далее</button>
             </mat-step>

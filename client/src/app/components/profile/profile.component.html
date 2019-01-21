@@ -3,12 +3,12 @@
         <div class="banner-container">
             <div class="face-container">
                 <div class="face mat-typography">
-                    <img src="./assets/images/candles.png">
-                    <h1>@vanmxpx</h1>
+                    <img [src]="profile?.photo">
+                    <h1>{{ profile?.name }}</h1>
                 </div>
                 <div class="sub mat-typography">
 
-                        <h3>Подписка: <strong>Месячная</strong></h3>
+                        <h3>Подписка: <strong>{{ profile?.subscription?.toString() }}</strong></h3>
                         <div class="sub-ends">
                             <div>
                                 <h1>13 дней</h1>

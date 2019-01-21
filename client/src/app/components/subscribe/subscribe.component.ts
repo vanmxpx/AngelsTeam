@@ -2,9 +2,7 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
 import { MatStepper } from '@angular/material';
 import { ValidatorFn } from '@angular/forms';
-import { CurrentUserService } from '../../services/current-user.service';
 import { DataApiMockService } from '../../services/api/data-api-mock.service';
-import { Signal } from '../../models/Signal';
 import { Subscription } from '../../models/subscription';
 import { User, UserType } from '../../models/user';
 import { AuthenticationService } from '../../services/api/security/authentication.service';
@@ -20,7 +18,7 @@ export class SubscribeComponent implements OnInit {
     subscriptions: Subscription[];
 
     @ViewChild('stepper') stepper: MatStepper;
-    selectedSub:  string = 'free';
+    selectedSub: Subscription | null = null;
     paymentStep;
     firstFormGroup: FormGroup;
     registrationFormGroup: FormGroup = new FormGroup({
@@ -54,7 +52,7 @@ export class SubscribeComponent implements OnInit {
         });
      }
 
-     getSub(sub: string): void {
+     setSub(sub: Subscription): void {
         this.selectedSub = sub;
         this.stepper._steps.first.completed = true;
 
