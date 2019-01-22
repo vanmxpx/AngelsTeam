@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using AutoMapper;
 
 using AngelsTeam.Services;
 using AngelsTeam.Model;
@@ -23,7 +24,7 @@ namespace AngelsTeam.Controllers
         public async Task<IActionResult> GetAll()
         {
             var result = await wrapper.NewsRepository.FindAllAsync();
-            return new OkObjectResult(result);
+            return new OkObjectResult(Mapper.Map<IEnumerable<News>,List <NewsDto>>(result));
         }
 
         [Authorize(Roles = "Admin")]

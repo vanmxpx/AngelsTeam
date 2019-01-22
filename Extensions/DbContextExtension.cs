@@ -10,8 +10,8 @@ namespace AngelsTeam.Extension
     {
         public static void AddAngelsDbContext(this IServiceCollection services, IConfiguration config)
         {
-            // services.AddDbContext<AngelsDbContext>(options => options.UseSqlServer(config.GetConnectionString("Debug")));
-            services.AddDbContext<AngelsDbContext>(options => options.UseInMemoryDatabase("Debug"));
+            services.AddDbContext<AngelsDbContext>(options => options.UseSqlServer(config.GetConnectionString("Debug")));
+            //services.AddDbContext<AngelsDbContext>(options => options.UseInMemoryDatabase("Debug"));
         }
     }
 }
