@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AngelsTeam.Migrations
 {
     [DbContext(typeof(AngelsDbContext))]
-    [Migration("20190119144127_i5")]
-    partial class i5
+    [Migration("20190122150810_inti")]
+    partial class inti
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -75,6 +75,79 @@ namespace AngelsTeam.Migrations
                         });
                 });
 
+            modelBuilder.Entity("AngelsTeam.Model.Description", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("SubscriptionTypeId");
+
+                    b.Property<string>("Value");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SubscriptionTypeId");
+
+                    b.ToTable("Descriptions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            SubscriptionTypeId = 3,
+                            Value = "Безлимитные сигналы"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            SubscriptionTypeId = 3,
+                            Value = "Личные консультации"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            SubscriptionTypeId = 3,
+                            Value = "Разбор ваших монет"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            SubscriptionTypeId = 2,
+                            Value = "Приватные сигналы"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            SubscriptionTypeId = 2,
+                            Value = "Приватный чат участников"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            SubscriptionTypeId = 2,
+                            Value = "Продление подписки, если ежемесячный профит составил < 60%"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            SubscriptionTypeId = 1,
+                            Value = "Ознакомление с контентом"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            SubscriptionTypeId = 1,
+                            Value = "Бесплатные сигналы"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            SubscriptionTypeId = 1,
+                            Value = "Разбор некоторых монет"
+                        });
+                });
+
             modelBuilder.Entity("AngelsTeam.Model.News", b =>
                 {
                     b.Property<int>("Id")
@@ -89,7 +162,7 @@ namespace AngelsTeam.Migrations
                     b.Property<DateTime>("Date")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2019, 1, 19, 16, 41, 26, 773, DateTimeKind.Local).AddTicks(6668));
+                        .HasDefaultValue(new DateTime(2019, 1, 22, 17, 8, 9, 550, DateTimeKind.Local).AddTicks(7055));
 
                     b.Property<int>("Dislikes")
                         .ValueGeneratedOnAdd()
@@ -112,7 +185,7 @@ namespace AngelsTeam.Migrations
                             Id = 1,
                             Attachment = "assets/images/test.jpeg",
                             Body = "Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс. У нас хорошие новости. Освободилось ровно три места. По всем вопросам: Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс . У нас хорошие новости. Освободилось ровно три места. По всем вопросам: Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс . У нас хорошие новости. Освободилось ровно три места. По всем вопросам: Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс . У нас хорошие новости. Освободилось ровно три места. По всем вопросам: Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс . У нас хорошие новости. Освободилось ровно три места. По всем вопросам:",
-                            Date = new DateTime(2019, 1, 19, 16, 41, 26, 800, DateTimeKind.Local).AddTicks(8405),
+                            Date = new DateTime(2019, 1, 22, 17, 8, 9, 572, DateTimeKind.Local).AddTicks(9988),
                             Dislikes = 10,
                             Likes = 20,
                             Title = "Новость дня"
@@ -122,10 +195,30 @@ namespace AngelsTeam.Migrations
                             Id = 2,
                             Attachment = "assets/images/test.jpeg",
                             Body = "Дорогие друзья, сегодня ...",
-                            Date = new DateTime(2019, 1, 19, 16, 41, 26, 800, DateTimeKind.Local).AddTicks(9486),
+                            Date = new DateTime(2019, 1, 22, 17, 8, 9, 573, DateTimeKind.Local).AddTicks(723),
                             Dislikes = 3,
                             Likes = 15,
                             Title = "Новость дня 2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Attachment = "assets/images/test.jpeg",
+                            Body = "Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс. У нас хорошие новости. Освободилось ровно три места. По всем вопросам: Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс . У нас хорошие новости. Освободилось ровно три места. По всем вопросам: Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс . У нас хорошие новости. Освободилось ровно три места. По всем вопросам: Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс . У нас хорошие новости. Освободилось ровно три места. По всем вопросам: Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс . У нас хорошие новости. Освободилось ровно три места. По всем вопросам:",
+                            Date = new DateTime(2019, 1, 22, 17, 8, 9, 573, DateTimeKind.Local).AddTicks(744),
+                            Dislikes = 10,
+                            Likes = 20,
+                            Title = "Новость дня"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Attachment = "assets/images/test.jpeg",
+                            Body = "Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс. У нас хорошие новости. Освободилось ровно три места. По всем вопросам: Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс . У нас хорошие новости. Освободилось ровно три места. По всем вопросам: Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс . У нас хорошие новости. Освободилось ровно три места. По всем вопросам: Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс . У нас хорошие новости. Освободилось ровно три места. По всем вопросам: Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс . У нас хорошие новости. Освободилось ровно три места. По всем вопросам:",
+                            Date = new DateTime(2019, 1, 22, 17, 8, 9, 573, DateTimeKind.Local).AddTicks(753),
+                            Dislikes = 10,
+                            Likes = 20,
+                            Title = "Новость дня"
                         });
                 });
 
@@ -159,6 +252,61 @@ namespace AngelsTeam.Migrations
                         });
                 });
 
+            modelBuilder.Entity("AngelsTeam.Model.Profit", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("TargetId");
+
+                    b.Property<string>("Value");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TargetId");
+
+                    b.ToTable("Profits");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            TargetId = 1,
+                            Value = "0.012"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            TargetId = 1,
+                            Value = "0.012"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            TargetId = 1,
+                            Value = "0.012"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            TargetId = 2,
+                            Value = "0.012"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            TargetId = 2,
+                            Value = "0.012"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            TargetId = 2,
+                            Value = "0.012"
+                        });
+                });
+
             modelBuilder.Entity("AngelsTeam.Model.Signal", b =>
                 {
                     b.Property<int>("Id")
@@ -176,9 +324,9 @@ namespace AngelsTeam.Migrations
                     b.Property<DateTime>("Date")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2019, 1, 19, 16, 41, 26, 781, DateTimeKind.Local).AddTicks(9046));
+                        .HasDefaultValue(new DateTime(2019, 1, 22, 17, 8, 9, 555, DateTimeKind.Local).AddTicks(4435));
 
-                    b.Property<bool>("IsFree")
+                    b.Property<bool>("Free")
                         .ValueGeneratedOnAdd()
                         .HasDefaultValue(false);
 
@@ -203,8 +351,8 @@ namespace AngelsTeam.Migrations
                             Attachment = "assets/images/test.jpeg",
                             Body = "Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс ",
                             Coin = "BTC",
-                            Date = new DateTime(2019, 1, 19, 16, 41, 26, 802, DateTimeKind.Local).AddTicks(4169),
-                            IsFree = true,
+                            Date = new DateTime(2019, 1, 22, 17, 8, 9, 573, DateTimeKind.Local).AddTicks(4352),
+                            Free = true,
                             SignalLevelId = 1,
                             TargetId = 1,
                             Title = "Бесплатный сигнал дня"
@@ -215,8 +363,8 @@ namespace AngelsTeam.Migrations
                             Attachment = "assets/images/test.jpeg",
                             Body = "Дорогие друзья, завтра в 20:00(Мскв) начинается наш обучающий курс ",
                             Coin = "BTC",
-                            Date = new DateTime(2019, 1, 19, 16, 41, 26, 802, DateTimeKind.Local).AddTicks(8341),
-                            IsFree = true,
+                            Date = new DateTime(2019, 1, 22, 17, 8, 9, 573, DateTimeKind.Local).AddTicks(7028),
+                            Free = false,
                             SignalLevelId = 3,
                             TargetId = 2,
                             Title = "Платный сигнал дня"
@@ -264,11 +412,15 @@ namespace AngelsTeam.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("SubscribtionTypeId");
+
                     b.Property<int>("SubscriptionTypeId");
 
                     b.Property<int>("UserId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SubscribtionTypeId");
 
                     b.HasIndex("SubscriptionTypeId");
 
@@ -283,13 +435,13 @@ namespace AngelsTeam.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Description")
-                        .HasMaxLength(512);
-
                     b.Property<string>("Duration")
                         .IsRequired()
                         .HasConversion(new ValueConverter<string, string>(v => default(string), v => default(string), new ConverterMappingHints(size: 64)))
                         .HasColumnType("varchar(32)");
+
+                    b.Property<string>("Exchange")
+                        .HasMaxLength(15);
 
                     b.Property<string>("Name")
                         .HasMaxLength(64);
@@ -304,30 +456,24 @@ namespace AngelsTeam.Migrations
                         new
                         {
                             Id = 1,
-                            Description = @"Ознакомление с контентом
-Бесплатные сигналы
-Разбор некоторых монет",
                             Duration = "-1",
+                            Exchange = "BTC",
                             Name = "Бесплатная",
                             Price = 0
                         },
                         new
                         {
                             Id = 2,
-                            Description = @"Приватные сигналы
-Приватный чат участников
-Продление подписки, если ежемесячный профит составил < 60%",
                             Duration = "1",
+                            Exchange = "BTC",
                             Name = "Ежемесячная",
                             Price = 2
                         },
                         new
                         {
                             Id = 3,
-                            Description = @"Безлимитные сигналы
-Личные консультации
-Разбор ваших монет",
                             Duration = "-1",
+                            Exchange = "BTC",
                             Name = "Безлимитная",
                             Price = 4
                         });
@@ -343,15 +489,13 @@ namespace AngelsTeam.Migrations
 
                     b.Property<int>("PeriodId");
 
-                    b.Property<string>("Profits");
-
                     b.Property<string>("Stop");
 
                     b.HasKey("Id");
 
                     b.HasIndex("PeriodId");
 
-                    b.ToTable("Target");
+                    b.ToTable("Targets");
 
                     b.HasData(
                         new
@@ -359,7 +503,6 @@ namespace AngelsTeam.Migrations
                             Id = 1,
                             Buy = "0.123",
                             PeriodId = 2,
-                            Profits = "prof",
                             Stop = "0.132"
                         },
                         new
@@ -367,7 +510,6 @@ namespace AngelsTeam.Migrations
                             Id = 2,
                             Buy = "0.123",
                             PeriodId = 2,
-                            Profits = "prof",
                             Stop = "0.132"
                         });
                 });
@@ -381,10 +523,12 @@ namespace AngelsTeam.Migrations
                     b.Property<DateTime>("ExpirationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("date")
-                        .HasDefaultValue(new DateTime(2019, 1, 19, 16, 41, 26, 756, DateTimeKind.Local).AddTicks(753));
+                        .HasDefaultValue(new DateTime(2019, 1, 22, 17, 8, 9, 538, DateTimeKind.Local).AddTicks(1000));
 
                     b.Property<string>("Name")
                         .HasMaxLength(32);
+
+                    b.Property<string>("Photo");
 
                     b.Property<string>("Surname")
                         .HasMaxLength(32);
@@ -405,8 +549,9 @@ namespace AngelsTeam.Migrations
                         new
                         {
                             Id = 1,
-                            ExpirationDate = new DateTime(2019, 1, 19, 16, 41, 26, 806, DateTimeKind.Local).AddTicks(5830),
+                            ExpirationDate = new DateTime(2019, 2, 3, 17, 8, 9, 575, DateTimeKind.Local).AddTicks(8842),
                             Name = "Admin",
+                            Photo = "assets/images/candles.jpeg",
                             Surname = "Admin",
                             Telegram = "yourAdmin",
                             UserTypeId = 1
@@ -414,8 +559,9 @@ namespace AngelsTeam.Migrations
                         new
                         {
                             Id = 2,
-                            ExpirationDate = new DateTime(2019, 1, 19, 16, 41, 26, 806, DateTimeKind.Local).AddTicks(7655),
+                            ExpirationDate = new DateTime(2019, 2, 11, 17, 8, 9, 575, DateTimeKind.Local).AddTicks(9970),
                             Name = "Ivan",
+                            Photo = "assets/images/candles.jpeg",
                             Surname = "Ivanov",
                             Telegram = "IvanovIvan",
                             UserTypeId = 2
@@ -423,8 +569,9 @@ namespace AngelsTeam.Migrations
                         new
                         {
                             Id = 3,
-                            ExpirationDate = new DateTime(2019, 1, 19, 16, 41, 26, 806, DateTimeKind.Local).AddTicks(7689),
+                            ExpirationDate = new DateTime(2019, 1, 12, 17, 8, 9, 575, DateTimeKind.Local).AddTicks(9996),
                             Name = "Lexa",
+                            Photo = "assets/images/candles.jpeg",
                             Surname = "Lepexa",
                             Telegram = "Lepexa",
                             UserTypeId = 3
@@ -432,8 +579,9 @@ namespace AngelsTeam.Migrations
                         new
                         {
                             Id = 4,
-                            ExpirationDate = new DateTime(2019, 1, 19, 16, 41, 26, 806, DateTimeKind.Local).AddTicks(7702),
+                            ExpirationDate = new DateTime(2019, 1, 22, 17, 8, 9, 576, DateTimeKind.Local).AddTicks(5),
                             Name = "Mark",
+                            Photo = "assets/images/candles.jpeg",
                             Surname = "zuckerberg",
                             Telegram = "MarkZuck",
                             UserTypeId = 4
@@ -483,6 +631,22 @@ namespace AngelsTeam.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("AngelsTeam.Model.Description", b =>
+                {
+                    b.HasOne("AngelsTeam.Model.SubscriptionType")
+                        .WithMany("Descriptions")
+                        .HasForeignKey("SubscriptionTypeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("AngelsTeam.Model.Profit", b =>
+                {
+                    b.HasOne("AngelsTeam.Model.Target")
+                        .WithMany("Profits")
+                        .HasForeignKey("TargetId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("AngelsTeam.Model.Signal", b =>
                 {
                     b.HasOne("AngelsTeam.Model.SignalLevel", "SignalLevel")
@@ -498,7 +662,11 @@ namespace AngelsTeam.Migrations
 
             modelBuilder.Entity("AngelsTeam.Model.Subscription", b =>
                 {
-                    b.HasOne("AngelsTeam.Model.SubscriptionType", "SubscribtionType")
+                    b.HasOne("AngelsTeam.Model.Profit", "SubscribtionType")
+                        .WithMany()
+                        .HasForeignKey("SubscribtionTypeId");
+
+                    b.HasOne("AngelsTeam.Model.SubscriptionType")
                         .WithMany("Subscriptions")
                         .HasForeignKey("SubscriptionTypeId")
                         .OnDelete(DeleteBehavior.Cascade);

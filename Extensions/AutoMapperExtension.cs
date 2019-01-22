@@ -14,6 +14,10 @@ namespace AngelsTeam.Extension
             Mapper.Initialize(m=>{
                 m.CreateMap<News,NewsDto>();
                 m.CreateMap<IEnumerable<News>,List<NewsDto>>();
+                m.CreateMap<User,UserDto>()
+                .ForMember(p=>p.UserType,u=>u.MapFrom(o=>o.UserTypeId))
+                .ForMember(p=>p.Contact,u=>u.MapFrom(o=>o.Telegram))
+                .ForMember(p=>p.SubLeft,u=>u.MapFrom(o=>o.ExpirationDate));
             });
         }
     }

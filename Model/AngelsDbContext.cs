@@ -11,14 +11,17 @@ namespace AngelsTeam.Model
         public DbSet<News> News { get; set; }
         public DbSet<Signal> Signals { get; set; }
         public DbSet<Subscription> Subscriptions { get; set; }
-        public DbSet<Profit> SubscriptionTypes { get; set; }
+        public DbSet<SubscriptionType> SubscriptionTypes { get; set; }
         public DbSet<SignalLevel> SignalLevels { get; set; }
         public DbSet<Period> Periods { get; set; }
         public DbSet<UserType> UserTypes { get; set; }
+        public DbSet<Description> Descriptions { get; set; }
+        public DbSet<Profit> Profits { get; set; }
+        public DbSet<Target> Targets { get; set; }
 
         public AngelsDbContext(DbContextOptions<AngelsDbContext> options) : base(options)
         {
-            Database.EnsureCreated();
+            //Database.EnsureCreated();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

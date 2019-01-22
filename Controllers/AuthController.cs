@@ -53,7 +53,7 @@ namespace AngelsTeam.Controllers
                 );
 
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
-                return Ok(new { Token = tokenString, Profile = user });
+                return Ok(new { Token = tokenString, Profile = AutoMapper.Mapper.Map<User,UserDto>(user) });
             }
             else
             {
