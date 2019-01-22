@@ -3,13 +3,14 @@ import { Subscription } from './subscription';
 export interface User {
     id: number;
     name: string;
-    contact: string;
+    surname: string;
+    telegram: string;
     photo?: string;
-    subscription: Subscription;
-    subLeft: number;
+    subscriptions: Subscription[];
+    expirationDate: Date;
     userType: UserType;
   }
 
   export enum UserType {
-      Unveryfied, Usual, Admin
+      Admin = 1, User = 2, Free = 3, Unveryfied = 4 
   }

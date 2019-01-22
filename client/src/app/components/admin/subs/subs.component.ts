@@ -40,7 +40,7 @@ export class SubsComponent implements OnInit, AfterViewInit {
       this.dataSourceSubs.sort = this.sortSubs;
     }
     apply(row: User): void {
-      row.userType = UserType.Usual;
+      row.userType = UserType.User;
     }
 
     applyFilter(filterValue: string) {
@@ -66,14 +66,14 @@ export class SubsComponent implements OnInit, AfterViewInit {
         NAMES1[Math.round(Math.random() * (NAMES1.length - 1))].charAt(0) + '.';
     const sub = COLORS1[Math.round(Math.random() * (COLORS1.length - 1))];
     const newUser = sub === 'FREE' ? false : Math.round(Math.random() * 2) === 2;
-    const subLeft = newUser || sub === 'FREE' || sub === 'UNLIMIT' ? 0 : Math.round(Math.random() * 30);
     return {
         id: id,
         name: name,
-        contact: Math.round(Math.random() * 100).toString(),
-        subscription: { id: 0, description:[''], duration: SubscriptionDuration.Mounth, exchange: 'BTC', name: 'test', price:1   },
-        subLeft: subLeft,
-        userType: newUser ? UserType.Unveryfied : UserType.Usual
+        surname: name,
+        telegram: Math.round(Math.random() * 100).toString(),
+        subscriptions: [{ id: 0, description:[''], duration: SubscriptionDuration.Mounth, exchange: 'BTC', name: 'test', price:1   }],
+        expirationDate: new Date(),
+        userType: newUser ? UserType.Unveryfied : UserType.User
       };
   }
 

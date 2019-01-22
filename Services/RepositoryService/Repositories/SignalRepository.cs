@@ -23,7 +23,7 @@ namespace AngelsTeam.Services{
 
         public Task<IEnumerable<Signal>> GetAllPaidSignals()
         {
-            return FindByConditionAsync(u=>u.IsFree==false);
+            return FindByConditionAsync(u=>u.Free==false);
         }
 
         public Task<IEnumerable<Signal>> GetAllSignals()

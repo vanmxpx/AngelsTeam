@@ -2,11 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-
-using AngelsTeam.Services;
 using AngelsTeam.Model;
+using AngelsTeam.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AngelsTeam.Controllers
 {
@@ -45,7 +44,7 @@ namespace AngelsTeam.Controllers
             {
                 return StatusCode(500, "Internal server error");
             }
-            
+
         }
     }
 }

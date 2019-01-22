@@ -1,16 +1,10 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../../../models/user';
-import { DataApiMockService } from '../data-api-mock.service';
 import { BehaviorSubject } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-  })
-};
+import { DataApiService } from '../data-api.service';
 
 @Injectable()
 export class AuthenticationService {
@@ -18,7 +12,7 @@ export class AuthenticationService {
     private profileChange: BehaviorSubject<User>;
 
     constructor(
-        private apiService: DataApiMockService,
+        private apiService: DataApiService,
         private jwtService: JwtHelperService,
         private router: Router) {
         this.profileChange = new BehaviorSubject<User | null>(this.profile);
@@ -39,16 +33,16 @@ export class AuthenticationService {
         return this.profileChange;
     }
 
-    public async login(login: string, password: string) {
+    public async login(email: string, password: string) {
 
-        let cred = await this.apiService.authorizate(login, password);
+        let cred = await this.apiService.authorizate(email, password);
             // login успешно, если в ответе есть токен jwt
         if (!cred) return false;
         // сохраняем токен jwt в локальном хранилище
         localStorage.setItem('token', JSON.stringify(cred));
-        localStorage.setItem('login', JSON.stringify(login));
+        localStorage.setItem('email', JSON.stringify(email));
 
-        this.profile = await this.apiService.getUser(login);
+        this.profile = <User> await this.apiService.getUsers(email).toPromise();
         if (!this.profile) return false;
         this.profileChange.next(this.profile);
         localStorage.setItem('profile', JSON.stringify(this.profile));

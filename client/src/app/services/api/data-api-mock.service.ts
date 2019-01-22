@@ -7,7 +7,7 @@ import { Subscription, SubscriptionDuration } from '../../models/subscription';
 import { Period, SignalLevel } from '../../models/signal-status';
 
 @Injectable()
-export class DataApiMockService {
+export class DataApiMockService1 {
 
     constructor(
         private http: HttpClient,
@@ -33,7 +33,7 @@ export class DataApiMockService {
         });
     }
     public getSignals(): Promise<Signal[]> {
-        let signalsLEvel: string[] = ['hight', 'middle', 'low', 'info']
+        let signalsLEvel: string[] = ['hight', 'middle', 'low', 'info'];
         return new Promise((resolve, reject) => {
             let values: Signal[] = [];
             for (let id = 1; id < 15; id++) {
@@ -83,26 +83,28 @@ export class DataApiMockService {
             resolve();
         });
     }
-    public async getUser(login: string): Promise<User> {
+    public getUser(login: string): Promise<User> {
         return new Promise((resolve, reject) => {
             if (login === 'admin') {
                 resolve({
-                    userType: UserType.Admin, name: 'admin', contact: 'test', id: 0,
+                    userType: UserType.Admin, name: 'admin', surname: '', telegram: 'admin', id: 0,
                     photo: 'assets/images/candles.jpeg',
-                    subscription: {
+                    subscriptions: [{
                         id: 1, name: 'Mounth', price: 10, exchange: 'BTC', duration: SubscriptionDuration.Mounth,
                         description: ['Ознакомление с контентом', 'Бесплатные сигналы', 'Разборы некоторых монет']
-                    },
-                    subLeft: 0});
+                    }],
+                    expirationDate: this.randomDate(new Date(), new Date(2019, 5, 1))
+                });
             } else {
 
-                resolve({ userType: UserType.Usual, name: 'Nick', contact: 'test', id: 1,
+                resolve({
+                    userType: UserType.User, name: 'Nick', surname: 'Geits', telegram: 'test', id: 1,
                     photo: 'assets/images/candles.jpeg',
-                    subscription: {
+                    subscriptions: [{
                         id: 1, name: 'Mounth', price: 10, exchange: 'BTC', duration: SubscriptionDuration.Mounth,
                         description: ['Ознакомление с контентом', 'Бесплатные сигналы', 'Разборы некоторых монет']
-                    },
-                    subLeft: 0});
+                    }],
+                    expirationDate: this.randomDate(new Date(), new Date(2019, 5, 1))});
             }
         });
     }

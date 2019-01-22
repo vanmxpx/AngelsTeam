@@ -4,11 +4,10 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using AngelsTeam.Model;
+using AngelsTeam.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-
-using AngelsTeam.Services;
-using AngelsTeam.Model;
 
 namespace AngelsTeam.Controllers
 {
@@ -24,33 +23,37 @@ namespace AngelsTeam.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Auth(string Email, string Password)
+        public async Task<IActionResult> Auth(string email, string password)
         {
 
-            if (Email == null || Password == null)
+            if (email == null || password == null)
             {
                 return BadRequest("Invalid client request");
             }
-            Credential userCredential = wrapper.CredentialRepository.GetCredentialByEmail(Email).Result;
+            Credential userCredential = await wrapper.CredentialRepository.GetCredentialByEmail(email);
+            if (userCredential == null)
+            {
+                return Unauthorized();
+            }
             User user = wrapper.UserRepository.GetByIdAsync(userCredential.UserId).Result;
             UserType role = await wrapper.UserTypeRepository.GetUserTypeByUser(user);
-            if (userCredential.Password == Password)
+            if (userCredential.Password == password)
             {
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(keyService.SecretKey));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
-                var claims = new List<Claim>{                    
-                    new Claim(ClaimTypes.Role, role.Name)
+                var claims = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.Role, role.Name)
                     };
 
-                var tokeOptions = new JwtSecurityToken(
+                var tokenOptions = new JwtSecurityToken(
                     claims: claims,
-
                     signingCredentials: signinCredentials
                 );
 
-                var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
-                return Ok(new { Token = tokenString });
+                var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+                return Ok(new { Token = tokenString, Profile = user });
             }
             else
             {

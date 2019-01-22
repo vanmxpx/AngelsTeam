@@ -8,7 +8,7 @@ namespace AngelsTeam.Model
         public string Title { get; set; }
         public DateTime Date { get; set; }
         public string Body { get; set; }
-        public bool IsFree { get; set; }
+        public bool Free { get; set; }
 
         public string Coin { get; set; }
         public string Attachment { get; set; }

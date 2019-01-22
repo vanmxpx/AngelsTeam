@@ -22,7 +22,6 @@ import { TeachingComponent } from './components/teaching/teaching.component';
 import { DepositComponent } from './components/deposit/deposit.component';
 import { environment } from '../environments/environment';
 import { DataApiService } from './services/api/data-api.service';
-import { DataApiMockService } from './services/api/data-api-mock.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './modules/material.module';
 import { NewsControlComponent } from './components/profile/news/news-control/news-control.component';
@@ -84,8 +83,7 @@ import { AdminGuard } from './guards/admin.guard';
         JwtHelperService,
         ApplicationService,
         AuthenticationService,
-        DataApiService,
-        DataApiMockService
+        DataApiService
     ],
     bootstrap: [AppComponent]
 })
