@@ -8,9 +8,7 @@ namespace AngelsTeam.Services
 {
     public class CredentialRepository : RepositoryBase<Credential>, ICredentialRepository
     {
-        public CredentialRepository(AngelsDbContext repositoryContext) : base(repositoryContext)
-        {
-        }
+        public CredentialRepository(AngelsDbContext repositoryContext) : base(repositoryContext) { }
 
         public async Task CreateCredentialAsync(Credential credential)
         {
@@ -26,7 +24,7 @@ namespace AngelsTeam.Services
 
         public async Task<Credential> GetCredentialByEmail(string email)
         {
-           return await FindOneByConditionAsync(c=>c.Email == email);           
+           return await FindOneByConditionAsync(c => c.Email == email);           
         }
 
         public async Task UpdateCredentialAsync(Credential oldCredential, Credential credential)

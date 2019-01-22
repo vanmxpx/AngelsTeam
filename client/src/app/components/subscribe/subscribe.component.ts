@@ -2,10 +2,10 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
 import { MatStepper } from '@angular/material';
 import { ValidatorFn } from '@angular/forms';
-import { DataApiMockService } from '../../services/api/data-api-mock.service';
 import { Subscription } from '../../models/subscription';
 import { User, UserType } from '../../models/user';
 import { AuthenticationService } from '../../services/api/security/authentication.service';
+import { DataApiService } from '../../services/api/data-api.service';
 
 @Component({
     selector: 'subscribe',
@@ -34,7 +34,7 @@ export class SubscribeComponent implements OnInit {
     constructor(
         private _formBuilder: FormBuilder,
         private auth: AuthenticationService,
-        private api: DataApiMockService) {
+        private api: DataApiService) {
         this.api.getSubscriptions().then(value => {
             this.subscriptions = value;
         });
@@ -68,7 +68,7 @@ export class SubscribeComponent implements OnInit {
                 '';
     }
     getPasswordErrorMessage() {
-        //this.registrationFormGroup.controls['confirmPasswordControl'].setValue('');
+        // this.registrationFormGroup.controls['confirmPasswordControl'].setValue('');
 
         return this.registrationFormGroup.controls['passwordControl'].hasError('required') ? 'Введиет пароль' :
                 '';

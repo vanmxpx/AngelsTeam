@@ -1,16 +1,13 @@
-using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading.Tasks;
 using AngelsTeam.Model;
 
 namespace AngelsTeam.Services
 {
     public class UserRepository : RepositoryBase<User>, IUserRepository
     {
-        public UserRepository(AngelsDbContext repositoryContext) : base(repositoryContext)
-        {
-        }
+        public UserRepository(AngelsDbContext repositoryContext) : base(repositoryContext) { }
 
         public async Task CreateUserAsync(User user)
         {
@@ -38,7 +35,7 @@ namespace AngelsTeam.Services
         {
             oldUser.Clone(user);
             Update(oldUser);
-            await SaveAsync();            
+            await SaveAsync();
         }
     }
 }

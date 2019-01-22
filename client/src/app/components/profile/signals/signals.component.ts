@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { DataApiMockService } from '../../../services/api/data-api-mock.service';
 import { Signal } from '../../../models/Signal';
+import { DataApiService } from '../../../services/api/data-api.service';
 
 @Component({
     // tslint:disable-next-line:component-selector
@@ -26,7 +26,7 @@ export class SignalsComponent implements OnInit {
     isFilterExpanded = false;
     filter: any;
     signals: Signal[];
-    constructor(private api: DataApiMockService) {
+    constructor(private api: DataApiService) {
         this.api.getSignals().then(value => {
             this.signals = value;
         });

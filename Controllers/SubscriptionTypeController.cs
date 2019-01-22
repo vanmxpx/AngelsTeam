@@ -2,10 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-
-using AngelsTeam.Services;
 using AngelsTeam.Model;
+using AngelsTeam.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AngelsTeam.Controllers
 {
@@ -19,9 +18,10 @@ namespace AngelsTeam.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<SubscriptionType> Get(){
-           return wrapper.SubscriptionTypeRepository.FindAllAsync().Result;
+        public IEnumerable<SubscriptionType> Get()
+        {
+            return wrapper.SubscriptionTypeRepository.FindAllAsync().Result;
         }
-        
+
     }
 }

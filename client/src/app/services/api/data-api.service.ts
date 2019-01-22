@@ -4,6 +4,7 @@ import { Signal } from '../../models/Signal';
 import { News } from '../../models/news';
 import { User } from '../../models/user';
 import { Subscription } from '../../models/subscription';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class DataApiService {
@@ -14,42 +15,46 @@ export class DataApiService {
 
     }
 
-    public getSubscriptions(): Promise<Subscription[]> {
+    public getSubscriptions(): Observable<Subscription[]> {
         return this.http
-            .get<Subscription[]>(`${this.url}api/subscription`).toPromise();
+            .get<Subscription[]>(`${this.url}api/subscription`);
     }
-    // public getSignals(userCred: Credentials): Promise<Signal[]> {
-    //     return this.http
-    //         .get<Signal[]>(`${this.url}api/signal`, { params: userCred}).toPromise();
-    // }
-    public getNews(): Promise<News[]> {
+    public getSignals(): Observable<Signal[]> {
         return this.http
-            .get<News[]>(`${this.url}api/news`).toPromise();
+            .get<Signal[]>(`${this.url}api/signal`);
     }
-    public getUsers(): Promise<User[]> {
+    public getNews(): Observable<News[]> {
         return this.http
-            .get<User[]>(`${this.url}api/user`).toPromise();
+            .get<News[]>(`${this.url}api/news`);
     }
-    public updateSignal(signal: Signal): Promise<Signal> {
-        return this.http
-            .post<Signal>(`${this.url}api/signal`, { signal: signal }).toPromise();
+    public getUsers(email?: string): Observable<User[] | User> {
+        if (email)
+            return this.http
+                .get<User>(`${this.url}api/user`);
+        else
+            return this.http
+                .get<User[]>(`${this.url}api/user`);
     }
-    public updateNews(news: News): Promise<News> {
+    public updateSignal(signal: Signal): Observable<Signal> {
         return this.http
-            .post<News>(`${this.url}api/news`, { news: news }).toPromise();
+            .post<Signal>(`${this.url}api/signal`, { signal: signal });
     }
-    public updateUser(user: User): Promise<User> {
+    public updateNews(news: News): Observable<News> {
         return this.http
-            .post<User>(`${this.url}api/user`, { user: user }).toPromise();
+            .post<News>(`${this.url}api/news`, { news: news });
     }
-    public registerUser(user: User): Promise<User> {
+    public updateUser(user: User): Observable<User> {
         return this.http
-            .post<User>(`${this.url}api/auth/register`, { user: user }).toPromise();
+            .post<User>(`${this.url}api/user`, { user: user });
+    }
+    public registerUser(user: User): Observable<User> {
+        return this.http
+            .post<User>(`${this.url}api/auth/register`, { user: user });
     }
 
-    public authorizate(login: string, password: string): Promise<string> {
+    public authorizate(email: string, password: string): Observable<string> {
         return this.http
-            .post<string>(`${this.url}api/auth`, { login: login, password: password }).toPromise();
+            .post<string>(`${this.url}api/auth`, { email: email, password: password });
     }
 
 }

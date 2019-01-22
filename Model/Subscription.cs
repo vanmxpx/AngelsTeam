@@ -6,7 +6,7 @@ namespace AngelsTeam.Model
 
         //SubscriptionType
         public int SubscriptionTypeId {get;set;}
-        public SubscriptionType SubscribtionType {get;set;}
+        public Profit SubscribtionType {get;set;}
     //User
     public int UserId {get;set;}
     public User User {get;set;}

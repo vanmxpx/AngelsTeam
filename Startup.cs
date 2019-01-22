@@ -1,4 +1,5 @@
-﻿using AngelsTeam.Tools;
+﻿using AngelsTeam.Extension;
+using AngelsTeam.Tools;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -6,9 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
 using Swashbuckle.AspNetCore.Swagger;
-using AngelsTeam.Extension;
 
 namespace AngelsTeam
 {
@@ -27,7 +26,8 @@ namespace AngelsTeam
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddCors();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddAngelsDbContext(Configuration);
             services.AddJWTAuthentication(Configuration);
             services.AddWrapper();
@@ -38,27 +38,31 @@ namespace AngelsTeam
                 configuration.RootPath = "client/dist";
             });
             services.AddSwaggerGen(c =>
-    {
-        c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
-    });
+            {
+                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseMvc();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseCors(builder =>
+                {
+                    builder.WithOrigins("https://localhost:5001").WithOrigins("http://localhost:5000").WithOrigins("http://localhost:4200")
+                        .AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials();
+                });
             }
             else
             {
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
+                app.UseHttpsRedirection();
             }
 
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            app.UseSpaStaticFiles();
             app.UseAuthentication();
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
@@ -70,14 +74,8 @@ namespace AngelsTeam
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
-            });
-
+            app.UseStaticFiles();
+            app.UseSpaStaticFiles();
             app.UseSpa(spa =>
             {
                 // To learn more about options for serving an Angular SPA from ASP.NET Core,

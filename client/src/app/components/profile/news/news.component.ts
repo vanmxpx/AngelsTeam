@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { DataApiMockService } from '../../../services/api/data-api-mock.service';
 import { News } from '../../../models/news';
+import { DataApiService } from '../../../services/api/data-api.service';
 
 @Component({
     // tslint:disable-next-line:component-selector
@@ -22,7 +22,7 @@ export class NewsProfileComponent implements OnInit {
     filter: any;
 
     public news: News[];
-    constructor(public api: DataApiMockService) {
+    constructor(public api: DataApiService) {
         this.api.getNews().then(value => {
             this.news = value;
         });

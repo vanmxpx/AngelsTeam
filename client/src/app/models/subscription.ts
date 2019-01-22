@@ -8,5 +8,5 @@ export interface Subscription {
 }
 
 export enum SubscriptionDuration {
-    Mounth = 1, Year = 12, Infinity = Number.POSITIVE_INFINITY
+    Mounth = 1, Year = 12, Infinity = -1
 }
